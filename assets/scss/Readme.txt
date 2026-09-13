@@ -1,0 +1,1 @@
+The .scss (Sass) files are only avilable in the pro version. You can buy it from: https://www.bestowits.com/bikin-free-simple-landing-page-template/
