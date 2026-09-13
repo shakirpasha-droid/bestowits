@@ -1,6 +1,6 @@
 <?php
 // Bestow ITs contact form handler
-// Sends enquiries to Bestow ITs and sets the visitor as Reply-To.
+// Sends enquiries to both Bestow ITs email addresses and sets the visitor as Reply-To.
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -31,7 +31,7 @@ $name = clean_header($name);
 $email = clean_header($email);
 $subject = clean_header($subject);
 
-$to = 'bestowits@gmail.com';
+$to = 'shakirpasha@bestowits.com, bestowits@gmail.com';
 $subject_line = 'Website Enquiry: ' . $subject;
 $body = "New enquiry received from the Bestow ITs website.\n\n"
        . "Name: " . $name . "\n"
@@ -39,11 +39,10 @@ $body = "New enquiry received from the Bestow ITs website.\n\n"
        . "Subject: " . $subject . "\n\n"
        . "Message:\n" . $message . "\n";
 
-// Use your domain email as From and the visitor's email as Reply-To.
-// This allows you to click Reply in your mailbox and respond directly to the visitor.
+// Use the domain email as From and the visitor's email as Reply-To.
 $headers  = "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$headers .= "From: Bestow ITs Website <bestowits@gmail.com>\r\n";
+$headers .= "From: Bestow ITs Website <shakirpasha@bestowits.com>\r\n";
 $headers .= "Reply-To: " . $email . "\r\n";
 
 if (mail($to, $subject_line, $body, $headers)) {
