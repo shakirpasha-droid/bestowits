@@ -16,7 +16,7 @@
 
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600,700,700i|Krub:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Krub:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -99,10 +99,11 @@
           </div>
 
           <div class="col-lg-6 mt-4 mt-md-0">
-            <form action="https://api.web3forms.com/submit" method="POST" role="form" class="php-email-form" id="contact-form">
+            <form action="https://api.web3forms.com/submit" method="POST" role="form" class="php-email-form">
               <input type="hidden" name="access_key" value="414c8cf7-4187-4369-ad45-8c6132dd6610">
-              <input type="hidden" name="from_name" value="BESTOW IT SERVICES Website">
               <input type="hidden" name="subject" value="New Website Enquiry - BESTOW IT SERVICES">
+              <input type="hidden" name="from_name" value="BESTOW IT SERVICES Website">
+              <input type="hidden" name="redirect" value="false">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -112,7 +113,7 @@
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="visitor_subject" id="subject" placeholder="Subject" required>
+                <input type="text" class="form-control" name="customer_subject" id="subject" placeholder="Subject" required>
               </div>
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
@@ -120,7 +121,7 @@
               <div class="my-3">
                 <div class="loading">Sending...</div>
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent successfully. Thank you!</div>
+                <div class="sent-message"><strong>Your message has been sent successfully. Thank you!</strong></div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
               <div class="text-center mt-3">
@@ -159,10 +160,9 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-            
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="about_us.html">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="services.html">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="privacy_policy.html" target="_blank">Privacy policy</a></li>
             </ul>
           </div>
@@ -214,48 +214,7 @@ s0.parentNode.insertBefore(s1,s0);
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-  <!-- Web3Forms contact form handler -->
-  <script>
-    document.getElementById('contact-form').addEventListener('submit', async function (event) {
-      event.preventDefault();
-
-      const form = this;
-      const button = form.querySelector('button[type="submit"]');
-      const loading = form.querySelector('.loading');
-      const errorMessage = form.querySelector('.error-message');
-      const sentMessage = form.querySelector('.sent-message');
-
-      loading.style.display = 'block';
-      errorMessage.style.display = 'none';
-      sentMessage.style.display = 'none';
-      button.disabled = true;
-
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        });
-
-        const result = await response.json();
-
-        if (response.ok && result.success) {
-          form.reset();
-          loading.style.display = 'none';
-          sentMessage.style.display = 'block';
-        } else {
-          throw new Error(result.message || 'Unable to send your message. Please try again.');
-        }
-      } catch (error) {
-        loading.style.display = 'none';
-        errorMessage.textContent = error.message || 'Unable to send your message. Please try again.';
-        errorMessage.style.display = 'block';
-      } finally {
-        button.disabled = false;
-      }
-    });
-  </script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
