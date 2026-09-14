@@ -12,8 +12,6 @@
 
   /**
    * Keep the header visually identical across all Bestow IT Services pages.
-   * The homepage has its own inline header styling, so these shared rules
-   * normalize the logo, header background and navigation state.
    */
   function normalizeBestowHeader() {
     const header = document.querySelector('#header');
@@ -84,11 +82,38 @@
   window.addEventListener('load', normalizeBestowHeader);
 
   /**
-   * Apply .scrolled class to the body as the page is scrolled down
+   * Keep the WhatsApp button clear of the Tawk.to live-chat bubble and
+   * the template back-to-top control.
+   */
+  function normalizeFloatingButtons() {
+    const whatsapp = document.querySelector('.whatsapp-float');
+    if (!whatsapp) return;
+
+    whatsapp.style.setProperty('right', '22px', 'important');
+    whatsapp.style.setProperty('bottom', '92px', 'important');
+    whatsapp.style.setProperty('z-index', '9990', 'important');
+
+    if (!document.getElementById('bestow-floating-button-style')) {
+      const style = document.createElement('style');
+      style.id = 'bestow-floating-button-style';
+      style.textContent = `
+        .whatsapp-float{right:22px!important;bottom:92px!important;z-index:9990!important}
+        @media(max-width:767px){.whatsapp-float{right:16px!important;bottom:82px!important}}
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', normalizeFloatingButtons);
+  window.addEventListener('load', normalizeFloatingButtons);
+
+  /**
+   * Apply .scrolled class to the body as the page is scrolled down.
    */
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
+    if (!selectHeader) return;
     if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
     window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
   }
@@ -169,6 +194,7 @@
    * Animation on scroll function and init
    */
   function aosInit() {
+    if (typeof AOS === 'undefined') return;
     AOS.init({
       duration: 600,
       easing: 'ease-in-out',
@@ -179,18 +205,23 @@
   window.addEventListener('load', aosInit);
 
   /**
-   * Initiate Pure Counter
+   * Initiate Pure Counter safely.
    */
-  new PureCounter();
+  if (typeof PureCounter !== 'undefined') {
+    new PureCounter();
+  }
 
   /**
    * Init swiper sliders
    */
   function initSwiper() {
+    if (typeof Swiper === 'undefined') return;
     document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
-      let config = JSON.parse(swiperElement.querySelector(".swiper-config").innerHTML.trim());
+      const configElement = swiperElement.querySelector(".swiper-config");
+      if (!configElement) return;
+      let config = JSON.parse(configElement.innerHTML.trim());
 
-      if (swiperElement.classList.contains("swiper-tab")) {
+      if (swiperElement.classList.contains("swiper-tab") && typeof initSwiperWithCustomPagination === 'function') {
         initSwiperWithCustomPagination(swiperElement, config);
       } else {
         new Swiper(swiperElement, config);
@@ -203,9 +234,9 @@
   /**
    * Initiate glightbox
    */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
+  if (typeof GLightbox !== 'undefined') {
+    GLightbox({ selector: '.glightbox' });
+  }
 
   /**
    * Frequently Asked Questions toggle
@@ -219,18 +250,20 @@
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
-  window.addEventListener('load', function(e) {
+  window.addEventListener('load', function() {
     if (window.location.hash) {
-      if (document.querySelector(window.location.hash)) {
-        setTimeout(() => {
-          let section = document.querySelector(window.location.hash);
-          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
-          window.scrollTo({
-            top: section.offsetTop - parseInt(scrollMarginTop),
-            behavior: 'smooth'
-          });
-        }, 100);
-      }
+      try {
+        if (document.querySelector(window.location.hash)) {
+          setTimeout(() => {
+            let section = document.querySelector(window.location.hash);
+            let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
+            window.scrollTo({
+              top: section.offsetTop - parseInt(scrollMarginTop),
+              behavior: 'smooth'
+            });
+          }, 100);
+        }
+      } catch (e) {}
     }
   });
 
@@ -251,7 +284,7 @@
       } else {
         navmenulink.classList.remove('active');
       }
-    })
+    });
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
@@ -278,20 +311,22 @@
 
   /**
    * Trial homepage enquiry popup.
-   * Set BESTOW_ENQUIRY_POPUP_ENABLED to false to disable it later.
-   * The popup is shown once per browser session after a short delay.
+   * A versioned session key makes the new trial appear even if the previous
+   * popup was already dismissed in this browser session.
    */
   const BESTOW_ENQUIRY_POPUP_ENABLED = true;
+  const BESTOW_ENQUIRY_POPUP_KEY = 'bestow_enquiry_popup_seen_v2';
 
   function initBestowEnquiryPopup() {
     if (!BESTOW_ENQUIRY_POPUP_ENABLED) return;
+    if (document.getElementById('bestow-enquiry-overlay')) return;
 
     const path = (window.location.pathname || '/').toLowerCase();
     const isHome = path === '/' || path.endsWith('/index.html') || path.endsWith('/index.htm');
     if (!isHome) return;
 
     try {
-      if (sessionStorage.getItem('bestow_enquiry_popup_seen') === '1') return;
+      if (sessionStorage.getItem(BESTOW_ENQUIRY_POPUP_KEY) === '1') return;
     } catch (e) {}
 
     const style = document.createElement('style');
@@ -363,7 +398,6 @@
     `;
     document.body.appendChild(overlay);
 
-    const modal = overlay.querySelector('.bestow-enquiry-modal');
     const closeButton = overlay.querySelector('.bestow-enquiry-close');
     const form = overlay.querySelector('.bestow-enquiry-form');
     const submitButton = overlay.querySelector('.bestow-enquiry-submit');
@@ -371,7 +405,7 @@
     let lastFocusedElement = null;
 
     function markSeen() {
-      try { sessionStorage.setItem('bestow_enquiry_popup_seen', '1'); } catch (e) {}
+      try { sessionStorage.setItem(BESTOW_ENQUIRY_POPUP_KEY, '1'); } catch (e) {}
     }
 
     function closePopup() {
@@ -386,7 +420,10 @@
       overlay.classList.add('bestow-popup-visible');
       overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-      setTimeout(() => form.querySelector('input[name="name"]').focus(), 120);
+      setTimeout(() => {
+        const nameField = form.querySelector('input[name="name"]');
+        if (nameField) nameField.focus();
+      }, 120);
     }
 
     closeButton.addEventListener('click', () => {
@@ -459,21 +496,30 @@
       }
     });
 
-    setTimeout(openPopup, 3500);
+    setTimeout(openPopup, 2500);
   }
 
-  window.addEventListener('DOMContentLoaded', initBestowEnquiryPopup);
+  function bootBestowEnquiryPopup() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBestowEnquiryPopup, { once: true });
+    } else {
+      initBestowEnquiryPopup();
+    }
+  }
+
+  bootBestowEnquiryPopup();
 
   /**
    * Initialize AOS after the page has loaded.
    */
   window.addEventListener('load', () => {
+    if (typeof AOS === 'undefined') return;
     AOS.init({
       duration: 1000,
       easing: 'ease-in-out',
       once: true,
       mirror: false
-    })
+    });
   });
 
 })()
