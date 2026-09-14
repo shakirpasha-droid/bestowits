@@ -1,0 +1,17 @@
+{
+  "name": "Bestow IT Services",
+  "short_name": "Bestow IT",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2454f4",
+  "description": "Professional IT support, computer AMC, networking, Wi-Fi, data recovery, CCTV, biometric and EPABX solutions in Hyderabad.",
+  "icons": [
+    {
+      "src": "/assets/img/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
