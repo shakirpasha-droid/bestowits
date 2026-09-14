@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://bestowits.com/</loc></url>
-  <url><loc>https://bestowits.com/about_us.html</loc></url>
-  <url><loc>https://bestowits.com/services.html</loc></url>
-  <url><loc>https://bestowits.com/features.html</loc></url>
-  <url><loc>https://bestowits.com/contact_us.html</loc></url>
-  <url><loc>https://bestowits.com/privacy_policy.html</loc></url>
+  <url><loc>https://bestowits.com/</loc><lastmod>2026-09-15</lastmod></url>
+  <url><loc>https://bestowits.com/about_us.html</loc><lastmod>2026-09-15</lastmod></url>
+  <url><loc>https://bestowits.com/services.html</loc><lastmod>2026-09-15</lastmod></url>
+  <url><loc>https://bestowits.com/features.html</loc><lastmod>2026-09-15</lastmod></url>
+  <url><loc>https://bestowits.com/contact_us.html</loc><lastmod>2026-09-15</lastmod></url>
+  <url><loc>https://bestowits.com/privacy_policy.html</loc><lastmod>2026-09-15</lastmod></url>
 </urlset>
