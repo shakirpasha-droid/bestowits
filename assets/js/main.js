@@ -24,22 +24,59 @@
       logo.style.setProperty('max-height', '82px', 'important');
       logo.style.setProperty('width', 'auto', 'important');
       logo.style.display = 'block';
+      logo.style.setProperty('mix-blend-mode', 'multiply', 'important');
     }
 
-    header.style.setProperty('background', '#fff', 'important');
+    header.style.setProperty('background', '#ffffff', 'important');
     header.style.setProperty('height', '80px', 'important');
+    header.style.setProperty('border-bottom', '1px solid #e8ecf7', 'important');
     const headerContainer = header.querySelector('.container');
     if (headerContainer) headerContainer.style.setProperty('height', '80px', 'important');
 
     const links = header.querySelectorAll('#navbar a.nav-link');
     links.forEach(link => {
       link.classList.add('scrollto');
+      link.style.position = 'relative';
+      link.style.paddingBottom = '14px';
+      link.style.setProperty('transition', 'color .25s ease', 'important');
+
+      if (!link.querySelector('.bestow-nav-indicator')) {
+        const indicator = document.createElement('span');
+        indicator.className = 'bestow-nav-indicator';
+        indicator.style.position = 'absolute';
+        indicator.style.left = '30px';
+        indicator.style.right = '0';
+        indicator.style.bottom = '3px';
+        indicator.style.height = '3px';
+        indicator.style.borderRadius = '3px';
+        indicator.style.background = '#3b4ef8';
+        indicator.style.transform = 'scaleX(0)';
+        indicator.style.transformOrigin = 'center';
+        indicator.style.transition = 'transform .25s ease';
+        link.appendChild(indicator);
+      }
     });
 
     const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
     links.forEach(link => {
       const href = (link.getAttribute('href') || '').split('#')[0].split('/').pop().toLowerCase();
-      link.classList.toggle('active', (current === '' && href === 'index.html') || href === current);
+      const isActive = (current === '' && href === 'index.html') || href === current;
+      link.classList.toggle('active', isActive);
+      const indicator = link.querySelector('.bestow-nav-indicator');
+      if (indicator) indicator.style.transform = isActive ? 'scaleX(1)' : 'scaleX(0)';
+      link.style.color = isActive ? '#3b4ef8' : '#2d405f';
+    });
+
+    links.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        const indicator = link.querySelector('.bestow-nav-indicator');
+        if (indicator) indicator.style.transform = 'scaleX(1)';
+      });
+      link.addEventListener('mouseleave', () => {
+        const indicator = link.querySelector('.bestow-nav-indicator');
+        const isActive = link.classList.contains('active');
+        if (indicator) indicator.style.transform = isActive ? 'scaleX(1)' : 'scaleX(0)';
+      });
     });
   }
 
