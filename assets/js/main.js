@@ -11,6 +11,42 @@
   "use strict";
 
   /**
+   * Keep the header visually identical across all Bestow IT Services pages.
+   * The homepage has its own inline header styling, so these shared rules
+   * normalize the logo, header background and navigation state.
+   */
+  function normalizeBestowHeader() {
+    const header = document.querySelector('#header');
+    if (!header) return;
+
+    const logo = header.querySelector('.logo img');
+    if (logo) {
+      logo.style.setProperty('max-height', '82px', 'important');
+      logo.style.setProperty('width', 'auto', 'important');
+      logo.style.display = 'block';
+    }
+
+    header.style.setProperty('background', '#fff', 'important');
+    header.style.setProperty('height', '80px', 'important');
+    const headerContainer = header.querySelector('.container');
+    if (headerContainer) headerContainer.style.setProperty('height', '80px', 'important');
+
+    const links = header.querySelectorAll('#navbar a.nav-link');
+    links.forEach(link => {
+      link.classList.add('scrollto');
+    });
+
+    const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    links.forEach(link => {
+      const href = (link.getAttribute('href') || '').split('#')[0].split('/').pop().toLowerCase();
+      link.classList.toggle('active', (current === '' && href === 'index.html') || href === current);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', normalizeBestowHeader);
+  window.addEventListener('load', normalizeBestowHeader);
+
+  /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
   function toggleScrolled() {
@@ -46,7 +82,6 @@
         mobileNavToogle();
       }
     });
-
   });
 
   /**
