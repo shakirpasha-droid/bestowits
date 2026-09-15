@@ -1,0 +1,40 @@
+name: Enable Homepage Trust Sections
+
+on:
+  push:
+    branches:
+      - add-testimonials-partners
+
+permissions:
+  contents: write
+
+jobs:
+  update-homepage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add homepage trust-section script
+        shell: python
+        run: |
+          from pathlib import Path
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+          marker = 'assets/js/home-sections.js'
+          tag = '<script src="assets/js/home-sections.js"></script>'
+          if marker not in text:
+              text = text.replace('</body>', f'  {tag}\n</body>', 1)
+              path.write_text(text, encoding='utf-8')
+
+      - name: Commit homepage update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No homepage changes needed."
+          else
+            git commit -m "Add homepage testimonials and partner sections"
+            git push
+          fi
