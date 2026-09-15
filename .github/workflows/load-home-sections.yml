@@ -1,4 +1,4 @@
-name: Load Bestow Homepage Sections
+name: Load Bestow Homepage Social Links
 
 on:
   push:
@@ -15,19 +15,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Ensure homepage loads trust sections
+      - name: Keep homepage social links script only
         shell: python
         run: |
           from pathlib import Path
           path = Path('index.html')
           text = path.read_text(encoding='utf-8')
-          tags = [
-              '<script src="assets/js/home-sections.js"></script>',
-              '<script src="assets/js/feedback-enhancements.js"></script>'
-          ]
-          for tag in tags:
-              if tag not in text:
-                  text = text.replace('</body>', f'  {tag}\n</body>', 1)
+          text = text.replace('  <script src="assets/js/feedback-enhancements.js"></script>\n', '')
+          if '<script src="assets/js/home-sections.js"></script>' not in text:
+              text = text.replace('</body>', '  <script src="assets/js/home-sections.js"></script>\n</body>', 1)
           path.write_text(text, encoding='utf-8')
 
       - name: Commit homepage change if needed
@@ -36,8 +32,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
           if git diff --cached --quiet; then
-            echo "Homepage scripts already loaded"
+            echo "Homepage already updated"
           else
-            git commit -m "Enable customer feedback visual enhancements"
+            git commit -m "Remove customer feedback from homepage"
             git push
           fi
