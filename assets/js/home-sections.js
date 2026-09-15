@@ -4,12 +4,13 @@
   const isHome = /(^|\/)index\.html$|\/$/.test(window.location.pathname);
   if(!isHome) return;
 
-  const testimonials = [
+  // Paste the deployed Google Apps Script Web App URL here after deployment.
+  const FEEDBACK_API_URL='';
+  let testimonials = [
     {name:'Customer Feedback',company:'Verified customer',text:'Your genuine customer testimonial can appear here after approval.'},
     {name:'Customer Feedback',company:'Verified customer',text:'Share your experience with our IT support, AMC, networking or other services.'},
     {name:'Customer Feedback',company:'Verified customer',text:'Approved customer feedback will be displayed here to help new visitors build confidence.'}
   ];
-
   let clients = [];
 
   function esc(v){
@@ -28,7 +29,7 @@
       .bestow-testimonial-card{height:100%;background:#fff;border:1px solid #e4ebf7;border-radius:18px;padding:28px;box-shadow:0 8px 28px rgba(27,55,108,.06)}
       .bestow-testimonial-card .quote{font-size:36px;line-height:1;color:#2454f4;font-weight:700;margin-bottom:12px}
       .bestow-testimonial-card p{font-size:13px;line-height:1.8;color:#42516d;min-height:92px;margin:0 0 20px}
-      .bestow-testimonial-card h3{font-size:15px;color:#142b5b;font-weight:700;margin:0 0 4px}.bestow-testimonial-card .company{font-size:11px;color:#7a879d}
+      .bestow-testimonial-card h3{font-size:15px;color:#142b5b;font-weight:700;margin:0 0 4px}.bestow-testimonial-card .company{font-size:11px;color:#7a879d}.bestow-testimonial-rating{font-size:12px;color:#2454f4;font-weight:700;margin-bottom:10px}
       .bestow-client-wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
       .bestow-client-chip{min-height:128px;background:#fff;border:1px solid #e3eaf7;border-radius:14px;padding:18px;text-align:center;box-shadow:0 6px 20px rgba(27,55,108,.05);font-size:12px;font-weight:600;color:#17305e;transition:.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px}
       .bestow-client-chip:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(27,55,108,.10)}
@@ -46,7 +47,8 @@
 
   function buildTestimonials(){
     const section=document.createElement('section'); section.className='bestow-trust-section'; section.id='customer-testimonials';
-    section.innerHTML=`<div class="container"><div class="bestow-trust-heading"><div class="kicker">Customer Trust</div><h2>What Our Customers Say</h2><p>We value every customer's experience. Submit your feedback through our customer feedback form and, with your permission, your approved testimonial can be featured here.</p></div><div class="row g-4">${testimonials.map(t=>`<div class="col-lg-4 col-md-6"><div class="bestow-testimonial-card"><div class="quote">“</div><p>${esc(t.text)}</p><h3>${esc(t.name)}</h3><div class="company">${esc(t.company)}</div></div></div>`).join('')}</div><div class="bestow-client-cta"><a href="customer_feedback.html"><i class="bi bi-chat-square-heart"></i> Share Your Feedback</a></div></div>`;
+    const cards=testimonials.map(t=>`<div class="col-lg-4 col-md-6"><div class="bestow-testimonial-card"><div class="quote">“</div>${t.rating?`<div class="bestow-testimonial-rating">${esc(t.rating)}</div>`:''}<p>${esc(t.text)}</p><h3>${esc(t.name)}</h3><div class="company">${esc(t.company)}</div></div></div>`).join('');
+    section.innerHTML=`<div class="container"><div class="bestow-trust-heading"><div class="kicker">Customer Trust</div><h2>What Our Customers Say</h2><p>We value every customer's experience. Approved testimonials are displayed here after review and publication.</p></div><div class="row g-4">${cards}</div><div class="bestow-client-cta"><a href="customer_feedback.html"><i class="bi bi-chat-square-heart"></i> Share Your Feedback</a></div></div>`;
     return section;
   }
 
@@ -78,14 +80,28 @@
       if(!response.ok) throw new Error('Client data unavailable');
       const data=await response.json();
       if(Array.isArray(data)) clients=data;
+    }catch(e){clients=[];}
+  }
+
+  async function loadTestimonials(){
+    if(!FEEDBACK_API_URL) return;
+    try{
+      const response=await fetch(FEEDBACK_API_URL,{cache:'no-store'});
+      if(!response.ok) throw new Error('Feedback API unavailable');
+      const data=await response.json();
+      if(Array.isArray(data) && data.length){
+        testimonials=data.map(t=>({name:t.name||'Customer',company:t.company||'Verified customer',text:t.feedback||'',rating:t.rating||''}));
+      }else{
+        testimonials=[];
+      }
     }catch(e){
-      clients=[];
+      // Keep the site usable if the external approval backend is temporarily unavailable.
     }
   }
 
   async function init(){
     addStyles();
-    await loadClients();
+    await Promise.all([loadClients(),loadTestimonials()]);
     const cta=document.querySelector('.cta-strip'), footer=document.querySelector('#footer'), anchor=cta||footer;
     if(anchor && !document.getElementById('customer-testimonials')){
       anchor.parentNode.insertBefore(buildTestimonials(),anchor);
