@@ -10,8 +10,7 @@
     {name:'Customer Feedback',company:'Verified customer',text:'Approved customer feedback will be displayed here to help new visitors build confidence.'}
   ];
 
-  const fallbackClients = [];
-  let clients = fallbackClients;
+  let clients = [];
 
   function esc(v){
     return String(v||'').replace(/[&<>\"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#039;'}[ch];});
@@ -78,7 +77,7 @@
       const response=await fetch('assets/data/clients.json',{cache:'no-store'});
       if(!response.ok) throw new Error('Client data unavailable');
       const data=await response.json();
-      if(Array.isArray(data)) clients=[];
+      if(Array.isArray(data)) clients=data;
     }catch(e){
       clients=[];
     }
