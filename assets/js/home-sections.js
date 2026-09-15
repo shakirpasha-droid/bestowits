@@ -13,7 +13,7 @@
       .bestow-social-links a{width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#2454f4;color:#fff;text-decoration:none;font-size:21px;transition:.25s;box-shadow:0 5px 16px rgba(36,84,244,.22)}
       .bestow-social-links a:hover{transform:translateY(-3px);background:#28a8e8;color:#fff}
       .bestow-social-label{text-align:center;color:#c5d0e8;font-size:12px;margin:0}
-      .bestow-home-seo{padding:70px 0;background:#fff}
+      .bestow-home-seo{padding:70px 0;background:#fff;content-visibility:auto;contain-intrinsic-size:1px 900px}
       .bestow-home-seo .container{max-width:1100px}
       .bestow-home-seo h2{font-size:30px;line-height:1.3;color:#101f46;font-weight:700;margin:0 0 18px}
       .bestow-home-seo h3{font-size:20px;color:#142b5b;font-weight:700;margin:28px 0 10px}
@@ -23,6 +23,29 @@
       @media(max-width:767px){.bestow-home-seo{padding:52px 0}.bestow-home-seo h2{font-size:26px}.bestow-home-seo .seo-grid{grid-template-columns:1fr;gap:8px}.bestow-home-seo p{font-size:13px}}
     `;
     document.head.appendChild(s);
+  }
+
+  function optimizeHomepageRendering(){
+    if(document.getElementById('bestow-home-performance-styles')) return;
+    const style=document.createElement('style');
+    style.id='bestow-home-performance-styles';
+    style.textContent=`
+      /* Reduce below-the-fold rendering work on smaller devices without changing layout. */
+      @media(max-width:1024px){
+        main > .section:not(.modern-hero),
+        main > .stats,
+        main > .cta-strip{content-visibility:auto;contain-intrinsic-size:1px 650px}
+      }
+      @media(max-width:767px){
+        .hero-visual img{content-visibility:auto}
+      }
+    `;
+    document.head.appendChild(style);
+
+    document.querySelectorAll('main img').forEach(function(img,index){
+      if(index > 0 && !img.hasAttribute('loading')) img.setAttribute('loading','lazy');
+      if(!img.hasAttribute('decoding')) img.setAttribute('decoding','async');
+    });
   }
 
   function addSocialIcons(){
@@ -94,6 +117,7 @@
 
   function init(){
     addStyles();
+    optimizeHomepageRendering();
     addSocialIcons();
     addHomepageSeoContent();
     addContentProtection();
