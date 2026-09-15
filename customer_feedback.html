@@ -54,8 +54,7 @@
 (function(){
   const form=document.getElementById('customerFeedbackForm'), btn=document.getElementById('submitBtn'), status=document.getElementById('status');
   const WEB3FORMS_KEY='414c8cf7-4187-4369-ad45-8c6132dd6610';
-  // Paste the deployed Google Apps Script Web App URL here once deployed.
-  const FEEDBACK_API_URL='';
+  const FEEDBACK_API_URL='https://script.google.com/macros/s/AKfycbwLXWHDpfUwrPl5TmwWOguARdz0tYNoxLACRkAiXkSMRMQZx2IVDI5sWB8G4999GW64/exec';
 
   form.addEventListener('submit',async function(e){
     e.preventDefault();
@@ -70,16 +69,13 @@
     data.redirect='false';
     try{
       const emailRequest=fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)}).then(r=>r.json());
-      let backendRequest=Promise.resolve();
-      if(FEEDBACK_API_URL){
-        const backendData=new URLSearchParams({action:'submit',name:data.name,company:data.company||'',email:data.email,service:data.service,rating:data.rating,feedback:data.feedback,publish_consent:data.publish_consent||'No'});
-        backendRequest=fetch(FEEDBACK_API_URL,{method:'POST',body:backendData,mode:'no-cors'});
-      }
+      const backendData=new URLSearchParams({action:'submit',name:data.name,company:data.company||'',email:data.email,service:data.service,rating:data.rating,feedback:data.feedback,publish_consent:data.publish_consent||'No'});
+      const backendRequest=fetch(FEEDBACK_API_URL,{method:'POST',body:backendData,mode:'no-cors'});
       const result=await emailRequest;
       await backendRequest;
       if(!result || result.success!==true) throw new Error(result&&result.message?result.message:'Unable to submit feedback.');
       status.className='status success show';
-      status.textContent=FEEDBACK_API_URL?'Thank you! Your feedback has been submitted and is now pending approval.':'Thank you! Your feedback has been submitted successfully. The approval system will activate after the Google Apps Script URL is configured.';
+      status.textContent='Thank you! Your feedback has been submitted and is now pending approval.';
       form.reset();
     }catch(err){status.className='status error show';status.textContent=err.message||'Something went wrong. Please try again.';}
     finally{btn.disabled=false;btn.textContent='Submit Feedback';}
