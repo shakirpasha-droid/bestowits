@@ -10,13 +10,18 @@
     {name:'Customer Feedback',company:'Verified customer',text:'Approved customer feedback will be displayed here to help new visitors build confidence.'}
   ];
 
-  const clients = [
-    'Sateef Trading LLC','Smart Fragrance','Al Madina Souq','Tabari Art Gallery',
-    'Four Lines Industries LLC','Al-Khuzamiah Packaging','Desert Chill Ice Cream',
-    'Golden Pies & Pastries','Green Planet Tech Consultant','Hudabai Garments Ajman',
-    'Disha Corporation FZE','Metal Cube Steel & Welding LLC','RAK Group of Companies',
-    'Royal Way Facilities Management Services LLC'
+  const fallbackClients = [
+    {name:'Sateef Trading LLC',logo:''},{name:'Smart Fragrance',logo:''},{name:'Al Madina Souq',logo:''},{name:'Tabari Art Gallery',logo:''},
+    {name:'Four Lines Industries LLC',logo:''},{name:'Al-Khuzamiah Packaging',logo:''},{name:'Desert Chill Ice Cream',logo:''},{name:'Golden Pies & Pastries',logo:''},
+    {name:'Green Planet Tech Consultant',logo:''},{name:'Hudabai Garments Ajman',logo:''},{name:'Disha Corporation FZE',logo:''},{name:'Metal Cube Steel & Welding LLC',logo:''},
+    {name:'RAK Group of Companies',logo:''},{name:'Royal Way Facilities Management Services LLC',logo:''}
   ];
+
+  let clients = fallbackClients;
+
+  function esc(v){
+    return String(v||'').replace(/[&<>\"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#039;'}[ch];});
+  }
 
   function addStyles(){
     if(document.getElementById('bestow-trust-section-styles')) return;
@@ -31,29 +36,48 @@
       .bestow-testimonial-card .quote{font-size:36px;line-height:1;color:#2454f4;font-weight:700;margin-bottom:12px}
       .bestow-testimonial-card p{font-size:13px;line-height:1.8;color:#42516d;min-height:92px;margin:0 0 20px}
       .bestow-testimonial-card h3{font-size:15px;color:#142b5b;font-weight:700;margin:0 0 4px}.bestow-testimonial-card .company{font-size:11px;color:#7a879d}
-      .bestow-client-wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
-      .bestow-client-chip{background:#fff;border:1px solid #e3eaf7;border-radius:12px;padding:14px 18px;text-align:center;box-shadow:0 6px 20px rgba(27,55,108,.05);font-size:12px;font-weight:600;color:#17305e;transition:.2s}
+      .bestow-client-wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+      .bestow-client-chip{min-height:128px;background:#fff;border:1px solid #e3eaf7;border-radius:14px;padding:18px;text-align:center;box-shadow:0 6px 20px rgba(27,55,108,.05);font-size:12px;font-weight:600;color:#17305e;transition:.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px}
       .bestow-client-chip:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(27,55,108,.10)}
-      .bestow-client-cta{text-align:center;margin-top:28px}.bestow-client-cta a{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:9px;background:#2454f4;color:#fff;text-decoration:none;font-size:12px;font-weight:600}
+      .bestow-client-logo{width:58px;height:58px;object-fit:contain;border-radius:10px;background:#fff}.bestow-client-initial{width:58px;height:58px;border-radius:10px;background:#edf4ff;display:flex;align-items:center;justify-content:center;color:#2454f4;font-size:20px;font-weight:700}
+      .bestow-client-name{line-height:1.45}.bestow-client-cta{text-align:center;margin-top:28px}.bestow-client-cta a{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:9px;background:#2454f4;color:#fff;text-decoration:none;font-size:12px;font-weight:600}
       .bestow-trust-note{text-align:center;font-size:11px;color:#8994a8;margin:25px auto 0;max-width:760px;line-height:1.6}
-      @media(max-width:767px){.bestow-trust-section{padding:55px 0}.bestow-trust-heading h2{font-size:28px}.bestow-testimonial-card p{min-height:0}}
+      @media(max-width:991px){.bestow-client-wrap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+      @media(max-width:767px){.bestow-trust-section{padding:55px 0}.bestow-trust-heading h2{font-size:28px}.bestow-testimonial-card p{min-height:0}.bestow-client-wrap{grid-template-columns:1fr 1fr;gap:10px}.bestow-client-chip{min-height:115px;padding:12px 8px;font-size:11px}.bestow-client-logo,.bestow-client-initial{width:48px;height:48px}.bestow-client-initial{font-size:17px}}
     `; document.head.appendChild(s);
   }
 
   function buildTestimonials(){
     const section=document.createElement('section'); section.className='bestow-trust-section'; section.id='customer-testimonials';
-    section.innerHTML=`<div class="container"><div class="bestow-trust-heading"><div class="kicker">Customer Trust</div><h2>What Our Customers Say</h2><p>We value every customer's experience. Submit your feedback through our customer feedback form and, with your permission, your approved testimonial can be featured here.</p></div><div class="row g-4">${testimonials.map(t=>`<div class="col-lg-4 col-md-6"><div class="bestow-testimonial-card"><div class="quote">“</div><p>${t.text}</p><h3>${t.name}</h3><div class="company">${t.company}</div></div></div>`).join('')}</div><div class="bestow-client-cta"><a href="customer_feedback.html"><i class="bi bi-chat-square-heart"></i> Share Your Feedback</a></div></div>`;
+    section.innerHTML=`<div class="container"><div class="bestow-trust-heading"><div class="kicker">Customer Trust</div><h2>What Our Customers Say</h2><p>We value every customer's experience. Submit your feedback through our customer feedback form and, with your permission, your approved testimonial can be featured here.</p></div><div class="row g-4">${testimonials.map(t=>`<div class="col-lg-4 col-md-6"><div class="bestow-testimonial-card"><div class="quote">“</div><p>${esc(t.text)}</p><h3>${esc(t.name)}</h3><div class="company">${esc(t.company)}</div></div></div>`).join('')}</div><div class="bestow-client-cta"><a href="customer_feedback.html"><i class="bi bi-chat-square-heart"></i> Share Your Feedback</a></div></div>`;
     return section;
+  }
+
+  function initials(name){
+    const words=String(name||'').trim().split(/\s+/).filter(Boolean);
+    return (words.slice(0,2).map(w=>w.charAt(0)).join('')||'B').toUpperCase();
   }
 
   function buildClients(){
     const section=document.createElement('section'); section.className='bestow-trust-section alt'; section.id='our-clients';
-    section.innerHTML=`<div class="container"><div class="bestow-trust-heading"><div class="kicker">Our Client Network</div><h2>Businesses We Support</h2><p>We are proud to support businesses with practical IT services, networking, AMC, security and technology solutions.</p></div><div class="bestow-client-wrap">${clients.map(c=>`<div class="bestow-client-chip">${c}</div>`).join('')}</div><p class="bestow-trust-note">Client names are shown for business-reference purposes. Please contact us if you would like your organization removed or updated.</p></div>`;
+    section.innerHTML=`<div class="container"><div class="bestow-trust-heading"><div class="kicker">Our Client Network</div><h2>Businesses We Support</h2><p>We are proud to support businesses with practical IT services, networking, AMC, security and technology solutions.</p></div><div class="bestow-client-wrap">${clients.map(c=>{const logo=c.logo?`<img class="bestow-client-logo" src="${esc(c.logo)}" alt="${esc(c.name)} logo" loading="lazy">`:`<div class="bestow-client-initial" aria-hidden="true">${esc(initials(c.name))}</div>`;return `<div class="bestow-client-chip">${logo}<div class="bestow-client-name">${esc(c.name)}</div></div>`;}).join('')}</div><p class="bestow-trust-note">Client names are shown for business-reference purposes. Please contact us if you would like your organization removed or updated.</p></div>`;
     return section;
   }
 
-  function init(){
+  async function loadClients(){
+    try{
+      const response=await fetch('assets/data/clients.json',{cache:'no-store'});
+      if(!response.ok) throw new Error('Client data unavailable');
+      const data=await response.json();
+      if(Array.isArray(data)&&data.length) clients=data.filter(c=>c&&c.name);
+    }catch(e){
+      clients=fallbackClients;
+    }
+  }
+
+  async function init(){
     addStyles(); if(document.getElementById('customer-testimonials')) return;
+    await loadClients();
     const cta=document.querySelector('.cta-strip'), footer=document.querySelector('#footer'), anchor=cta||footer; if(!anchor) return;
     anchor.parentNode.insertBefore(buildTestimonials(),anchor); anchor.parentNode.insertBefore(buildClients(),anchor);
     if(window.AOS && typeof window.AOS.refresh==='function') window.AOS.refresh();
