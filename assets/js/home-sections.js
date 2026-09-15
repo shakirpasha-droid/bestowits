@@ -4,8 +4,7 @@
   const isHome = /(^|\/)index\.html$|\/$/.test(window.location.pathname);
   if(!isHome) return;
 
-  // Paste the deployed Google Apps Script Web App URL here after deployment.
-  const FEEDBACK_API_URL='';
+  const FEEDBACK_API_URL='https://script.google.com/macros/s/AKfycbwLXWHDpfUwrPl5TmwWOguARdz0tYNoxLACRkAiXkSMRMQZx2IVDI5sWB8G4999GW64/exec';
   let testimonials = [
     {name:'Customer Feedback',company:'Verified customer',text:'Your genuine customer testimonial can appear here after approval.'},
     {name:'Customer Feedback',company:'Verified customer',text:'Share your experience with our IT support, AMC, networking or other services.'},
