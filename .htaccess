@@ -5,11 +5,22 @@ RewriteCond %{SERVER_PORT} 80
 RewriteCond %{HTTP_HOST} ^(www\.)?bestowits\.com
 RewriteRule ^(.*)$ https://bestowits.com/$1 [R=301,L]
 
-# Compress text-based responses for faster mobile/tablet downloads.
+# Prefer Brotli when the hosting server supports mod_brotli; fall back to gzip.
+<IfModule mod_brotli.c>
+  BrotliCompressionQuality 5
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/x-javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/json application/xml text/xml image/svg+xml
+</IfModule>
+
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript
   AddOutputFilterByType DEFLATE application/javascript application/x-javascript
   AddOutputFilterByType DEFLATE application/json application/xml text/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header append Vary Accept-Encoding
 </IfModule>
 
 # Cache static assets so repeat visits are much faster on phones and tablets.
