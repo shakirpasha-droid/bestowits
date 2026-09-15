@@ -10,13 +10,8 @@
     {name:'Customer Feedback',company:'Verified customer',text:'Approved customer feedback will be displayed here to help new visitors build confidence.'}
   ];
 
-  const fallbackClients = [
-    {name:'Sateef Trading LLC',logo:''},{name:'Smart Fragrance',logo:''},{name:'Al Madina Souq',logo:''},{name:'Tabari Art Gallery',logo:''},
-    {name:'Four Lines Industries LLC',logo:''},{name:'Al-Khuzamiah Packaging',logo:''},{name:'Desert Chill Ice Cream',logo:''},{name:'Golden Pies & Pastries',logo:''},
-    {name:'Green Planet Tech Consultant',logo:''},{name:'Hudabai Garments Ajman',logo:''},{name:'Disha Corporation FZE',logo:''},{name:'Metal Cube Steel & Welding LLC',logo:''},
-    {name:'RAK Group of Companies',logo:''},{name:'Royal Way Facilities Management Services LLC',logo:''}
-  ];
-
+  // Hyderabad client list can be added here later through assets/data/clients.json.
+  const fallbackClients = [];
   let clients = fallbackClients;
 
   function esc(v){
@@ -60,7 +55,8 @@
 
   function buildClients(){
     const section=document.createElement('section'); section.className='bestow-trust-section alt'; section.id='our-clients';
-    section.innerHTML=`<div class="container"><div class="bestow-trust-heading"><div class="kicker">Our Client Network</div><h2>Businesses We Support</h2><p>We are proud to support businesses with practical IT services, networking, AMC, security and technology solutions.</p></div><div class="bestow-client-wrap">${clients.map(c=>{const logo=c.logo?`<img class="bestow-client-logo" src="${esc(c.logo)}" alt="${esc(c.name)} logo" loading="lazy">`:`<div class="bestow-client-initial" aria-hidden="true">${esc(initials(c.name))}</div>`;return `<div class="bestow-client-chip">${logo}<div class="bestow-client-name">${esc(c.name)}</div></div>`;}).join('')}</div><p class="bestow-trust-note">Client names are shown for business-reference purposes. Please contact us if you would like your organization removed or updated.</p></div>`;
+    const clientContent = clients.length ? `<div class="bestow-client-wrap">${clients.map(c=>{const logo=c.logo?`<img class="bestow-client-logo" src="${esc(c.logo)}" alt="${esc(c.name)} logo" loading="lazy">`:`<div class="bestow-client-initial" aria-hidden="true">${esc(initials(c.name))}</div>`;return `<div class="bestow-client-chip">${logo}<div class="bestow-client-name">${esc(c.name)}</div></div>`;}).join('')}</div><p class="bestow-trust-note">Client names are shown for business-reference purposes. Please contact us if you would like your organization removed or updated.</p>` : '';
+    section.innerHTML=`<div class="container"><div class="bestow-trust-heading"><div class="kicker">Our Client Network</div><h2>Businesses We Support</h2></div>${clientContent}</div>`;
     return section;
   }
 
@@ -69,9 +65,10 @@
       const response=await fetch('assets/data/clients.json',{cache:'no-store'});
       if(!response.ok) throw new Error('Client data unavailable');
       const data=await response.json();
-      if(Array.isArray(data)&&data.length) clients=data.filter(c=>c&&c.name);
+      // Keep the existing UAE client data hidden until Hyderabad clients are supplied.
+      if(Array.isArray(data)) clients=[];
     }catch(e){
-      clients=fallbackClients;
+      clients=[];
     }
   }
 
