@@ -28,9 +28,30 @@
     footer.appendChild(wrap);
   }
 
+  /*
+   * Non-intrusive homepage content protection.
+   * This is a browser-side deterrent only; it does not alter the page layout,
+   * images, forms, links, navigation, SEO markup, or existing functionality.
+   */
+  function addContentProtection(){
+    if(document.documentElement.dataset.bestowProtection === '1') return;
+    document.documentElement.dataset.bestowProtection = '1';
+
+    document.addEventListener('contextmenu', function(e){
+      const tag = (e.target && e.target.tagName) || '';
+      if(tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+      e.preventDefault();
+    }, {capture:true});
+
+    document.addEventListener('dragstart', function(e){
+      if(e.target && e.target.tagName === 'IMG') e.preventDefault();
+    }, {capture:true});
+  }
+
   function init(){
     addStyles();
     addSocialIcons();
+    addContentProtection();
   }
 
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true}); else init();
