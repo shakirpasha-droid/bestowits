@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - add-testimonials-partners
+      - main
 
 permissions:
   contents: write
@@ -27,14 +28,18 @@ jobs:
               text = text.replace('</body>', f'  {tag}\n</body>', 1)
               path.write_text(text, encoding='utf-8')
 
-      - name: Commit homepage update
+      - name: Commit homepage update and clean up
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
+          if [ -f .github/workflows/enable-home-trust-sections.yml ]; then git add -u .github/workflows/enable-home-trust-sections.yml; fi
+          if [ -f .github/home-trust-ready.txt ]; then git add -u .github/home-trust-ready.txt; fi
+          rm -f .github/workflows/enable-home-trust-sections.yml .github/home-trust-ready.txt
+          git add -A
           if git diff --cached --quiet; then
             echo "No homepage changes needed."
           else
-            git commit -m "Add homepage testimonials and partner sections"
+            git commit -m "Enable homepage testimonials and partner sections"
             git push
           fi
