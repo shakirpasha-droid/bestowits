@@ -10,7 +10,6 @@
     {name:'Customer Feedback',company:'Verified customer',text:'Approved customer feedback will be displayed here to help new visitors build confidence.'}
   ];
 
-  // Hyderabad client list can be added here later through assets/data/clients.json.
   const fallbackClients = [];
   let clients = fallbackClients;
 
@@ -37,8 +36,12 @@
       .bestow-client-logo{width:58px;height:58px;object-fit:contain;border-radius:10px;background:#fff}.bestow-client-initial{width:58px;height:58px;border-radius:10px;background:#edf4ff;display:flex;align-items:center;justify-content:center;color:#2454f4;font-size:20px;font-weight:700}
       .bestow-client-name{line-height:1.45}.bestow-client-cta{text-align:center;margin-top:28px}.bestow-client-cta a{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:9px;background:#2454f4;color:#fff;text-decoration:none;font-size:12px;font-weight:600}
       .bestow-trust-note{text-align:center;font-size:11px;color:#8994a8;margin:25px auto 0;max-width:760px;line-height:1.6}
+      .bestow-social-links{display:flex;align-items:center;justify-content:center;gap:12px;margin:24px 0 8px;flex-wrap:wrap}
+      .bestow-social-links a{width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#2454f4;color:#fff;text-decoration:none;font-size:21px;transition:.25s;box-shadow:0 5px 16px rgba(36,84,244,.22)}
+      .bestow-social-links a:hover{transform:translateY(-3px);background:#28a8e8;color:#fff}
+      .bestow-social-label{text-align:center;color:#c5d0e8;font-size:12px;margin:0}
       @media(max-width:991px){.bestow-client-wrap{grid-template-columns:repeat(2,minmax(0,1fr))}}
-      @media(max-width:767px){.bestow-trust-section{padding:55px 0}.bestow-trust-heading h2{font-size:28px}.bestow-testimonial-card p{min-height:0}.bestow-client-wrap{grid-template-columns:1fr 1fr;gap:10px}.bestow-client-chip{min-height:115px;padding:12px 8px;font-size:11px}.bestow-client-logo,.bestow-client-initial{width:48px;height:48px}.bestow-client-initial{font-size:17px}}
+      @media(max-width:767px){.bestow-trust-section{padding:55px 0}.bestow-trust-heading h2{font-size:28px}.bestow-testimonial-card p{min-height:0}.bestow-client-wrap{grid-template-columns:1fr 1fr;gap:10px}.bestow-client-chip{min-height:115px;padding:12px 8px;font-size:11px}.bestow-client-logo,.bestow-client-initial{width:48px;height:48px}.bestow-client-initial{font-size:17px}.bestow-social-links{gap:10px}.bestow-social-links a{width:40px;height:40px;font-size:19px}}
     `; document.head.appendChild(s);
   }
 
@@ -60,12 +63,21 @@
     return section;
   }
 
+  function addSocialIcons(){
+    if(document.getElementById('bestow-home-social-links')) return;
+    const footer=document.querySelector('#footer');
+    if(!footer) return;
+    const wrap=document.createElement('div');
+    wrap.id='bestow-home-social-links';
+    wrap.innerHTML=`<div class="bestow-social-links" aria-label="Bestow IT Services social media"><a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><i class="bx bxl-facebook"></i></a><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="bx bxl-instagram"></i></a><a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><i class="bx bxl-linkedin"></i></a><a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><i class="bx bxl-youtube"></i></a><a href="https://wa.me/919440742529" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="bx bxl-whatsapp"></i></a></div><p class="bestow-social-label">Follow Bestow IT Services on social media</p>`;
+    footer.appendChild(wrap);
+  }
+
   async function loadClients(){
     try{
       const response=await fetch('assets/data/clients.json',{cache:'no-store'});
       if(!response.ok) throw new Error('Client data unavailable');
       const data=await response.json();
-      // Keep the existing UAE client data hidden until Hyderabad clients are supplied.
       if(Array.isArray(data)) clients=[];
     }catch(e){
       clients=[];
@@ -73,11 +85,15 @@
   }
 
   async function init(){
-    addStyles(); if(document.getElementById('customer-testimonials')) return;
+    addStyles();
     await loadClients();
-    const cta=document.querySelector('.cta-strip'), footer=document.querySelector('#footer'), anchor=cta||footer; if(!anchor) return;
-    anchor.parentNode.insertBefore(buildTestimonials(),anchor); anchor.parentNode.insertBefore(buildClients(),anchor);
-    if(window.AOS && typeof window.AOS.refresh==='function') window.AOS.refresh();
+    const cta=document.querySelector('.cta-strip'), footer=document.querySelector('#footer'), anchor=cta||footer;
+    if(anchor && !document.getElementById('customer-testimonials')){
+      anchor.parentNode.insertBefore(buildTestimonials(),anchor);
+      anchor.parentNode.insertBefore(buildClients(),anchor);
+      if(window.AOS && typeof window.AOS.refresh==='function') window.AOS.refresh();
+    }
+    addSocialIcons();
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true}); else init();
 })();
