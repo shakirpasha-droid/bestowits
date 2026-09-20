@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bestowits.com/sitemap.xml
+Sitemap: https://www.bestowits.com/sitemap.xml
