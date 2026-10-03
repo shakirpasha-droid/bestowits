@@ -8,57 +8,101 @@
   window.__bestowAIChatLoaded = true;
 
   var WA = "919440742529";
-  var services = {
-    "computer": "We provide desktop and computer support including hardware troubleshooting, upgrades, Windows installation, software support and preventive maintenance.",
-    "laptop": "We provide laptop troubleshooting, hardware upgrades, operating-system and software support for home and business users.",
-    "amc": "We provide Computer AMC and preventive maintenance for businesses, helping reduce avoidable downtime and keep systems maintained.",
-    "network": "We support LAN and structured CAT6 cabling, routers, managed switches, Wi-Fi access points, network troubleshooting and office connectivity.",
-    "wifi": "We design and troubleshoot business Wi-Fi networks, including access points, coverage planning, configuration and connectivity issues.",
-    "backup": "We provide data backup, storage support and recovery assistance for HDD, SSD and business storage media.",
-    "recovery": "We can assess HDD/SSD and storage-media data recovery requirements. Recovery feasibility depends on the condition of the device.",
-    "cctv": "We support IP CCTV and surveillance solutions, including installation, configuration and technical support.",
-    "camera": "We support CCTV camera installation, configuration and troubleshooting for business and commercial environments.",
-    "biometric": "We support biometric attendance systems, installation, configuration and technical assistance.",
-    "epabx": "We support EPABX and office telephone systems, including extensions, wiring, configuration and troubleshooting.",
-    "telephone": "We support EPABX and office telephone systems, including extensions, wiring, configuration and troubleshooting.",
-    "microsoft": "We support Microsoft 365 and Windows-based business environments, including user and system support.",
-    "google workspace": "We can assist with Google Workspace-related business IT support and user setup.",
-    "support": "Bestow IT Services provides professional IT support in Hyderabad covering computers, laptops, AMC, networking, Wi-Fi, data backup/recovery, CCTV, biometric and EPABX.",
-    "location": "Bestow IT Services serves Hyderabad and surrounding business areas in Telangana.",
-    "hyderabad": "Yes. Our services are focused on Hyderabad and surrounding business areas.",
-    "contact": "You can contact Bestow IT Services at +91 9440742529 or bestowits@gmail.com. You can also use the website enquiry form.",
-    "phone": "Our phone number is +91 9440742529.",
-    "email": "Our email is bestowits@gmail.com. The website also lists shakirpasha@bestowits.com for enquiries.",
-    "quotation": "Absolutely. Tell me the service you need and a few details about the site or number of systems. I can then guide you to the enquiry/WhatsApp step.",
-    "quote": "Absolutely. Tell me the service you need and a few details about the site or number of systems. I can then guide you to the enquiry/WhatsApp step.",
-    "price": "Pricing depends on the service, equipment, site requirements and scope. For an accurate quotation, share your requirement with us.",
-    "cost": "Pricing depends on the service, equipment, site requirements and scope. For an accurate quotation, share your requirement with us."
+  var serviceProfiles = {
+    "computer": {name:"Computer & Desktop Support",keywords:["computer","desktop","pc","system","cpu","workstation"],reply:"We handle desktop and computer troubleshooting, Windows/software issues, upgrades, printer connectivity and preventive maintenance."},
+    "laptop": {name:"Laptop Support",keywords:["laptop","notebook"],reply:"We support laptop hardware, Windows/software issues, upgrades, troubleshooting and preventive maintenance."},
+    "amc": {name:"Computer AMC",keywords:["amc","annual maintenance","maintenance contract","preventive maintenance"],reply:"We provide Computer AMC for businesses, covering recurring support, preventive maintenance and technical assistance."},
+    "network": {name:"Networking & LAN",keywords:["network","networking","lan","cat6","switch","router","ethernet","cabling","server connectivity"],reply:"We support LAN and structured networking, CAT6 cabling, routers, switches, IP configuration and office connectivity."},
+    "wifi": {name:"Wi-Fi Solutions",keywords:["wifi","wi-fi","wireless","access point","access points","wireless network","coverage"],reply:"We can troubleshoot and design business Wi-Fi, including access-point placement, coverage, configuration and connectivity problems."},
+    "backup": {name:"Backup & Data Protection",keywords:["backup","data backup","storage","nas"],reply:"We can help with business backup planning, storage setup and backup-related support for important files and systems."},
+    "recovery": {name:"Data Recovery",keywords:["data recovery","recover data","recovery","deleted files","hard disk recovery","hdd recovery","ssd recovery"],reply:"We can assess HDD/SSD and storage-media recovery requirements. Recovery feasibility depends on the device condition."},
+    "cctv": {name:"CCTV & Surveillance",keywords:["cctv","camera","cameras","surveillance","ip camera","dvr","nvr"],reply:"We support CCTV and surveillance projects including installation, configuration, IP cameras, recording systems and troubleshooting."},
+    "biometric": {name:"Biometric Attendance",keywords:["biometric","attendance machine","fingerprint","essl","attendance"],reply:"We support biometric attendance systems, installation, configuration and technical assistance."},
+    "epabx": {name:"EPABX & Telephone",keywords:["epabx","pbx","telephone","extension","intercom","office phone"],reply:"We support EPABX, PBX/intercom and office telephone systems including extensions, wiring, configuration and troubleshooting."},
+    "microsoft": {name:"Microsoft 365 & Windows",keywords:["microsoft 365","office 365","m365","windows","active directory","outlook","microsoft"],reply:"We support Windows and Microsoft 365 business environments, including user, desktop and basic administration support."},
+    "google": {name:"Google Workspace",keywords:["google workspace","gmail business","google admin"],reply:"We can assist with Google Workspace business user setup and related IT support."}
   };
 
+  var state = {service:null, quantity:null, location:null, issue:null, wantsQuote:false, history:[]};
+
   function normalize(s) {
-    return (s || "").toLowerCase().replace(/[^a-z0-9+@.\s]/g, " ").replace(/\s+/g, " ").trim();
+    return (s || "").toLowerCase().replace(/[^a-z0-9+@.\s-]/g, " ").replace(/\s+/g, " ").trim();
+  }
+
+  function detectService(q) {
+    var best=null, score=0;
+    Object.keys(serviceProfiles).forEach(function(key){
+      var p=serviceProfiles[key], n=0;
+      p.keywords.forEach(function(k){ if(q.indexOf(k) !== -1) n += k.length > 5 ? 2 : 1; });
+      if(n>score){score=n;best=key;}
+    });
+    return best;
+  }
+
+  function detectQuantity(q) {
+    var m=q.match(/\b(\d{1,4})\s*(?:systems?|computers?|pcs?|laptops?|users?|cameras?|access\s*points?|aps?|extensions?)\b/);
+    return m ? m[1] : null;
+  }
+
+  function detectLocation(q) {
+    var cities=["hyderabad","secunderabad","kukatpally","gachibowli","madhapur","hitech city","hitec city","kondapur","banjara hills","jubilee hills","ameerpet","sr nagar","begumpet","uppal","lb nagar","somajiguda"];
+    for(var i=0;i<cities.length;i++) if(q.indexOf(cities[i])!==-1) return cities[i];
+    return null;
+  }
+
+  function detectQuote(q) {
+    return /\b(quote|quotation|price|pricing|cost|estimate|proposal|amc quote|how much|rate)\b/.test(q);
+  }
+
+  function detectProblem(q) {
+    var words=["slow","not working","disconnect","disconnected","error","problem","issue","down","failed","failure","cannot","can't","unable","hang","crash","no internet","not connecting"];
+    for(var i=0;i<words.length;i++) if(q.indexOf(words[i])!==-1) return true;
+    return false;
   }
 
   function answer(input) {
-    var q = normalize(input);
-    if (!q) return "Please type your requirement and I’ll help you find the right Bestow IT Services option.";
-    if (/\b(hi|hello|hey|good morning|good evening)\b/.test(q)) {
-      return "Hello! 👋 I’m the Bestow IT Assistant. I can help with IT support, AMC, networking, Wi-Fi, data recovery, CCTV, biometric and EPABX services.";
+    var q=normalize(input);
+    if(!q) return "Please describe what you need help with.";
+
+    if(/\b(hi|hello|hey|good morning|good evening)\b/.test(q))
+      return "Hello! 👋 I’m Bestow IT Service's AI Assist. Tell me what you need — for example, “Our office has 20 computers and Wi-Fi is disconnecting.”";
+
+    var detected=detectService(q);
+    var qty=detectQuantity(q), loc=detectLocation(q), quote=detectQuote(q), problem=detectProblem(q);
+    if(detected) state.service=detected;
+    if(qty) state.quantity=qty;
+    if(loc) state.location=loc;
+    if(quote) state.wantsQuote=true;
+    if(problem) state.issue=input;
+
+    if(/\b(what services|services|what do you|what can you|offer)\b/.test(q))
+      return "We support computers/laptops, Computer AMC, networking & Wi-Fi, data backup/recovery, CCTV, biometric attendance, EPABX/telephone, Microsoft 365 and Google Workspace.";
+
+    if(/\b(where|location|area|areas|cover)\b/.test(q))
+      return "Bestow IT Services is focused on Hyderabad and surrounding business areas in Telangana. Tell me your area and I can include it in your enquiry.";
+
+    if(/\b(contact|phone|number|email|call)\b/.test(q) && !detected)
+      return "You can reach Bestow IT Services at +91 9440742529 or bestowits@gmail.com. I can also prepare your requirement for WhatsApp.";
+
+    if(detected){
+      var p=serviceProfiles[detected];
+      var response=p.reply;
+      if(problem) response += " Since you mentioned a problem, tell me what is happening and how many systems/users are affected.";
+      else if(!state.quantity) response += " If this is for an office, tell me approximately how many systems/users are involved so I can guide you better.";
+      if(quote) response += " For pricing, the scope and site requirements are needed for an accurate quotation.";
+      return response;
     }
-    if (/\b(what do you|what services|services|offer)\b/.test(q)) {
-      return "We support computers and laptops, Computer AMC, LAN/networking, Wi-Fi, data backup & recovery, CCTV, biometric attendance and EPABX/telephone systems.";
-    }
-    var keys = Object.keys(services).sort(function(a,b){ return b.length-a.length; });
-    for (var i=0; i<keys.length; i++) {
-      if (q.indexOf(keys[i]) !== -1) return services[keys[i]];
-    }
-    if (/\b(yes|okay|ok|sure|interested)\b/.test(q)) {
-      return "Great. Please share your requirement, location in Hyderabad and an approximate number of systems/users. You can then continue on WhatsApp for a quotation or site discussion.";
-    }
-    if (/\b(human|person|agent|call|talk)\b/.test(q)) {
-      return "Sure. You can speak with the Bestow IT Services team on WhatsApp or call +91 9440742529.";
-    }
-    return "I can help with Bestow IT Services’ main offerings. Try asking about Computer AMC, networking, Wi-Fi, CCTV, data recovery, biometric, EPABX or IT support. For a specific requirement, you can also send it directly on WhatsApp.";
+
+    if(state.service && /\b(yes|okay|ok|sure|interested|proceed)\b/.test(q))
+      return "Great. I have your requirement started. Please share the site area and approximate number of systems/users. I can then prepare the enquiry for WhatsApp.";
+
+    if(state.service && (q.indexOf("how much")!==-1 || quote))
+      return "Pricing depends on the service, quantity, equipment and site scope. Tell me the number of systems/cameras/access points and your Hyderabad area, and I’ll prepare the enquiry details.";
+
+    if(/\b(human|person|agent|talk|team)\b/.test(q))
+      return "Sure. You can contact the Bestow IT Services team on WhatsApp or call +91 9440742529.";
+
+    return "I can understand Bestow IT Services requirements better if you describe the situation in one sentence. For example: “I have 15 office computers and the network is slow in Gachibowli.”";
   }
 
   function wa(text) {
