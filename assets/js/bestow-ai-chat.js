@@ -160,7 +160,7 @@
         <button class="bai-send" id="bai-send" aria-label="Send"><i class="bi bi-send-fill"></i></button>
       </div>
       <a class="bai-wa" id="bai-wa" href="https://wa.me/919440742529" target="_blank" rel="noopener"><i class="bx bxl-whatsapp"></i> Continue on WhatsApp</a>
-      <div class="bai-note">Bestow IT Assistant • Hyderabad</div>
+      <div class="bai-note">Bestow IT Service's AI Assist • Hyderabad</div>
     </div>
   `;
   document.body.appendChild(panel);
@@ -202,7 +202,7 @@
   launcher.onclick=function(){
     panel.classList.toggle("open");
     if(panel.classList.contains("open") && !messages.children.length){
-      addMsg("Hi! 👋 I’m the Bestow IT Assistant. How can I help you today?","bot");
+      addMsg("Hi! 👋 I’m Bestow IT Service's AI Assist. Tell me what you need and I’ll help with the right service.","bot");
       quickButtons();
       input.focus();
     }
