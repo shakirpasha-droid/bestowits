@@ -200,7 +200,6 @@
       payload.access_key=WEB3FORMS_KEY;
       payload.subject="AI Assistant Conversation - Bestow IT Services";
       payload.from_name="Bestow IT Services AI Assistant";
-      payload.to="shakirpasha@bestowits.com,bestowits@gmail.com";
       payload.redirect="false";
       try{
         var r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)});
