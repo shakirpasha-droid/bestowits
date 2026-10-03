@@ -12,7 +12,7 @@
   var WA = "919440742529";
   // Set this to the deployed Vercel function URL, for example:
   // https://your-project.vercel.app/api/whatsapp-notify
-  var WHATSAPP_API_URL = window.BESTOW_WHATSAPP_API_URL || "";
+  var WHATSAPP_API_URL = window.BESTOW_WHATSAPP_API_URL || "/api/whatsapp-notify";
   var WEB3FORMS_KEY = "414c8cf7-4187-4369-ad45-8c6132dd6610";
   var state = {
     service: null, services: [], quantity: null, location: null,
@@ -82,8 +82,6 @@
     if(quote) state.wantsQuote=true;
     if(problem) state.issue=input;
     if(urgent) state.urgency=urgent;
-    state.history.push({role:"user",text:input,time:new Date().toISOString()});
-
     if(/\b(hi|hello|hey|good morning|good evening)\b/.test(q) && !detected.length){
       return "Hello! 👋 I’m Bestow IT Service's AI Assist. Tell me what is happening or what you need. You can mention the service, number of systems and Hyderabad area if you know them.";
     }
