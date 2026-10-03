@@ -82,7 +82,6 @@
   window.addEventListener('load', normalizeBestowHeader);
 
   /**
-   * Keep the WhatsApp button clear of the Tawk.to live-chat bubble and
    * the template back-to-top control.
    */
   function normalizeFloatingButtons() {
