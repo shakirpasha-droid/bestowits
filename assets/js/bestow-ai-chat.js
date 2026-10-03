@@ -10,6 +10,9 @@
   window.__bestowAIChatLoaded = true;
 
   var WA = "919440742529";
+  // Set this to the deployed Vercel function URL, for example:
+  // https://your-project.vercel.app/api/whatsapp-notify
+  var WHATSAPP_API_URL = window.BESTOW_WHATSAPP_API_URL || "";
   var WEB3FORMS_KEY = "414c8cf7-4187-4369-ad45-8c6132dd6610";
   var state = {
     service: null, services: [], quantity: null, location: null,
@@ -154,25 +157,49 @@
     if(autoNotificationSent || autoNotificationSending || state.history.filter(function(x){return x.role==="user";}).length===0) return false;
     autoNotificationSending=true;
 
-    var payload={
-      access_key:WEB3FORMS_KEY,
-      subject:"AI Assistant - Completed Conversation - Bestow IT Services",
-      from_name:"Bestow IT Services AI Assistant",
-      name:"Website AI Customer",
-      message:"Conversation automatically captured when the AI chat was completed/closed.\n\n"+summary()+"\n\n--- Conversation ---\n"+transcript(),
-      redirect:"false"
+    var data={
+      summary:summary(),
+      transcript:transcript(),
+      reason:reason||"completed",
+      page:window.location.href
     };
 
     try{
+      // Primary path: secure server-side WhatsApp Cloud API.
+      if(WHATSAPP_API_URL){
+        var wr=await fetch(WHATSAPP_API_URL,{
+          method:"POST",
+          headers:{"Content-Type":"application/json","Accept":"application/json"},
+          body:JSON.stringify(data),
+          keepalive:true
+        });
+        var wresult=await wr.json().catch(function(){return {};});
+        if(wr.ok && wresult.success===true){
+          autoNotificationSent=true;
+          return true;
+        }
+        console.warn("Bestow WhatsApp notification failed:",wresult.message||"API error");
+      }
+
+      // Email remains the reliable fallback/record.
+      var payload={
+        access_key:WEB3FORMS_KEY,
+        subject:"AI Assistant - Completed Conversation - Bestow IT Services",
+        from_name:"Bestow IT Services AI Assistant",
+        name:"Website AI Customer",
+        message:"Conversation automatically captured when the AI chat was completed/closed.\\n\\n"+summary()+"\\n\\n--- Conversation ---\\n"+transcript(),
+        redirect:"false"
+      };
+
       var r=await fetch("https://api.web3forms.com/submit",{
         method:"POST",
         headers:{"Content-Type":"application/json","Accept":"application/json"},
-        body:JSON.stringify(payload)
+        body:JSON.stringify(payload),
+        keepalive:true
       });
       var result=await r.json();
       if(!r.ok || result.success!==true) throw new Error(result.message||"Unable to send.");
-      autoNotificationSent=true;
-      return true;
+      return false;
     }catch(err){
       console.warn("Bestow AI automatic notification failed:",err);
       return false;
@@ -180,6 +207,7 @@
       autoNotificationSending=false;
     }
   }
+
 
   function showSendForm(){
     var old=document.getElementById("bai-send-modal");
