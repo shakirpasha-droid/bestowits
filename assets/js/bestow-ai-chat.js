@@ -15,6 +15,8 @@
     service: null, services: [], quantity: null, location: null,
     issue: null, wantsQuote: false, urgency: null, history: []
   };
+  var autoNotificationSent = false;
+  var autoNotificationSending = false;
 
   var serviceProfiles = {
     computer:{name:"Computer & Desktop Support",keys:["computer","desktop","pc","system","cpu","workstation"],reply:"We handle desktop and computer troubleshooting, Windows/software issues, upgrades, printer connectivity and preventive maintenance."},
@@ -148,6 +150,37 @@
     return "https://wa.me/"+WA+"?text="+encodeURIComponent("Hello Bestow IT Services, I used the website AI Assistant.\n\nConversation summary:\n"+summary()+"\n\nRecent conversation:\n"+t);
   }
 
+  async function sendAutomaticConversation(reason){
+    if(autoNotificationSent || autoNotificationSending || state.history.filter(function(x){return x.role==="user";}).length===0) return false;
+    autoNotificationSending=true;
+
+    var payload={
+      access_key:WEB3FORMS_KEY,
+      subject:"AI Assistant - Completed Conversation - Bestow IT Services",
+      from_name:"Bestow IT Services AI Assistant",
+      name:"Website AI Customer",
+      message:"Conversation automatically captured when the AI chat was completed/closed.\n\n"+summary()+"\n\n--- Conversation ---\n"+transcript(),
+      redirect:"false"
+    };
+
+    try{
+      var r=await fetch("https://api.web3forms.com/submit",{
+        method:"POST",
+        headers:{"Content-Type":"application/json","Accept":"application/json"},
+        body:JSON.stringify(payload)
+      });
+      var result=await r.json();
+      if(!r.ok || result.success!==true) throw new Error(result.message||"Unable to send.");
+      autoNotificationSent=true;
+      return true;
+    }catch(err){
+      console.warn("Bestow AI automatic notification failed:",err);
+      return false;
+    }finally{
+      autoNotificationSending=false;
+    }
+  }
+
   function showSendForm(){
     var old=document.getElementById("bai-send-modal");
     if(old) old.remove();
@@ -202,7 +235,7 @@
 
   var panel=document.createElement("div");
   panel.id="bestow-ai-panel";
-  panel.innerHTML='<div class="bai-head"><div class="bai-avatar"><img src="assets/img/logo.png" alt="Bestow IT Services"></div><div><strong>Bestow IT Service&#39;s AI Assist</strong><small>IT support &amp; service help</small></div><button class="bai-close" aria-label="Close chat">&times;</button></div><div class="bai-messages" id="bai-messages"></div><div class="bai-compose"><div class="bai-row"><input class="bai-input" id="bai-input" type="text" placeholder="Ask about our IT services..." autocomplete="off"><button class="bai-send" id="bai-send" aria-label="Send"><i class="bi bi-send-fill"></i></button></div><div class="bai-actions"><button class="bai-email" id="bai-email">✉ Send Chat to Bestow</button><a class="bai-wa" id="bai-wa" href="https://wa.me/919440742529" target="_blank" rel="noopener">WhatsApp Team</a></div><div class="bai-note">Conversation stays in this chat unless you choose email or WhatsApp.</div></div>';
+  panel.innerHTML='<div class="bai-head"><div class="bai-avatar"><img src="assets/img/logo.png" alt="Bestow IT Services"></div><div><strong>Bestow IT Service&#39;s AI Assist</strong><small>IT support &amp; service help</small></div><button class="bai-close" aria-label="Close chat">&times;</button></div><div class="bai-messages" id="bai-messages"></div><div class="bai-compose"><div class="bai-row"><input class="bai-input" id="bai-input" type="text" placeholder="Ask about our IT services..." autocomplete="off"><button class="bai-send" id="bai-send" aria-label="Send"><i class="bi bi-send-fill"></i></button></div><div class="bai-actions"><button class="bai-email" id="bai-email">✉ Send Chat Now</button><a class="bai-wa" id="bai-wa" href="https://wa.me/919440742529" target="_blank" rel="noopener">WhatsApp Team</a></div><div class="bai-note">Conversation is automatically sent to the Bestow team when the chat is completed.</div></div>';
   document.body.appendChild(panel);
 
   var messages=panel.querySelector("#bai-messages"), input=panel.querySelector("#bai-input"), send=panel.querySelector("#bai-send"), waLink=panel.querySelector("#bai-wa");
@@ -221,14 +254,30 @@
     setTimeout(function(){var reply=answer(text); addMsg(reply,"bot"); waLink.href=waUrl();},220);
   }
 
+  window.addEventListener("beforeunload",function(){
+    if(autoNotificationSent || state.history.filter(function(x){return x.role==="user";}).length===0) return;
+    try{
+      var body=new URLSearchParams();
+      body.set("access_key",WEB3FORMS_KEY);
+      body.set("subject","AI Assistant - Completed Conversation - Bestow IT Services");
+      body.set("from_name","Bestow IT Services AI Assistant");
+      body.set("name","Website AI Customer");
+      body.set("message","Conversation automatically captured when the visitor left the page.\\n\\n"+summary()+"\\n\\n--- Conversation ---\\n"+transcript());
+      navigator.sendBeacon("https://api.web3forms.com/submit",body);
+    }catch(e){}
+  });
+
   launcher.onclick=function(){
     panel.classList.toggle("open");
-    if(panel.classList.contains("open")&&!messages.children.length){
+    if(panel.classList.contains("open")){
       addMsg("Hi! 👋 I’m Bestow IT Service's AI Assist. Tell me what you need and I’ll help you work through the requirement.","bot");
       quickButtons(); input.focus();
     }
   };
-  panel.querySelector(".bai-close").onclick=function(){panel.classList.remove("open");};
+  panel.querySelector(".bai-close").onclick=async function(){
+    await sendAutomaticConversation("closed");
+    panel.classList.remove("open");
+  };
   panel.querySelector("#bai-email").onclick=showSendForm;
   send.onclick=submit;
   input.addEventListener("keydown",function(e){if(e.key==="Enter")submit();});
