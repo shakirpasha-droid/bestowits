@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
-<defs><linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#159c4e"/><stop offset="1" stop-color="#08713b"/></linearGradient></defs>
-<path d="M120 18 202 48v61c0 55-34 91-82 113-48-22-82-58-82-113V48Z" fill="url(#green)"/>
-<path d="m76 121 29 30 62-69" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title"><title id="title">Bits Shield</title><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#159b4b"/><stop offset="1" stop-color="#075b35"/></linearGradient><linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#d5fbe4"/></linearGradient></defs><path d="M512 25 884 179v332c0 245-145 413-372 501C285 924 140 756 140 511V179Z" fill="url(#g)"/><path d="m320 562 128 143 255-287" fill="none" stroke="url(#c)" stroke-width="76" stroke-linecap="round" stroke-linejoin="round"/></svg>
