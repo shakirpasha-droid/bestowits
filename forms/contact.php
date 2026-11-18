@@ -31,7 +31,7 @@ $name = clean_header($name);
 $email = clean_header($email);
 $subject = clean_header($subject);
 
-$to = 'shakirpasha@bestowits.com, bestowits@gmail.com';
+$to = 'info@bestowits.com';
 $subject_line = 'Website Enquiry: ' . $subject;
 $body = "New enquiry received from the Bestow ITs website.\n\n"
        . "Name: " . $name . "\n"
@@ -42,7 +42,7 @@ $body = "New enquiry received from the Bestow ITs website.\n\n"
 // Use the domain email as From and the visitor's email as Reply-To.
 $headers  = "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$headers .= "From: Bestow ITs Website <shakirpasha@bestowits.com>\r\n";
+$headers .= "From: Bestow ITs Website <info@bestowits.com>\r\n";
 $headers .= "Reply-To: " . $email . "\r\n";
 
 if (mail($to, $subject_line, $body, $headers)) {
