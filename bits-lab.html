@@ -1,0 +1,453 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bits Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Bits Lab is diagnostic laboratory software for Indian labs and diagnostic centres: registration, billing, sample tracking, results, reports, doctor referrals, accounts and backups, on your own server PC.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 240 240%27%3E%3Crect width=%27240%27 height=%27240%27 rx=%2748%27 fill=%27white%27/%3E%3Crect x=%2750%27 y=%27190%27 width=%27140%27 height=%2716%27 rx=%276%27 fill=%27%23061F5C%27/%3E%3Cpath d=%27M156 190 C196 166 196 104 150 88%27 fill=%27none%27 stroke=%27%230A63E8%27 stroke-width=%2716%27 stroke-linecap=%27round%27/%3E%3Cg transform=%27rotate(-28 112 84)%27%3E%3Crect x=%2796%27 y=%2728%27 width=%2732%27 height=%27100%27 rx=%279%27 fill=%27%2322C55E%27/%3E%3Crect x=%2790%27 y=%2718%27 width=%2744%27 height=%2716%27 rx=%275%27 fill=%27%23061F5C%27/%3E%3C/g%3E%3Crect x=%2776%27 y=%27160%27 width=%2792%27 height=%2712%27 rx=%274%27 fill=%27%2322C55E%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: product page — split hero with a live-looking report slip, a real six-step lab workflow, grouped features, audiences, editions, FAQ, contact band. */
+:root{
+  --bg:#F5F8FC; --surface:#FFFFFF; --soft:#EAF1FB; --ink:#0B1B33; --muted:#52627A; --line:#D7E2F0;
+  --blue:#0A63E8; --navy:#061F5C; --green:#1E9E63; --green-soft:#E3F5EC; --flag:#C2410C;
+  --grad:linear-gradient(100deg,#0A63E8 0%,#2C8BD8 50%,#1E9E63 100%);
+  --display:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#07111F; --surface:#0E1C30; --soft:#12243D; --ink:#E6EEF8; --muted:#9DB0C8; --line:#22385A;
+  --blue:#5B9BFF; --navy:#0A2A66; --green:#4CC98A; --green-soft:#123528; --flag:#FB923C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#07111F; --surface:#0E1C30; --soft:#12243D; --ink:#E6EEF8; --muted:#9DB0C8; --line:#22385A;
+  --blue:#5B9BFF; --navy:#0A2A66; --green:#4CC98A; --green-soft:#123528; --flag:#FB923C; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:56px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.55rem,3vw,2.1rem);font-weight:800;letter-spacing:-.01em}
+h3{font-size:1.08rem;font-weight:700}
+p{margin:0}
+.eyebrow{font:600 .74rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.lead{font-size:1.12rem;color:var(--muted);max-width:60ch}
+.sec-head{display:grid;gap:10px;margin-bottom:28px;max-width:720px}
+.mono{font-family:var(--mono);font-size:.86em}
+
+/* top bar */
+.top{border-bottom:1px solid var(--line);background:var(--surface)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font:800 1.15rem var(--display)}
+.brand small{display:block;font:500 .7rem var(--body);letter-spacing:.08em;color:var(--muted)}
+.top nav{display:flex;gap:18px;flex-wrap:wrap;font-size:.92rem}
+.top nav a{color:var(--muted);text-decoration:none}.top nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:44px;align-items:center}
+.hero-copy{display:grid;gap:20px;min-width:0}
+.hero .wrap>div{min-width:0}
+@media (max-width:640px){.res th,.res td{padding-left:12px;padding-right:12px}.res{font-size:.8rem}}
+.hero h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;font:700 .95rem var(--display);text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn.primary{background:var(--grad);color:#fff;border:0}
+.btn:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.facts{display:flex;gap:22px;flex-wrap:wrap;font-size:.9rem;color:var(--muted)}
+.facts b{color:var(--ink);font-family:var(--display)}
+
+/* report slip (subject detail) */
+.slip{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px -22px rgba(6,31,92,.45);overflow:hidden;min-width:0}
+.slip-head{background:var(--navy);color:#fff;padding:14px 18px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.8rem}
+.slip-head b{font:700 .95rem var(--display)}
+.slip-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;padding:12px 18px;font-size:.8rem;color:var(--muted);border-bottom:1px solid var(--line)}
+.slip-meta span b{color:var(--ink);font-weight:600}
+.dept{padding:8px 18px;background:var(--soft);font:700 .72rem var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.res{width:100%;border-collapse:collapse;font-size:.84rem}
+.res th{text-align:left;font-weight:600;color:var(--muted);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 18px}
+.res td{padding:7px 18px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
+.res td.v{font-weight:600}.res tr.hi td.v{color:var(--flag)}
+.res .tag{font:700 .66rem var(--body);color:var(--flag);margin-left:4px}
+.slip-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;border-top:1px solid var(--line);font-size:.76rem;color:var(--muted);flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:99px;font:600 .74rem var(--body);background:var(--green-soft);color:var(--green)}
+.example{font-size:.74rem;color:var(--muted);text-align:center;margin-top:8px}
+
+/* workflow */
+.flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:6px;align-content:start}
+.step::before{counter-increment:s;content:counter(s);font:800 .82rem var(--display);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--blue)}
+.step p{font-size:.86rem;color:var(--muted)}
+
+/* features */
+.features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.fgroup{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:12px;align-content:start}
+.fgroup .ic{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--soft);color:var(--blue)}
+.fgroup ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:.92rem}
+.fgroup li{padding-left:22px;position:relative}
+.fgroup li::before{content:"";position:absolute;left:2px;top:.55em;width:10px;height:6px;border-left:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(-45deg)}
+
+/* audiences */
+.band{background:var(--surface);border-block:1px solid var(--line)}
+.aud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.aud div{padding:20px;display:grid;gap:6px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg)}
+.aud div:nth-child(3n){border-right:0}.aud div:nth-last-child(-n+3){border-bottom:0}
+.aud p{font-size:.9rem;color:var(--muted)}
+
+/* editions */
+.eds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.ed{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px;align-content:start}
+.ed.feat{border:2px solid var(--blue)}
+.ed .who{font-size:.9rem;color:var(--muted)}
+.ed dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.9rem}
+.ed dt{color:var(--muted)}.ed dd{margin:0;font-weight:600}
+.key{font-family:var(--mono);font-size:.8rem;background:var(--soft);padding:2px 8px;border-radius:6px;color:var(--ink);white-space:nowrap}
+
+/* tech + safety */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:12px;align-content:start}
+.spec{width:100%;border-collapse:collapse;font-size:.9rem}
+.spec td{padding:8px 0;border-top:1px solid var(--line);vertical-align:top}
+.spec td:first-child{color:var(--muted);width:40%;padding-right:12px}
+.panel ul{margin:0;padding-left:18px;display:grid;gap:8px;font-size:.92rem}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:820px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+summary{cursor:pointer;font:700 1rem var(--display);list-style-position:outside}
+details p{margin-top:8px;color:var(--muted);font-size:.94rem}
+
+/* contact */
+.contact{background:var(--navy);color:#fff}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:center}
+.contact h2{color:#fff}.contact p{color:#C9D8F2}
+.cbox{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:20px;display:grid;gap:12px}
+.crow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.crow span{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#9FB6DD}
+.crow b{font:700 1.05rem var(--display);user-select:all}
+.copy{font:600 .78rem var(--body);background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:5px 10px;cursor:pointer}
+.copy:focus-visible{outline:2px solid #fff;outline-offset:2px}
+footer{padding-block:22px;font-size:.84rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.tagline{font:600 .74rem var(--body);letter-spacing:.12em}
+
+
+.logoChip{width:44px;height:44px;border-radius:11px;background:#fff;display:grid;place-items:center;border:1px solid var(--line);flex:none}
+.word em{font-style:normal;color:var(--green)}
+.btn.sm{padding:8px 14px;font-size:.86rem}
+.heroLogo{display:flex;align-items:center;gap:14px}
+.heroLogo .logoChip{width:64px;height:64px;border-radius:16px}
+/* download */
+.dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.dlc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:12px;align-content:start}
+.dlc.main{border:2px solid var(--blue)}
+.dlc .meta{font-size:.86rem;color:var(--muted)}
+.dlc .file{font-family:var(--mono);font-size:.78rem;color:var(--muted);word-break:break-all}
+.dlc .btn{justify-content:center}
+.dlnote{margin-top:16px;font-size:.88rem;color:var(--muted);display:grid;gap:6px}
+@media (max-width:980px){.dl{grid-template-columns:1fr}}
+
+/* backup */
+.bk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.bk .panel h3{font-size:1.2rem}
+.bk .tagline2{font-size:.9rem;color:var(--muted)}
+.bk ul{list-style:none;padding:0}
+.bk li{padding-left:22px;position:relative}
+.bk li::before{content:"";position:absolute;left:2px;top:.55em;width:10px;height:6px;border-left:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(-45deg)}
+.route{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;margin-top:22px}
+.route .node{flex:1 1 150px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:4px;min-width:0}
+.route .node b{font:700 .95rem var(--display)}
+.route .node span{font-size:.82rem;color:var(--muted)}
+.route .arr{align-self:center;color:var(--blue);font:700 1.2rem var(--display)}
+.drive{display:inline-flex;align-items:center;gap:8px}
+.soon{margin-top:14px;font-size:.88rem;color:var(--muted)}
+.soon b{color:var(--ink)}
+@media (max-width:640px){.bk{grid-template-columns:1fr}.route .arr{transform:rotate(90deg);width:100%;text-align:center}}
+@media (max-width:980px){
+  .hero .wrap,.contact .wrap{grid-template-columns:1fr}
+  .flow{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .features,.eds{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .aud{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .aud div:nth-child(3n){border-right:1px solid var(--line)}.aud div:nth-child(2n){border-right:0}
+  .aud div:nth-last-child(-n+3){border-bottom:1px solid var(--line)}.aud div:nth-last-child(-n+2){border-bottom:0}
+}
+@media (max-width:640px){
+  section{padding-block:40px}
+  .flow,.features,.eds,.two,.aud{grid-template-columns:1fr}
+  .aud div{border-right:0!important;border-bottom:1px solid var(--line)!important}.aud div:last-child{border-bottom:0!important}
+  .slip-meta{grid-template-columns:1fr}
+  .top nav{display:none}
+}
+@media (prefers-reduced-motion:no-preference){.btn{transition:transform .15s}.btn:hover{transform:translateY(-1px)}}
+</style>
+</head><body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span class="logoChip"><svg width="36" height="36" viewBox="0 0 240 240" aria-hidden="true"><defs><linearGradient id="lgAn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A63E8"/><stop offset="1" stop-color="#061F5C"/></linearGradient><linearGradient id="lgAa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22C55E"/><stop offset="1" stop-color="#0E9F6E"/></linearGradient></defs><rect x="50" y="190" width="140" height="16" rx="6" fill="#061F5C"/><path d="M156 190 C196 166 196 104 150 88" fill="none" stroke="url(#lgAn)" stroke-width="16" stroke-linecap="round"/><g transform="rotate(-28 112 84)"><rect x="96" y="28" width="32" height="100" rx="9" fill="url(#lgAa)"/><rect x="90" y="18" width="44" height="16" rx="5" fill="#061F5C"/><rect x="102" y="128" width="20" height="18" rx="4" fill="#0A63E8"/></g><rect x="76" y="160" width="92" height="12" rx="4" fill="#22C55E"/><rect x="96" y="150" width="14" height="10" rx="2" fill="#13B2F0"/><rect x="186" y="24" width="20" height="20" rx="3" fill="#22C55E"/><rect x="210" y="46" width="12" height="12" rx="2" fill="#13B2F0"/></svg></span>
+      <div><span class="word">Bits <em>Lab</em></span><small>BY BESTOW IT SERVICES</small></div>
+    </div>
+    <nav aria-label="Sections"><a href="#features">Features</a><a href="#backup">Backup</a><a href="#who">Who it's for</a><a href="#editions">Editions</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
+    <a class="btn sm primary" href="#download">Download</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="heroLogo"><span class="logoChip"><svg width="52" height="52" viewBox="0 0 240 240" aria-hidden="true"><defs><linearGradient id="lgBn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A63E8"/><stop offset="1" stop-color="#061F5C"/></linearGradient><linearGradient id="lgBa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22C55E"/><stop offset="1" stop-color="#0E9F6E"/></linearGradient></defs><rect x="50" y="190" width="140" height="16" rx="6" fill="#061F5C"/><path d="M156 190 C196 166 196 104 150 88" fill="none" stroke="url(#lgBn)" stroke-width="16" stroke-linecap="round"/><g transform="rotate(-28 112 84)"><rect x="96" y="28" width="32" height="100" rx="9" fill="url(#lgBa)"/><rect x="90" y="18" width="44" height="16" rx="5" fill="#061F5C"/><rect x="102" y="128" width="20" height="18" rx="4" fill="#0A63E8"/></g><rect x="76" y="160" width="92" height="12" rx="4" fill="#22C55E"/><rect x="96" y="150" width="14" height="10" rx="2" fill="#13B2F0"/><rect x="186" y="24" width="20" height="20" rx="3" fill="#22C55E"/><rect x="210" y="46" width="12" height="12" rx="2" fill="#13B2F0"/></svg></span><span class="eyebrow">Bits Lab · Diagnostic lab software</span></div>
+      <h1>Run your lab from <span class="g">registration to report</span> in one place.</h1>
+      <p class="lead">Bits Lab handles patient registration, billing, sample tracking, results, signed reports, doctor referrals and day-end accounts for diagnostic centres and pathology labs. It runs on your own server PC, so your patient data stays with you.</p>
+      <div class="ctas"><a class="btn primary" href="#download"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download free trial</a><a class="btn" href="#contact">Book a free demo</a></div>
+      <div class="facts"><span><b>Windows</b> server + client PCs</span><span><b>Works on your LAN</b>, even when the internet is down</span><span><b>SQL Server</b> or built-in database</span><span><b>Daily backup</b> to your PC and Google Drive</span></div>
+    </div>
+    <div>
+      <div class="slip" role="img" aria-label="Example of a Bits Lab report">
+        <div class="slip-head"><b>Your Diagnostic Centre</b><span>LAB REPORT · <span class="mono">MGD-26-01482</span></span></div>
+        <div class="slip-meta">
+          <span>Patient <b>Mrs. A. Sharma</b>, 42 F</span><span>Ref. by <b>Dr. R. Rao</b></span>
+          <span>Collected <b>16 Nov, 08:42</b></span><span>Reported <b>16 Nov, 13:10</b></span>
+        </div>
+        <div class="dept">Haematology · Complete Blood Count</div>
+        <table class="res">
+          <thead><tr><th>Test</th><th>Result</th><th>Unit</th><th>Ref. range</th></tr></thead>
+          <tbody>
+            <tr><td>Haemoglobin</td><td class="v">12.6</td><td>g/dL</td><td>12.0 – 15.0</td></tr>
+            <tr class="hi"><td>Total WBC count</td><td class="v">11,800<span class="tag">H</span></td><td>/cumm</td><td>4,000 – 11,000</td></tr>
+            <tr><td>Platelet count</td><td class="v">2.45</td><td>lakh/cumm</td><td>1.5 – 4.1</td></tr>
+          </tbody>
+        </table>
+        <div class="slip-foot"><span class="chip">✓ Verified by pathologist</span><span>Scan QR to verify · Page 1 of 1</span></div>
+      </div>
+      <p class="example">Example report with sample data. Your centre's name, letterhead and signatures print here.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="flow-h" style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">How a patient moves through Bits Lab</span><h2 id="flow-h">One screen for every desk, from the counter to the pathologist.</h2></div>
+    <div class="flow">
+      <div class="step"><h3>Register</h3><p>New or returning patient found by mobile number. Token issued for the waiting hall.</p></div>
+      <div class="step"><h3>Bill</h3><p>Tests and packages from your rate list, discounts with approver, split cash / UPI / card.</p></div>
+      <div class="step"><h3>Collect</h3><p>Barcode labels for each sample. Preparation instructions sent to the patient.</p></div>
+      <div class="step"><h3>Process</h3><p>Sample tracking by stage, worklist for the lab, outside-lab tests sent and received.</p></div>
+      <div class="step"><h3>Result &amp; verify</h3><p>Ranges, critical-value alerts, previous results, templates. Doctor verifies and signs.</p></div>
+      <div class="step"><h3>Hand over</h3><p>Front desk checks the balance due, then prints, saves as PDF or sends on WhatsApp.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features" aria-labelledby="feat-h">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Features</span><h2 id="feat-h">Everything a diagnostic centre does in a day</h2></div>
+    <div class="features">
+      <div class="fgroup">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+        <h3>Front desk &amp; billing</h3>
+        <ul><li>Fast patient registration and search by mobile number</li><li>Test master with departments, divisions, packages and rate lists</li><li>Discounts with approver name, next-visit coupons</li><li>Split payments, balance due, cancellations with credit note</li><li>Token queue and waiting-hall display</li><li>Send bill and preparation instructions on WhatsApp</li></ul>
+      </div>
+      <div class="fgroup">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3v6l-5 9a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-9V3"/><path d="M8 3h8"/></svg></div>
+        <h3>Samples &amp; lab work</h3>
+        <ul><li>Barcode labels for label printers (TSC and others)</li><li>Sample tracking from collection to report, with report-ready time</li><li>Sample rejection with reasons and recollection</li><li>Lab worklist for quick result entry</li><li>Tests sent to outside labs, tracked until received</li></ul>
+      </div>
+      <div class="fgroup">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 15l2 2 4-4"/></svg></div>
+        <h3>Results &amp; reports</h3>
+        <ul><li>Reference ranges with high / low and critical-value flags</li><li>Previous result shown beside the new one</li><li>Result templates and interpretation notes</li><li>Doctor verification, signatures, QR code and page numbers</li><li>Letterhead or pre-printed stationery; print or save as PDF</li><li>Reports released only after the front desk checks payment</li></ul>
+      </div>
+      <div class="fgroup">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+        <h3>Accounts &amp; referrals</h3>
+        <ul><li>Day closing with cash counted against expected</li><li>Revenue by test, department, doctor and payment mode</li><li>Referral ledger for each doctor and hospital</li><li>Commission per test or percentage, TDS optional</li><li>Commission payments recorded with mode and a photo of the proof</li></ul>
+      </div>
+      <div class="fgroup">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+        <h3>Staff &amp; security</h3>
+        <ul><li>Roles for admin, front desk, lab and doctor, plus your own roles</li><li>View / create / edit / delete set per screen for each role</li><li>Forgotten admin password: owner recovery code, or a one-time token from Bestow. No hidden accounts</li><li>Every recovery and data reset is logged</li></ul>
+      </div>
+      <div class="fgroup">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+        <h3>Data, backup &amp; import</h3>
+        <ul><li>Automatic daily backup on the server PC, plus a second copy to USB or Google Drive</li><li>Restore from any backup with a preview first</li><li>Import patients, doctors and tests from Excel</li><li>Reset chosen data with admin approval and a 60-second countdown</li><li>Upgrades keep all your data and save a backup first</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="backup" aria-labelledby="bk-h">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Backup</span><h2 id="bk-h">Your lab's data, backed up on your PC and on Google Drive</h2><p class="lead">Bits Lab backs up every day by itself. Keep one copy on the server PC and a second copy on a USB drive or in your Google Drive, so a failed hard disk never costs you a day's work.</p></div>
+    <div class="bk">
+      <div class="panel">
+        <h3>Local backup</h3><p class="tagline2">On the server PC, with no setup.</p>
+        <ul>
+          <li>Full backup every day and every time the server closes</li>
+          <li>The last 30 daily backups are kept automatically</li>
+          <li>"Back up now" button for an extra copy at any time</li>
+          <li>Second copy to a USB drive or another disk</li>
+          <li>A backup is saved before every software update</li>
+          <li>Restore any backup, with a preview of what it contains first</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 class="drive"><svg width="22" height="20" viewBox="0 0 22 20" aria-hidden="true"><path d="M7.3 0h7.4l7.3 12.7-3.7 6.4L11 6.4 7.3 0z" fill="#1E9E63"/><path d="M0 12.7 3.7 19.1h14.6l-3.7-6.4H0z" fill="#0A63E8"/><path d="M7.3 0 0 12.7l3.7 6.4L11 6.4 7.3 0z" fill="#F2B705"/></svg>Google Drive backup</h3><p class="tagline2">Off-site copy in your own Google account.</p>
+        <ul>
+          <li>Every backup is copied to your Google Drive automatically</li>
+          <li>Uses the free Google Drive for desktop app on the server PC</li>
+          <li>Bits Lab finds your Google Drive folder by itself; choose it with one click</li>
+          <li>Works the same with OneDrive, Dropbox, MEGA and pCloud folders</li>
+          <li>Backups go only to your account, never to Bestow's servers</li>
+          <li>The server panel shows the time of the last copy, or why it failed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="route" aria-label="Where a backup goes">
+      <div class="node"><b>Bits Lab Server</b><span>Patients, bills, results</span></div><div class="arr" aria-hidden="true">→</div>
+      <div class="node"><b>Daily backup</b><span>On the server PC, 30 days kept</span></div><div class="arr" aria-hidden="true">→</div>
+      <div class="node"><b>Second copy</b><span>USB drive or Google Drive</span></div><div class="arr" aria-hidden="true">→</div>
+      <div class="node"><b>Restore</b><span>Preview, then merge or replace</span></div>
+    </div>
+    <p class="soon"><b>Coming next:</b> sign in to Google Drive, OneDrive, MEGA or pCloud directly from Bits Lab, with no extra app on the PC.</p>
+  </div>
+</section>
+
+<section id="who" class="band" aria-labelledby="who-h">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Who it's for</span><h2 id="who-h">Built for Indian labs of every size</h2><p class="lead">From a single-counter collection centre to a multi-desk diagnostic centre with its own pathologists.</p></div>
+    <div class="aud">
+      <div><h3>Diagnostic centres</h3><p>Front desk, lab and doctors on separate PCs, sharing one server.</p></div>
+      <div><h3>Pathology labs</h3><p>Result entry, verification and signed reports with your letterhead.</p></div>
+      <div><h3>Sample collection centres</h3><p>Billing, barcode labels and tracking samples sent to a partner lab.</p></div>
+      <div><h3>Polyclinics &amp; nursing homes</h3><p>An in-house lab with referrals from your own doctors.</p></div>
+      <div><h3>Hospital laboratories</h3><p>Department-wise tests, critical alerts and day-end accounts.</p></div>
+      <div><h3>Health check-up centres</h3><p>Packages, corporate rate lists and quick report delivery.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="editions" aria-labelledby="ed-h">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Editions</span><h2 id="ed-h">Start free, then choose the setup that fits your centre</h2></div>
+    <div class="eds">
+      <div class="ed">
+        <h3>Free trial</h3><p class="who">Try every feature on your own PCs before you buy.</p>
+        <dl><dt>Period</dt><dd>30 days</dd><dt>PCs</dt><dd>1 server + 2 client PCs</dd><dt>Users</dt><dd>5 staff logins</dd><dt>Bills</dt><dd>10 a day</dd></dl>
+      </div>
+      <div class="ed">
+        <h3>Standalone</h3><p class="who">A single PC that does billing, lab work and reports.</p>
+        <dl><dt>PCs</dt><dd>1</dd><dt>Users</dt><dd>As per licence</dd><dt>Best for</dt><dd>Collection centres, small labs</dd></dl>
+      </div>
+      <div class="ed feat">
+        <h3>Server + Client</h3><p class="who">One server PC holds the data; counter, lab and doctor PCs connect over your network.</p>
+        <dl><dt>PCs</dt><dd>1 server + client PCs as per licence</dd><dt>Users</dt><dd>As per licence</dd><dt>Best for</dt><dd>Diagnostic centres, hospital labs</dd></dl>
+      </div>
+    </div>
+    <p style="margin-top:16px;color:var(--muted);font-size:.92rem">Licences are yearly and tied to your server PC. Each licence key looks like <span class="key">LAB-XXXXX-XXXXX-XXXXX-XXXXX</span>. Contact us for pricing and add-ons.</p>
+  </div>
+</section>
+
+<section aria-labelledby="tech-h" style="padding-top:0">
+  <div class="wrap two">
+    <div class="panel">
+      <h2 id="tech-h" style="font-size:1.35rem">Technical details</h2>
+      <table class="spec"><tbody>
+        <tr><td>Operating system</td><td>Windows 10 or 11 (64-bit) on the server and client PCs</td></tr>
+        <tr><td>Database</td><td>Built-in (no setup), Microsoft SQL Server 2025 Express (recommended) or MySQL</td></tr>
+        <tr><td>Network</td><td>Client PCs connect to the server over your office network (LAN / Wi-Fi)</td></tr>
+        <tr><td>Internet</td><td>Needed to activate the licence and for a daily licence check; billing keeps working offline for the grace days</td></tr>
+        <tr><td>Printers</td><td>Any Windows printer for bills and reports; label printers for barcodes; save as PDF</td></tr>
+        <tr><td>Installation</td><td>Bits Lab Server on one PC, Bits Lab Client on the others</td></tr>
+      </tbody></table>
+    </div>
+    <div class="panel">
+      <h2 style="font-size:1.35rem">Your data stays yours</h2>
+      <ul>
+        <li>Patient records, results and bills are stored on your own server PC or SQL Server, not on our servers.</li>
+        <li>Only licence details (licence key, PC identity, app version) are sent to the Bestow licence server.</li>
+        <li>Backups run every day on your PC, with a second copy to a USB drive or your own Google Drive.</li>
+        <li>Each staff member signs in with their own account and only sees what their role allows.</li>
+        <li>No hidden or back-door accounts. Account recovery is disclosed and recorded.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="download" class="band" aria-labelledby="dl-h">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Download</span><h2 id="dl-h">Download Bits Lab and start your 30-day free trial</h2><p class="lead">Install the server on one PC, the client on the others, and start the free trial from Settings › Licence. No card needed.</p></div>
+    <div class="dl">
+      <div class="dlc main">
+        <span class="logoChip"><svg width="36" height="36" viewBox="0 0 240 240" aria-hidden="true"><defs><linearGradient id="lgCn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A63E8"/><stop offset="1" stop-color="#061F5C"/></linearGradient><linearGradient id="lgCa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22C55E"/><stop offset="1" stop-color="#0E9F6E"/></linearGradient></defs><rect x="50" y="190" width="140" height="16" rx="6" fill="#061F5C"/><path d="M156 190 C196 166 196 104 150 88" fill="none" stroke="url(#lgCn)" stroke-width="16" stroke-linecap="round"/><g transform="rotate(-28 112 84)"><rect x="96" y="28" width="32" height="100" rx="9" fill="url(#lgCa)"/><rect x="90" y="18" width="44" height="16" rx="5" fill="#061F5C"/><rect x="102" y="128" width="20" height="18" rx="4" fill="#0A63E8"/></g><rect x="76" y="160" width="92" height="12" rx="4" fill="#22C55E"/><rect x="96" y="150" width="14" height="10" rx="2" fill="#13B2F0"/><rect x="186" y="24" width="20" height="20" rx="3" fill="#22C55E"/><rect x="210" y="46" width="12" height="12" rx="2" fill="#13B2F0"/></svg></span>
+        <h3>Bits Lab Server</h3>
+        <p class="meta">For the main PC that keeps the data, the licence and the backups. Also use this one for a single-PC (standalone) setup.</p>
+        <p class="file">BitsLab-Server-Setup-1.3.0.exe</p>
+        <a class="btn primary" href="downloads/BitsLab-Server-Setup-1.3.0.exe" download><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download Server</a>
+      </div>
+      <div class="dlc">
+        <span class="logoChip"><svg width="36" height="36" viewBox="0 0 240 240" aria-hidden="true"><defs><linearGradient id="lgDn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A63E8"/><stop offset="1" stop-color="#061F5C"/></linearGradient><linearGradient id="lgDa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22C55E"/><stop offset="1" stop-color="#0E9F6E"/></linearGradient></defs><rect x="50" y="190" width="140" height="16" rx="6" fill="#061F5C"/><path d="M156 190 C196 166 196 104 150 88" fill="none" stroke="url(#lgDn)" stroke-width="16" stroke-linecap="round"/><g transform="rotate(-28 112 84)"><rect x="96" y="28" width="32" height="100" rx="9" fill="url(#lgDa)"/><rect x="90" y="18" width="44" height="16" rx="5" fill="#061F5C"/><rect x="102" y="128" width="20" height="18" rx="4" fill="#0A63E8"/></g><rect x="76" y="160" width="92" height="12" rx="4" fill="#22C55E"/><rect x="96" y="150" width="14" height="10" rx="2" fill="#13B2F0"/><rect x="186" y="24" width="20" height="20" rx="3" fill="#22C55E"/><rect x="210" y="46" width="12" height="12" rx="2" fill="#13B2F0"/></svg></span>
+        <h3>Bits Lab Client</h3>
+        <p class="meta">For counter, lab and doctor PCs. Connects to the server over your network; no data is kept on these PCs.</p>
+        <p class="file">BitsLab-Client-Setup-1.3.0.exe</p>
+        <a class="btn" href="downloads/BitsLab-Client-Setup-1.3.0.exe" download><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download Client</a>
+      </div>
+      <div class="dlc">
+        <span class="logoChip" style="color:#1E9E63"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8l8 8M16 8l-8 8"/></svg></span>
+        <h3>Excel import template</h3>
+        <p class="meta">Fill in your patients, doctors and hospitals, and tests with rates, then import them into Bits Lab.</p>
+        <p class="file">Bits-Lab-Import-Template.xlsx</p>
+        <a class="btn" href="downloads/Bits-Lab-Import-Template.xlsx" download><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download template</a>
+      </div>
+    </div>
+    <div class="dlnote">
+      <span>Version 1.3.0 · Windows 10 or 11 (64-bit) · Free 30-day trial: 1 server + 2 client PCs, 5 users, 10 bills a day.</span>
+      <span>If Windows shows "Windows protected your PC", click <b>More info</b> › <b>Run anyway</b>. Need help installing? Call or WhatsApp +91 94407 42529.</span>
+    </div>
+  </div>
+</section>
+
+<section id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">FAQ</span><h2 id="faq-h">Common questions</h2></div>
+    <div class="faq">
+      <details><summary>Can we bring our existing patients, doctors and test rates?</summary><p>Yes. Fill the Bits Lab Excel template, or export from your old software to Excel, and import patients, referring doctors and tests with rates. Duplicates are skipped.</p></details>
+      <details><summary>Does Bits Lab back up to Google Drive?</summary><p>Yes. Bits Lab saves a full backup on the server PC every day and copies each one to your Google Drive folder. Install the free Google Drive for desktop app on the server PC, then pick its folder in the Bits Lab server panel. A USB drive or OneDrive folder works the same way.</p></details>
+      <details><summary>What happens if the internet goes down?</summary><p>Bits Lab runs on your own network, so billing, sample tracking and reports keep working. The licence only needs to check in again within the grace period.</p></details>
+      <details><summary>Will updates delete our data?</summary><p>No. Your data is kept outside the program folder, and every new version saves a full backup before it starts. Installing an update never removes records.</p></details>
+      <details><summary>Can we add new tests or change our letterhead ourselves?</summary><p>Yes. Departments, tests, rates, parameters and reference ranges are edited in Settings. Bills and reports can use a coloured letterhead or your pre-printed stationery.</p></details>
+      <details><summary>We forgot the admin password. Is the data lost?</summary><p>No. Use the owner recovery code given at setup, or call Bestow for a one-time recovery token for your PC. It only resets the administrator password.</p></details>
+      <details><summary>Can reports be sent to patients on WhatsApp?</summary><p>Yes, from the front desk after the balance is checked. Bills and preparation instructions can also be sent on WhatsApp.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <div style="display:grid;gap:14px">
+      <span class="eyebrow" style="color:#7FB4FF">Get started</span>
+      <h2 id="contact-h">See Bits Lab working with your own tests and rate list.</h2>
+      <p>Call or WhatsApp us for a free demo at your centre or online, or download the 30-day trial and install it yourself.</p>
+    </div>
+    <div class="cbox">
+      <div class="crow"><div><span>Phone / WhatsApp</span><br><b>+91 94407 42529</b></div><button class="copy" type="button" data-copy="+91 94407 42529" id="copyPhone">Copy</button></div>
+      <div class="crow"><div><span>Email</span><br><b>info@bestowits.com</b></div><button class="copy" type="button" data-copy="info@bestowits.com" id="copyMail">Copy</button></div>
+      <div class="crow"><div><span>Website</span><br><b>www.bestowits.com</b></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span style="display:inline-flex;align-items:center;gap:8px"><span class="logoChip" style="width:28px;height:28px;border-radius:7px"><svg width="22" height="22" viewBox="0 0 240 240" aria-hidden="true"><defs><linearGradient id="lgEn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A63E8"/><stop offset="1" stop-color="#061F5C"/></linearGradient><linearGradient id="lgEa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22C55E"/><stop offset="1" stop-color="#0E9F6E"/></linearGradient></defs><rect x="50" y="190" width="140" height="16" rx="6" fill="#061F5C"/><path d="M156 190 C196 166 196 104 150 88" fill="none" stroke="url(#lgEn)" stroke-width="16" stroke-linecap="round"/><g transform="rotate(-28 112 84)"><rect x="96" y="28" width="32" height="100" rx="9" fill="url(#lgEa)"/><rect x="90" y="18" width="44" height="16" rx="5" fill="#061F5C"/><rect x="102" y="128" width="20" height="18" rx="4" fill="#0A63E8"/></g><rect x="76" y="160" width="92" height="12" rx="4" fill="#22C55E"/><rect x="96" y="150" width="14" height="10" rx="2" fill="#13B2F0"/><rect x="186" y="24" width="20" height="20" rx="3" fill="#22C55E"/><rect x="210" y="46" width="12" height="12" rx="2" fill="#13B2F0"/></svg></span>Bits Lab · Bestow IT Services, Hyderabad, Telangana, India</span><span class="tagline">BITS · BEYOND IT SOLUTIONS · BY BESTOW IT SERVICES</span></div>
+</footer>
+
+<script>
+document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",()=>{
+  const t=b.dataset.copy,done=()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1500)};
+  try{navigator.clipboard.writeText(t).then(done,()=>sel(b))}catch(e){sel(b)}
+}));
+function sel(b){const el=b.parentElement.querySelector("b");const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+</script>
+</body></html>
