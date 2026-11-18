@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bits Dental</title>
+<meta name="description" content="Bits Dental is clinic management software for dental clinics and hospitals in India: patients, appointments, dental chart, treatment plans, prescriptions, GST billing, SMS and WhatsApp reminders, stock, lab work, reports and backups. By Bestow IT Services.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: product page in bands — hero with a live FDI chart, the clinic day as a sequence, feature groups, who it is for, how it runs, FAQ, contact. */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#14233a; --muted:#566579; --line:#dfe5ed;
+  --brand:#0a63e8; --brand-ink:#0849ad; --brand-soft:#e7f0fe; --mint:#13a37d; --mint-soft:#e3f6ef; --amber:#c27a0e; --amber-soft:#fdf2df; --rose:#c8445a; --rose-soft:#fbe7ea;
+  --band:#0f1d33; --band-ink:#e8eef7; --band-muted:#a8b6c9; --band-accent:#7fb2ff;
+  --f-display:"Sora","Segoe UI",system-ui,sans-serif; --f-body:"Inter","Segoe UI",system-ui,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1524; --surface:#132036; --ink:#e7edf6; --muted:#9fb0c6; --line:#24344f;
+  --brand:#5b9bff; --brand-ink:#8bb8ff; --brand-soft:#16294a; --mint:#3ccf9f; --mint-soft:#123a32; --amber:#f0b14a; --amber-soft:#3a2c13; --rose:#f07d90; --rose-soft:#3b1d26;
+  --band:#08101d; --band-ink:#e8eef7; --band-muted:#9fb0c6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1524; --surface:#132036; --ink:#e7edf6; --muted:#9fb0c6; --line:#24344f;
+  --brand:#5b9bff; --brand-ink:#8bb8ff; --brand-soft:#16294a; --mint:#3ccf9f; --mint-soft:#123a32; --amber:#f0b14a; --amber-soft:#3a2c13; --rose:#f07d90; --rose-soft:#3b1d26;
+  --band:#08101d; --band-ink:#e8eef7; --band-muted:#9fb0c6; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--f-body);margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);line-height:1.15;text-wrap:balance;margin:0}
+h2{font-size:clamp(26px,3.4vw,36px);font-weight:600;letter-spacing:-.01em}
+h3{font-size:18px;font-weight:600}
+p{margin:0}
+.eyebrow{font:600 12px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+.lead{font-size:18px;color:var(--muted);max-width:62ch}
+.mono{font-family:var(--f-mono);font-size:.92em}
+section{padding-block:72px}
+.sec-head{display:grid;gap:12px;margin-bottom:36px;max-width:760px}
+a{color:var(--brand)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:6px}
+
+/* top bar */
+.top{border-bottom:1px solid var(--line);background:var(--surface)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:10px;font:700 18px var(--f-display);color:var(--ink);text-decoration:none}
+.brand svg{width:34px;height:34px}
+.brand small{display:block;font:500 11px var(--f-body);letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.top nav{display:flex;gap:20px;flex-wrap:wrap}
+.top nav a{color:var(--muted);text-decoration:none;font-weight:500;font-size:14px}
+.top nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding-block:64px 56px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(34px,5vw,54px);font-weight:700;letter-spacing:-.02em;margin:14px 0 18px}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:600;text-decoration:none;font-size:15px;border:1.5px solid var(--brand)}
+.btn.primary{background:var(--brand);color:#fff}
+.btn.primary:hover{background:var(--brand-ink);border-color:var(--brand-ink)}
+.btn.ghost{color:var(--brand);background:transparent}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:26px;color:var(--muted);font-size:14px}
+.facts span::before{content:"✓";color:var(--mint);font-weight:700;margin-right:6px}
+
+/* chart card */
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 24px 50px -32px rgba(15,29,51,.45);min-width:0}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:16px}
+.chart-head b{font:600 15px var(--f-display)}
+.chart-head span{font-size:12px;color:var(--muted)}
+.jaw{display:grid;grid-template-columns:repeat(16,1fr);gap:4px}
+.jaw+.jaw{margin-top:6px}
+.mid{height:1px;background:var(--line);margin:10px 0}
+.tooth{aspect-ratio:3/4;max-width:100%;border:1.5px solid var(--line);border-radius:7px 7px 10px 10px;background:var(--bg);display:grid;place-items:end center;padding-bottom:3px;font:500 9px var(--f-mono);color:var(--muted);cursor:default;transition:transform .15s}
+.lower .tooth{border-radius:10px 10px 7px 7px;place-items:start center;padding:3px 0 0}
+.tooth:hover{transform:translateY(-2px)}
+.tooth.fill{background:var(--brand-soft);border-color:var(--brand);color:var(--brand-ink)}
+.tooth.rct{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.tooth.crown{background:var(--mint-soft);border-color:var(--mint);color:var(--mint)}
+.tooth.missing{background:transparent;border-style:dashed;opacity:.55}
+.tooth.caries{background:var(--rose-soft);border-color:var(--rose);color:var(--rose)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:16px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px;border:1.5px solid}
+.plan{margin-top:16px;border-top:1px solid var(--line);padding-top:14px;display:grid;gap:8px;font-size:13px}
+.plan div{display:flex;justify-content:space-between;gap:10px}
+.plan .tot{font-weight:600;border-top:1px dashed var(--line);padding-top:8px}
+.num{font-variant-numeric:tabular-nums}
+
+/* day flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:step}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:10px;align-content:start;min-width:0}
+.step .n{font:600 13px var(--f-mono);color:var(--brand)}
+.step ul{margin:0;padding-left:18px;color:var(--muted);font-size:14.5px;display:grid;gap:4px}
+
+/* features */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 36px}
+.feat{display:grid;gap:10px;align-content:start;min-width:0}
+.feat h3{display:flex;align-items:center;gap:10px}
+.ico{width:34px;height:34px;flex:none;border-radius:10px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand)}
+.ico svg{width:18px;height:18px}
+.feat ul{margin:0;padding-left:18px;color:var(--muted);font-size:14.5px;display:grid;gap:5px}
+.feat b{color:var(--ink);font-weight:600}
+
+/* dark band */
+.band{background:var(--band);color:var(--band-ink)}
+.band .lead{color:var(--band-muted)}
+.band .eyebrow{color:var(--band-accent)}
+.who{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.who article{border:1px solid rgba(168,182,201,.22);border-radius:var(--r);padding:22px;display:grid;gap:10px;align-content:start;background:rgba(255,255,255,.03)}
+.who p{color:var(--band-muted);font-size:14.5px}
+.who .tag{font:500 12px var(--f-mono);color:var(--band-accent)}
+
+/* how it runs */
+.runs{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+.diagram{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;min-width:0}
+.diagram svg{width:100%;height:auto;display:block}
+.diagram text{font-family:var(--f-body);fill:var(--ink)}
+.diagram .sub{fill:var(--muted);font-size:11px}
+.specs{display:grid;gap:0;border-top:1px solid var(--line)}
+.specs div{display:grid;grid-template-columns:150px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.specs dt,.specs b{font-weight:600}
+.specs span{color:var(--muted)}
+
+/* print sizes strip */
+.sizes{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.sizes span{font:500 13px var(--f-mono);padding:7px 12px;border-radius:8px;background:var(--brand-soft);color:var(--brand-ink)}
+
+/* templates */
+.swatches{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.sw{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px 6px 6px}
+.sw i{width:20px;height:20px;border-radius:50%;display:block}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:860px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--brand);font-weight:700}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted);font-size:15px}
+
+/* contact */
+.contact{background:var(--brand-soft);border-radius:24px;padding:40px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.contact ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px}
+.contact li b{display:inline-block;min-width:74px;color:var(--muted);font-weight:500}
+.contact .sel{user-select:all;font-weight:600;color:var(--ink)}
+footer{padding-block:28px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:56px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+
+/* google drive backup */
+.gd{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.gd-steps{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:14px}
+.gd-steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;font-size:15px;color:var(--muted)}
+.gd-steps b{color:var(--ink);font-weight:600}
+.gd-steps .k{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);font:600 14px var(--f-mono)}
+.gd-points{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.gd-points span{font-size:13px;padding:6px 12px;border-radius:999px;background:var(--mint-soft);color:var(--mint);font-weight:600}
+.bk{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 24px 50px -32px rgba(15,29,51,.45);min-width:0}
+.bk-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:12px}
+.bk-head b{font:600 15px var(--f-display)}.bk-head span{font-size:12px;color:var(--muted)}
+.bk-row{display:grid;gap:6px;padding:12px 0;border-top:1px solid var(--line)}
+.bk-row .mono{font-size:12.5px;overflow-wrap:anywhere}
+.bk-row small{color:var(--muted);font-size:12px}
+.bk-tags{display:flex;flex-wrap:wrap;gap:6px}
+.bk-tags i{font-style:normal;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.bk-tags i.g{background:var(--mint-soft);color:var(--mint);border-color:transparent}
+.bk-foot{display:flex;align-items:center;gap:10px;margin-top:12px;padding:12px;border-radius:12px;background:var(--brand-soft);font-size:13px;color:var(--ink)}
+.bk-foot svg{width:22px;height:22px;flex:none}
+@media (max-width:960px){.gd{grid-template-columns:1fr}}
+
+/* download */
+.dl{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:36px}
+.dl-card{display:grid;gap:12px}
+.dl-btn{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:16px;text-decoration:none;border:1.5px solid var(--brand);color:var(--brand)}
+.dl-btn.primary{background:var(--brand);color:#fff}
+.dl-btn.primary:hover{background:var(--brand-ink);border-color:var(--brand-ink)}
+.dl-btn svg{width:26px;height:26px;flex:none}
+.dl-btn b{display:block;font:600 16px var(--f-display)}
+.dl-btn small{display:block;font-size:12.5px;opacity:.85}
+.dl-meta{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px;margin-top:18px}
+.dl-meta dt{color:var(--muted)}.dl-meta dd{margin:0;font-weight:500}
+@media (max-width:960px){.dl{grid-template-columns:1fr;padding:24px}}
+@media (max-width:960px){
+  .hero .wrap,.runs,.contact{grid-template-columns:1fr}
+  .flow,.who{grid-template-columns:repeat(2,1fr)}
+  .features{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:620px){
+  section{padding-block:52px}
+  .flow,.who,.features{grid-template-columns:1fr}
+  .top nav{display:none}
+  .jaw{gap:2px}.tooth{font-size:7px;border-radius:5px}
+  .specs div{grid-template-columns:1fr;gap:2px}
+  .contact{padding:26px}
+}
+@media (prefers-reduced-motion:reduce){.tooth{transition:none}.tooth:hover{transform:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Bits Dental">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="var(--brand)"/><path d="M13 11c-3 0-5 2.6-5 6.2 0 3 1 5 1.7 8.3.7 3.4 1.4 6.5 3.4 6.5 2.1 0 2.4-4.8 3.6-7.4.6-1.3 1.2-1.9 3.3-1.9s2.7.6 3.3 1.9c1.2 2.6 1.5 7.4 3.6 7.4 2 0 2.7-3.1 3.4-6.5.7-3.3 1.7-5.3 1.7-8.3 0-3.6-2-6.2-5-6.2-2.6 0-4 1.6-7 1.6s-4.4-1.6-7-1.6z" fill="#fff"/></svg>
+      <span>Bits Dental<small>Clinic management</small></span>
+    </a>
+    <nav aria-label="Page sections"><a href="#features">Features</a><a href="#backup">Google Drive backup</a><a href="#who">Who it's for</a><a href="#setup">Setup</a><a href="#faq">FAQ</a><a href="#download">Download</a><a href="#contact">Contact</a></nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Dental clinic software · Version 18</span>
+      <h1>Run your whole dental clinic from <em>one screen</em></h1>
+      <p class="lead">Bits Dental handles the full patient journey in a dental clinic or hospital. Reception books the visit, the doctor charts the teeth and plans treatment, the front desk raises a GST bill, and the patient gets a WhatsApp or SMS reminder for the next sitting. Everything lives on a PC inside your clinic, shared by every computer on your network.</p>
+      <div class="cta">
+        <a class="btn primary" href="#download">Download free trial</a>
+        <a class="btn ghost" href="#contact">Book a free demo</a>
+      </div>
+      <div class="facts"><span>Free trial</span><span>Built for Indian GST billing</span><span>Data stays in your clinic</span><span>Automatic Google Drive backup</span><span>Works on your clinic network</span></div>
+    </div>
+
+    <div class="chart" aria-label="Example dental chart from Bits Dental">
+      <div class="chart-head"><b>Dental chart · FDI</b><span>Example patient</span></div>
+      <div class="jaw upper" id="upper"></div>
+      <div class="mid"></div>
+      <div class="jaw lower" id="lower"></div>
+      <div class="legend">
+        <span><i style="border-color:var(--rose);background:var(--rose-soft)"></i>Caries</span>
+        <span><i style="border-color:var(--brand);background:var(--brand-soft)"></i>Filling</span>
+        <span><i style="border-color:var(--amber);background:var(--amber-soft)"></i>Root canal</span>
+        <span><i style="border-color:var(--mint);background:var(--mint-soft)"></i>Crown</span>
+        <span><i style="border-color:var(--muted);border-style:dashed"></i>Missing</span>
+      </div>
+      <div class="plan num">
+        <div><span>36 · Root canal treatment</span><span>₹ 6,500</span></div>
+        <div><span>36 · Ceramic crown</span><span>₹ 8,000</span></div>
+        <div><span>24 · Composite filling</span><span>₹ 1,800</span></div>
+        <div class="tot"><span>Treatment plan → bill <span class="mono">INV/2026-27/0148</span></span><span>₹ 16,300</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--surface);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What it does</span>
+      <h2>A patient visit, start to finish</h2>
+      <p class="lead">Each step picks up where the last one left off, so nothing is typed twice. A treatment marked done goes onto the bill, takes its materials out of stock and sets the next reminder.</p>
+    </div>
+    <div class="flow">
+      <article class="step"><span class="n">1 · Reception</span><h3>Register and book</h3><ul><li>New or returning patient in seconds, search by name, mobile or file no.</li><li>Day and week calendar per doctor, with a warning on double booking</li><li>Waiting room list, also shown on a TV in the waiting area</li></ul></article>
+      <article class="step"><span class="n">2 · At the chair</span><h3>Chart, plan, treat</h3><ul><li>Dental chart with FDI tooth numbers and findings per tooth</li><li>Treatment plans with prices from your own list</li><li>Prescriptions, lab orders, X-rays, photos and consent forms</li></ul></article>
+      <article class="step"><span class="n">3 · Front desk</span><h3>Bill and collect</h3><ul><li>GST bills numbered by financial year</li><li>Part payments, advances, discounts and a full patient account</li><li>Bills on A4/A5, receipts on an 80 mm thermal printer</li></ul></article>
+      <article class="step"><span class="n">4 · After the visit</span><h3>Bring them back</h3><ul><li>Automatic appointment, recall, follow-up, dues and birthday messages</li><li>SMS through your DLT gateway or WhatsApp Business</li><li>Follow-up list so no patient is forgotten</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Features</span>
+      <h2>Everything a dental practice uses every day</h2>
+    </div>
+    <div class="features">
+      <div class="feat"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>Patients</h3><ul><li>Complete patient file: contact, medical history, allergies, referral</li><li>Keeps your <b>old file numbers</b> when you move from paper</li><li>Full history of visits, treatments, bills, images and the dental chart</li><li>Printable folder stickers, <span class="mono">90 × 55 mm</span>, 8 per A4 sheet</li></ul></div>
+      <div class="feat"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>Appointments</h3><ul><li>Day and week calendar for each doctor</li><li>Double-click an empty slot to book</li><li>Clash warning when a doctor is already booked</li><li>Waiting room queue with a TV display for patients</li></ul></div>
+      <div class="feat"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 4c-2 0-3.5 1.7-3.5 4.2 0 2 .7 3.4 1.2 5.6.5 2.4 1 4.2 2.3 4.2 1.4 0 1.6-3.2 2.4-5 .4-.8.8-1.2 2.1-1.2s1.7.4 2.1 1.2c.8 1.8 1 5 2.4 5 1.3 0 1.8-1.8 2.3-4.2.5-2.2 1.2-3.6 1.2-5.6C20.5 5.7 19 4 17 4c-1.7 0-2.6 1-5 1S8.7 4 7 4z"/></svg></span>Clinical</h3><ul><li>Dental chart with findings on each tooth</li><li>Treatment plans that move straight to billing</li><li>Prescriptions: quick entry now, complete later</li><li>Consent forms, treatment summary and before/after photos</li></ul></div>
+      <div class="feat"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span>Billing &amp; accounts</h3><ul><li>GST invoices numbered per year, e.g. <span class="mono">INV/2026-27/0001</span></li><li>Line or bill discount, part payment, advance, cancel with reason</li><li>Patient account tab and printable statement</li><li>Expenses recorded alongside collections</li></ul></div>
+      <div class="feat"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>Messages</h3><ul><li>SMS through your DLT-registered gateway</li><li>WhatsApp through WhatsApp Business (Meta Cloud API)</li><li>Automatic reminders you schedule and word yourself</li><li>Broadcasts to chosen patients, each marked Sent or Failed</li></ul></div>
+      <div class="feat"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg></span>Stock &amp; dental lab</h3><ul><li>Stock in and out with history and low-stock alerts</li><li>Materials per treatment, deducted automatically</li><li>Dental laboratory orders: quick entry now, details later</li><li>X-rays, scans and documents kept with the patient</li></ul></div>
+      <div class="feat"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>Reports</h3><ul><li>Summary, day book and age-wise outstanding</li><li>Patient statement, treatment revenue, doctor collection</li><li>GST report for your accountant</li><li>Every report prints or exports to Excel</li></ul></div>
+      <div class="feat"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Users &amp; control</h3><ul><li>Roles for owner, doctors, reception and staff, with permissions</li><li>Activity log of who changed what and when</li><li>Several branches in one system</li><li>Admin area only for the Super Admin and Clinic Owner</li></ul></div>
+      <div class="feat"><h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg></span>Data safety</h3><ul><li>Automatic backups: daily, weekly or every few hours</li><li><b>Automatic copy to Google Drive</b>, plus USB drive or network folder</li><li>Restore with a safety copy taken first</li><li>Import patients, price list, doctors and stock from Excel</li></ul></div>
+    </div>
+    <div class="sizes" aria-label="Paper sizes supported"><span>A4 bills &amp; reports</span><span>A5 bills &amp; prescriptions</span><span>80 mm thermal receipts</span><span>90 × 55 mm folder stickers</span><span>Save as PDF</span></div>
+  </div>
+</section>
+
+<section id="backup">
+  <div class="wrap gd">
+    <div>
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">Backup to Google Drive</span>
+        <h2>Automatic backups, with a safe copy on Google Drive</h2>
+        <p class="lead">Bits Dental backs up the full database and every patient file (X-rays, photos and documents) on the schedule you set: daily, weekly or every few hours. Each backup is also copied to your clinic's Google Drive, so a copy of your records stays safe outside the clinic even if the PC is damaged, stolen or hit by a virus.</p>
+      </div>
+      <ol class="gd-steps">
+        <li><span class="k">1</span><span><b>Install Google Drive for desktop</b> on the server PC and sign in with the clinic's Google account.</span></li>
+        <li><span class="k">2</span><span><b>Choose the Google Drive folder</b> for backups in Bits Dental's backup settings.</span></li>
+        <li><span class="k">3</span><span><b>Every backup is copied there automatically</b>, and Google Drive uploads it to the cloud.</span></li>
+        <li><span class="k">4</span><span><b>Restore any copy when you need it</b>, from the PC, a USB drive or Google Drive. A safety copy of the current data is taken first.</span></li>
+      </ol>
+      <div class="gd-points"><span>No Google password stored in the app</span><span>Keeps as many backups as you choose</span><span>Also copies to USB or a network folder</span><span>Backup history shows every success or failure</span></div>
+    </div>
+    <div class="bk" aria-label="Example backup list in Bits Dental">
+      <div class="bk-head"><b>Backup files</b><span>Example · daily at 9:00 pm</span></div>
+      <div class="bk-row"><span class="mono">BitsDental_Backup_20261118_210000.zip</span><small>18 Nov 2026, 9:00 pm · 17.9 MB · database + 1,246 patient files</small><div class="bk-tags"><i>Server PC</i><i>USB drive E:</i><i class="g">Google Drive ✓</i></div></div>
+      <div class="bk-row"><span class="mono">BitsDental_Backup_20261117_210000.zip</span><small>17 Nov 2026, 9:00 pm · 17.6 MB</small><div class="bk-tags"><i>Server PC</i><i>USB drive E:</i><i class="g">Google Drive ✓</i></div></div>
+      <div class="bk-row"><span class="mono">BitsDental_Backup_20261116_210000.zip</span><small>16 Nov 2026, 9:00 pm · 17.4 MB</small><div class="bk-tags"><i>Server PC</i><i class="g">Google Drive ✓</i></div></div>
+      <div class="bk-foot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8l6 10.5-4 7H6l-4-7z" fill="none" stroke="var(--mint)" stroke-width="2" stroke-linejoin="round"/><path d="M8 3l6 10.5H2M16 3l-6 10.5M22 13.5H10l-4 7" fill="none" stroke="var(--mint)" stroke-width="1.5" stroke-linejoin="round"/></svg><span>Copies go to <span class="mono">My Drive › Bits Dental Backups</span> on the clinic's Google account.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="who">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Who it's for</span>
+      <h2>Made for dental practices of every size</h2>
+      <p class="lead">Bits Dental follows how clinics in India work: GST billing, rupee amounts, the April–March financial year, DLT-registered SMS and WhatsApp for patient reminders.</p>
+    </div>
+    <div class="who">
+      <article><span class="tag">1 doctor · 1–2 chairs</span><h3>Single-doctor clinics</h3><p>Replace the appointment diary, bill book and patient cards with one simple system that reception staff pick up quickly.</p></article>
+      <article><span class="tag">Several doctors &amp; chairs</span><h3>Multi-chair and multispeciality hospitals</h3><p>Each doctor gets a calendar and their own collection report. Specialists see the full chart and history before they start.</p></article>
+      <article><span class="tag">2 or more locations</span><h3>Dental groups with branches</h3><p>Run all your branches from one installation, so patients, staff and reports are in one place for the owner.</p></article>
+      <article><span class="tag">Moving from paper or Excel</span><h3>Clinics going digital</h3><p>Keep your old file numbers, import existing patient lists from Excel and start billing the same day.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="setup">
+  <div class="wrap runs">
+    <div>
+      <div class="sec-head">
+        <span class="eyebrow">How it runs</span>
+        <h2>Your data stays inside your clinic</h2>
+        <p class="lead">One PC in the clinic acts as the server and holds the database. Reception, doctor and billing PCs open Bits Dental in their web browser over the clinic network. Nothing to install on those PCs, and no monthly cloud charges.</p>
+      </div>
+      <dl class="specs">
+        <div><dt>Server PC</dt><span>Windows 10 or 11 (64-bit). The installer sets up everything, including the SQL Server Express database.</span></div>
+        <div><dt>Other PCs</dt><span>Any PC on the clinic network with Microsoft Edge or Google Chrome</span></div>
+        <div><dt>Internet</dt><span>Daily work runs on your clinic network. Internet is used for SMS and WhatsApp and for the occasional licence check.</span></div>
+        <div><dt>Runs as</dt><span>A Windows service that starts with the PC, with optional HTTPS</span></div>
+        <div><dt>Your look</dt><span>Your clinic name and logo on the sign-in page and bills, and seven colour themes to choose from</span></div>
+        <div><dt>Licence</dt><span>Start with a free trial, then activate a licence for your clinic's server PC</span></div>
+      </dl>
+    </div>
+    <figure class="diagram" aria-label="Diagram: one server PC with the database, connected to reception, doctor and billing PCs and a waiting room TV">
+      <svg viewBox="0 0 440 340" role="img">
+        <title>Clinic network: server PC and connected computers</title>
+        <g stroke="var(--line)" stroke-width="2" fill="none">
+          <path d="M220 150 L80 260"/><path d="M220 150 L220 260"/><path d="M220 150 L360 260"/><path d="M220 120 L360 50"/>
+        </g>
+        <rect x="140" y="80" width="160" height="78" rx="14" fill="var(--brand-soft)" stroke="var(--brand)" stroke-width="2"/>
+        <text x="220" y="112" text-anchor="middle" font-weight="600" font-size="15">Server PC</text>
+        <text x="220" y="132" text-anchor="middle" class="sub">Bits Dental + database</text>
+        <text x="220" y="147" text-anchor="middle" class="sub">automatic backups</text>
+        <g fill="var(--surface)" stroke="var(--line)" stroke-width="2">
+          <rect x="20" y="260" width="120" height="56" rx="12"/><rect x="160" y="260" width="120" height="56" rx="12"/><rect x="300" y="260" width="120" height="56" rx="12"/><rect x="300" y="22" width="120" height="56" rx="12"/>
+        </g>
+        <text x="80" y="285" text-anchor="middle" font-weight="600" font-size="13">Reception</text><text x="80" y="302" text-anchor="middle" class="sub">browser</text>
+        <text x="220" y="285" text-anchor="middle" font-weight="600" font-size="13">Doctor's chair</text><text x="220" y="302" text-anchor="middle" class="sub">browser</text>
+        <text x="360" y="285" text-anchor="middle" font-weight="600" font-size="13">Billing desk</text><text x="360" y="302" text-anchor="middle" class="sub">browser + printer</text>
+        <text x="360" y="47" text-anchor="middle" font-weight="600" font-size="13">Waiting room TV</text><text x="360" y="64" text-anchor="middle" class="sub">queue display</text>
+        <text x="40" y="60" class="sub">Backup copies to</text><text x="40" y="75" class="sub">Google Drive / USB</text>
+        <path d="M110 92 L140 105" stroke="var(--mint)" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+      </svg>
+    </figure>
+  </div>
+</section>
+
+<section style="background:var(--surface);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Your brand</span>
+      <h2>Looks like your clinic</h2>
+      <p class="lead">Add your clinic name, logo, tagline and sign-in picture. Choose one of seven colour themes and four sign-in layouts, and change them any time from the admin settings.</p>
+    </div>
+    <div class="swatches">
+      <span class="sw"><i style="background:#0e9f94"></i>Teal Classic</span>
+      <span class="sw"><i style="background:#2457d6"></i>Royal Blue</span>
+      <span class="sw"><i style="background:#14a05a"></i>Emerald Fresh</span>
+      <span class="sw"><i style="background:#b0447e"></i>Rose Plum</span>
+      <span class="sw"><i style="background:#3b3f9e"></i>Midnight Indigo</span>
+      <span class="sw"><i style="background:#e0664a"></i>Coral Warm</span>
+      <span class="sw"><i style="background:#3e5a76"></i>Slate Minimal</span>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Questions</span><h2>Frequently asked</h2></div>
+    <div class="faq">
+      <details open><summary>Do we need internet to use Bits Dental?</summary><p>No, not for daily work. The clinic's PCs connect to the server PC over your own network. Internet is needed to send SMS and WhatsApp messages and for a periodic licence check. An offline licence is available for clinics without a reliable connection.</p></details>
+      <details><summary>Where is our patient data kept?</summary><p>On the server PC in your clinic, in a Microsoft SQL Server database. Automatic backups go to a folder on that PC, and each one is also copied to your Google Drive and, if you like, a USB drive or network folder.</p></details>
+      <details><summary>How does the Google Drive backup work?</summary><p>Install Google Drive for desktop on the server PC and sign in with the clinic's Google account. In Bits Dental, choose the Google Drive folder for backups. From then on every scheduled backup is copied there and Google Drive uploads it. Your Google password is never entered in Bits Dental. To restore, pick any backup from the PC, a USB drive or Google Drive.</p></details>
+      <details><summary>Can we bring in our existing patient records?</summary><p>Yes. Import patients, the treatment price list, appointments, doctors and stock from Excel or CSV. Bits Dental matches your column headings and lets you check the file before anything is saved. Old file numbers are kept.</p></details>
+      <details><summary>Which printers does it work with?</summary><p>Any printer installed in Windows. Bills print on A4 or A5, receipts on A4 or 80 mm thermal paper, and folder stickers on A4 label sheets. Any printout can also be saved as a PDF to send to the patient.</p></details>
+      <details><summary>Can we use it in more than one branch?</summary><p>Yes. Bits Dental supports several branches in one system, so the owner sees every location in one place.</p></details>
+      <details><summary>How do we try it?</summary><p>Download the free trial from this page and install it on your server PC, or contact Bestow IT Services for a demo. We install it on your server PC, set up your clinic name, logo and price list, and train your staff.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="download" style="padding-top:0">
+  <div class="wrap">
+    <div class="dl">
+      <div>
+        <span class="eyebrow">Download</span>
+        <h2 style="margin-top:12px">Download Bits Dental</h2>
+        <p class="lead" style="margin-top:12px">Install it on your clinic's server PC and start the free trial straight away. The setup installs everything Bits Dental needs, including the database. Other PCs in the clinic just open it in their browser.</p>
+        <dl class="dl-meta">
+          <dt>Version</dt><dd>18</dd>
+          <dt>Works on</dt><dd>Windows 10 or 11, 64-bit (server PC)</dd>
+          <dt>Includes</dt><dd>Bits Dental, SQL Server Express database, Windows service</dd>
+          <dt>Trial</dt><dd>Free, starts on first run (internet needed to start it)</dd>
+        </dl>
+      </div>
+      <div class="dl-card">
+        <!-- DOWNLOAD LINKS: change these two addresses to where the files are uploaded on your website -->
+        <a class="dl-btn primary" id="download-setup" href="https://www.bestowits.com/downloads/BitsDental_V18_Setup.exe" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg><span><b>Download free trial</b><small>Bits Dental V18 setup for Windows (.exe)</small></span></a>
+        <a class="dl-btn" id="download-guide" href="https://www.bestowits.com/downloads/Bits_Dental_V18_Guide.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg><span><b>Download user guide</b><small>Installation, setup and daily use (PDF)</small></span></a>
+        <p style="font-size:13px;color:var(--muted)">Need help installing? Call or WhatsApp <b style="user-select:all;color:var(--ink)">+91 94407 42529</b> and we'll set it up with you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="contact">
+      <div style="display:grid;gap:12px">
+        <span class="eyebrow">Get started</span>
+        <h2>See Bits Dental working in your clinic</h2>
+        <p class="lead">Book a free demo. We'll show the full patient journey with your own treatments and prices, and set up a trial on your PC.</p>
+      </div>
+      <ul>
+        <li><b>Phone</b> <a class="sel" href="tel:+919440742529">+91 94407 42529</a></li>
+        <li><b>WhatsApp</b> <span class="sel">+91 94407 42529</span></li>
+        <li><b>Email</b> <a class="sel" href="mailto:info@bestowits.com">info@bestowits.com</a></li>
+        <li><b>Web</b> <a class="sel" href="https://www.bestowits.com" target="_blank" rel="noopener">www.bestowits.com</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span><b>Bits Dental</b> · BITS · Beyond It Solutions · by Bestow IT Services</span><span>Hyderabad, India</span></div>
+</footer>
+
+<script>
+// Example FDI chart: upper 18→11 | 21→28, lower 48→41 | 31→38
+(function(){
+  var marks={16:'fill',24:'caries',26:'crown',36:'rct',46:'caries',18:'missing',38:'missing',11:'',47:'fill',37:'caries'};
+  var names={fill:'Filling',crown:'Crown',rct:'Root canal',caries:'Caries',missing:'Missing'};
+  function row(el,list){list.forEach(function(n){var d=document.createElement('div');var m=marks[n]||'';d.className='tooth '+m;d.textContent=n;d.title='Tooth '+n+(m?' · '+names[m]:' · Healthy');el.appendChild(d);});}
+  var up=[18,17,16,15,14,13,12,11,21,22,23,24,25,26,27,28],lo=[48,47,46,45,44,43,42,41,31,32,33,34,35,36,37,38];
+  row(document.getElementById('upper'),up);row(document.getElementById('lower'),lo);
+})();
+</script>
+</body>
+</html>
