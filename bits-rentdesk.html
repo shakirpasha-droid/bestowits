@@ -51,6 +51,9 @@ p{margin:0}
 :root[data-theme="dark"] .btn{color:#0c1424}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0c1424}}
 .btn.ghost{background:transparent;color:var(--blue);border:1px solid var(--line)}
+/* Keep the outlined secondary action readable when the page uses dark mode. */
+:root[data-theme="dark"] .btn.ghost{color:var(--blue)!important}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.ghost{color:var(--blue)!important}}
 .btn:focus-visible,a:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
 .facts div{padding:16px 18px;border-right:1px solid var(--line);min-width:0}
