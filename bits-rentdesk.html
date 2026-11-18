@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bits RentDesk | Rental & Lease Management Software | Bestow IT Services</title>
+<meta name="description" content="Bits RentDesk is Windows rental and lease management software for landlords and property managers in Hyderabad and Telangana. Manage properties, tenants, rent, deposits, receipts and expenses.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://www.bestowits.com/bits-rentdesk.html">
+<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: one calm product page. Hero with a quick-facts strip, then feature groups, audience, install facts, contact. */
+:root{
+  --bg:#f7f9fc; --surface:#ffffff; --fg:#10203a; --muted:#51617a; --line:#dbe3ef;
+  --blue:#1f4fd8; --blue-soft:#e6edfd; --amber:#d98a0b; --amber-soft:#fdf1da; --ok:#1d7a4d;
+  --f-display:'Space Grotesk','Segoe UI',system-ui,sans-serif; --f-body:'Inter','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1424; --surface:#131d33; --fg:#e8eefb; --muted:#9db0cf; --line:#25324d;
+  --blue:#7aa2ff; --blue-soft:#17264b; --amber:#f0b24a; --amber-soft:#33260c; --ok:#5fd09a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1424; --surface:#131d33; --fg:#e8eefb; --muted:#9db0cf; --line:#25324d;
+  --blue:#7aa2ff; --blue-soft:#17264b; --amber:#f0b24a; --amber-soft:#33260c; --ok:#5fd09a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
+.hero{padding-top:125px}
+.site-header-spacer{height:0}
+.download-panel{margin-top:22px;padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--surface);display:grid;gap:10px}
+.download-panel p{color:var(--muted)}
+.download-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:13px 20px;border-radius:9px;width:max-content;max-width:100%}
+.download-btn:hover{filter:brightness(.94);color:#fff}
+.product-nav{margin-bottom:0}
+@media(max-width:767px){.hero{padding-top:105px}.download-btn{width:100%}}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);line-height:1.15;text-wrap:balance;margin:0}
+p{margin:0}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:600}
+.hero{padding-block:56px 36px;display:grid;gap:20px}
+.hero h1{font-size:clamp(34px,6vw,56px);font-weight:700;letter-spacing:-.02em}
+.hero h1 span{color:var(--blue)}
+.lead{font-size:clamp(17px,2.4vw,20px);color:var(--muted);max-width:62ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:8px}
+:root[data-theme="dark"] .btn{color:#0c1424}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0c1424}}
+.btn.ghost{background:transparent;color:var(--blue);border:1px solid var(--line)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.facts div{padding:16px 18px;border-right:1px solid var(--line);min-width:0}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font-family:var(--f-display);font-size:15px}
+.facts span{font-size:14px;color:var(--muted)}
+section{padding-block:40px 8px}
+section>h2{font-size:clamp(24px,4vw,32px);margin-bottom:8px}
+section>.sub{color:var(--muted);max-width:66ch;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+.card h3{font-size:18px;margin-bottom:10px}
+.card ul{margin:0;padding-left:18px;color:var(--muted)}
+.card li{margin:5px 0}
+.card li b{color:var(--fg);font-weight:600}
+.india{background:var(--amber-soft);border:1px solid var(--line);border-radius:12px;padding:22px}
+.india h3{font-size:18px;margin-bottom:12px}
+.india ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.who{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.who .card h3{font-size:17px}
+.who .card p{color:var(--muted);font-size:15px}
+.not{margin-top:16px;color:var(--muted);font-size:15px}
+.steps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));counter-reset:s;padding:0;margin:0;list-style:none}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;counter-increment:s}
+.steps li::before{content:counter(s);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--blue-soft);color:var(--blue);font-weight:700;font-family:var(--f-display);margin-bottom:8px}
+.steps b{display:block;margin-bottom:4px}
+.steps span{color:var(--muted);font-size:15px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td.y{color:var(--ok);font-weight:600}
+td.n{color:var(--muted)}
+.contact{margin-top:40px;background:var(--blue-soft);border-radius:14px;padding:28px;display:grid;gap:10px}
+.contact h2{font-size:26px}
+.contact p{color:var(--muted)}
+.contact .lines{display:flex;flex-wrap:wrap;gap:8px 24px;font-weight:600;color:var(--fg)}
+footer{margin-top:28px;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<header id="header" class="fixed-top"><div class="container d-flex align-items-center justify-content-between"><a href="index.html" class="logo"><img src="assets/img/logo.png" alt="Bestow IT Services logo" style="max-height:82px;width:auto" class="img-fluid"></a><nav id="navbar" class="navbar"><ul>
+<li><a class="nav-link" href="index.html">Home</a></li><li><a class="nav-link" href="about_us.html">About</a></li><li><a class="nav-link" href="services.html">Services</a></li><li><a class="nav-link" href="features.html">Features</a></li><li><a class="nav-link active" href="our-software.html">Our Software</a></li><li><a class="nav-link" href="contact_us.html">Contact</a></li><li><a class="getstarted" href="contact_us.html">Get Started</a></li>
+</ul><i class="bi bi-list mobile-nav-toggle"></i></nav></div></header>
+<main class="wrap">
+<header class="hero">
+  <div class="eyebrow">Bits RentDesk · by Bestow IT Service</div>
+  <h1>Rent and lease management for <span>small landlords</span></h1>
+  <p class="lead">Keep every property, tenant, agreement, rent receipt and expense in one Windows program on your own computer. Built for landlords in Hyderabad and Telangana, with Indian receipts, rent rules and reminders already in it.</p>
+  <div class="cta">
+    <a class="download-btn" href="#download"><i class="bi bi-download" aria-hidden="true"></i> Download Free Trial</a>
+    <a class="btn" href="#contact">Ask for a demo</a>
+    <a class="btn ghost" href="#features">See what it does</a>
+  </div>
+  <div class="facts" aria-label="Quick facts">
+    <div><b>Runs on your PC</b><span>Windows desktop program. Your data stays with you.</span></div>
+    <div><b>Made for India</b><span>Rupees, lakh and crore, FY, TDS and registration alerts.</span></div>
+    <div><b>Several users</b><span>Admin, manager, clerk and viewer logins.</span></div>
+    <div><b>Free trial</b><span>Try it with a trial key before you buy.</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>What it does</h2>
+  <p class="sub">RentDesk replaces the notebook, the Excel sheets and the loose receipt books. You enter each property and its units once. After that it tells you who owes what, prints the receipts, tracks the deposits and warns you before an agreement expires.</p>
+</section>
+
+<section id="features">
+  <h2>Features</h2>
+  <p class="sub">Everything a small landlord or property manager does in a month, in one place.</p>
+  <div class="grid">
+    <article class="card"><h3>Properties and units</h3><ul>
+      <li>Buildings, floors and units (shops, offices, flats)</li>
+      <li>Rent <b>fixed</b> or <b>per sq ft</b>, with maintenance per sq ft</li>
+      <li>Manage buildings you own or buildings you look after for someone else; the right owner prints on each receipt</li>
+      <li>Vacant and let status at a glance</li></ul></article>
+    <article class="card"><h3>Tenants and leases</h3><ul>
+      <li>Agreement term, start date, rent, maintenance and deposit</li>
+      <li>Yearly rent increase (hike) set for each lease</li>
+      <li>Individual or company tenant, with PAN and phone</li>
+      <li>Alerts for expiring and expired agreements, and a renewal list</li></ul></article>
+    <article class="card"><h3>Rent ledger and collections</h3><ul>
+      <li>Month-by-month rent due, paid and balance for each tenant</li>
+      <li>Payments are applied to the oldest month first; extra money shows as advance</li>
+      <li>Cash, cheque, NEFT/IMPS and UPI entries, with a collections report by mode</li>
+      <li>Cheque status: pending, cleared or bounced; bounced cheques do not count as paid</li></ul></article>
+    <article class="card"><h3>Deposits</h3><ul>
+      <li>Security deposit receipt when the tenant joins</li>
+      <li>Deposit refund and deposit adjustment vouchers</li>
+      <li>Running deposit balance for each lease</li></ul></article>
+    <article class="card"><h3>Receipts and statements</h3><ul>
+      <li>Rent receipts, deposit receipts and refund vouchers on A4</li>
+      <li>Original and duplicate copy on one page</li>
+      <li>Amount in words, for example "Rupees Fourteen Thousand Five Hundred Only"</li>
+      <li>Tenant statements, with your name, address, PAN and note on top</li></ul></article>
+    <article class="card"><h3>Expenses and profit</h3><ul>
+      <li>Electricity, water, watchman and in-charge salaries, lift, generator, repairs and your own expense heads</li>
+      <li>Recurring expenses posted when they fall due</li>
+      <li>Income against expenses report for the month, last 6 months or financial year</li></ul></article>
+    <article class="card"><h3>Compliance reminders</h3><ul>
+      <li>Agreements over 11 months flagged for registration</li>
+      <li>Stamp duty and registration fee estimate when you create a lease</li>
+      <li>TDS reminder when monthly rent crosses ₹50,000, and a prompt to collect the TDS certificate</li>
+      <li>Police verification status for each tenant</li></ul></article>
+    <article class="card"><h3>Users and permissions</h3><ul>
+      <li>Separate logins for you, your manager and your clerk</li>
+      <li>Tick exactly what each person can <b>view</b>, <b>add or edit</b> and <b>delete</b></li>
+      <li>Limit a person to selected properties</li>
+      <li>Automatic sign-out when the PC is left idle</li>
+      <li>Activity log of who did what</li></ul></article>
+    <article class="card"><h3>Your data, under your control</h3><ul>
+      <li>Backup and restore your data</li>
+      <li>Reset data by part (receipts, expenses, leases, properties) with the Admin password and a 60 second countdown you can cancel</li>
+      <li>Locked out? Use the recovery code from setup, or ask Bestow IT Service for a one-time recovery token made for your PC. There are no hidden accounts.</li></ul></article>
+  </div>
+  <div class="india" style="margin-top:16px">
+    <h3>Built around Indian and Telangana rules</h3>
+    <ul>
+      <li>Amounts in rupees with lakh and crore, and the April to March financial year</li>
+      <li>11-month rental agreements on e-stamp paper and the registration rule for longer terms</li>
+      <li>Tenant TDS on rent and PAN on every receipt</li>
+      <li>Reminders are guidance. Check stamp duty and tax with your advocate or CA.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Who it is for</h2>
+  <p class="sub">RentDesk suits people who collect rent from a handful to a few dozen units and want it organised without hiring accountants or buying a large property system.</p>
+  <div class="who">
+    <div class="card"><h3>Landlords with commercial buildings</h3><p>Shops, offices and floors let to businesses, with deposits, yearly hikes and TDS on rent.</p></div>
+    <div class="card"><h3>Owners of flats and houses</h3><p>A few residential units let on 11-month agreements, with monthly receipts and renewals.</p></div>
+    <div class="card"><h3>Small property managers</h3><p>People who collect rent for other owners and need the right owner on each receipt and clear statements.</p></div>
+    <div class="card"><h3>Families sharing a property</h3><p>Give each family member the access they need, and keep a record of every change.</p></div>
+  </div>
+  <p class="not">RentDesk is not a listing portal and does not collect rent online. It is the record-keeping and receipt desk behind your rent collection.</p>
+</section>
+
+<section>
+  <h2>Set up in four steps</h2>
+  <ol class="steps">
+    <li><b>Install</b><span>Run the setup file. It installs the program and its database for you.</span></li>
+    <li><b>Activate</b><span>Start a free trial or enter your licence key.</span></li>
+    <li><b>Add your properties</b><span>Enter buildings, units and current tenants with their rent and deposit.</span></li>
+    <li><b>Collect and print</b><span>Record payments, print receipts and watch the reminders.</span></li>
+  </ol>
+</section>
+
+<section>
+  <h2>What you need</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Requirement</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>Computer</td><td>A Windows PC. The setup program installs the database it needs.</td></tr>
+      <tr><td>Internet</td><td>Needed to activate the licence and for the periodic licence check. Day-to-day work happens on your own PC.</td></tr>
+      <tr><td>Users</td><td>The number of logins depends on your licence.</td></tr>
+      <tr><td>Support</td><td>Bestow IT Service, by phone or email.</td></tr>
+    </tbody></table></div>
+</section>
+
+<section id="download">
+  <div class="download-panel">
+    <div class="eyebrow">Bits RentDesk Trial</div>
+    <h2>Download the free trial</h2>
+    <p>The trial installer will be available here shortly. The download button is ready and will be connected to the installer as soon as the setup file is uploaded.</p>
+    <a class="download-btn" href="#download" aria-label="Bits RentDesk free trial installer coming soon"><i class="bi bi-download" aria-hidden="true"></i> Download Free Trial <span aria-hidden="true">· Coming Soon</span></a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact">
+    <h2>Talk to Bestow IT Service</h2>
+    <p>Ask for a demo, a trial key or a quote for your properties.</p>
+    <div class="lines"><a href="tel:+919440742529">9440742529</a><a href="mailto:info@bestowits.com">info@bestowits.com</a><a href="https://www.bestowits.com">www.bestowits.com</a></div>
+    <div class="cta"><a class="btn" href="https://wa.me/919440742529" target="_blank" rel="noopener">WhatsApp Bestow IT Services</a><a class="btn ghost" href="mailto:info@bestowits.com?subject=Bits%20RentDesk%20Demo%20Request">Email for Demo</a></div>
+  </div>
+  <footer>Bits RentDesk · Powered by Bits · Bestow IT Service</footer>
+</section>
+</main>
+<footer id="footer"><div class="footer-top"><div class="container"><div class="row"><div class="col-lg-4 col-md-6 footer-contact"><h3>Bestow IT Services</h3><p>Flat #401, Ramakrishna Nivas, S.R.Nagar, Hyderabad - 500034, Telangana, India<br><br><strong>Phone:</strong> +91 94407 42529<br><strong>Email:</strong> <a href="mailto:info@bestowits.com">info@bestowits.com</a><br><strong>Website:</strong> www.bestowits.com</p></div><div class="col-lg-3 col-md-6 footer-links"><h4>Useful Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about_us.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="features.html">Features</a></li><li><a href="our-software.html">Our Software</a></li><li><a href="contact_us.html">Contact</a></li><li><a href="privacy_policy.html">Privacy Policy</a></li><li><a href="terms_of_use.html">Terms of Use</a></li></ul></div></div></div></div><div class="container py-4"><div class="copyright">&copy; 2026 <strong>Bestow IT Services</strong>. All Rights Reserved.</div></div></footer>
+<a href="https://wa.me/919440742529" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with Bestow IT Services on WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
