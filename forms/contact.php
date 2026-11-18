@@ -31,7 +31,7 @@ $name = clean_header($name);
 $email = clean_header($email);
 $subject = clean_header($subject);
 
-$to = 'info@bestowits.com';
+$to = 'info@bestowits.com, bestowits@gmail.com';
 $subject_line = 'Website Enquiry: ' . $subject;
 $body = "New enquiry received from the Bestow ITs website.\n\n"
        . "Name: " . $name . "\n"
