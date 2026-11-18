@@ -463,7 +463,7 @@
       payload.access_key = '414c8cf7-4187-4369-ad45-8c6132dd6610';
       payload.subject = 'New Website Popup Enquiry - BESTOW IT SERVICES';
       payload.from_name = 'BESTOW IT SERVICES Website Popup';
-      payload.to = 'info@bestowits.com';
+      payload.to = 'info@bestowits.com,bestowits@gmail.com';
       payload.redirect = 'false';
 
       try {
