@@ -5,146 +5,251 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bits Shield — Product Description</title>
 <style>
+  * { box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 40px 24px;
-    background: #0f172a;
+    margin: 0;
+    background: #0b1220;
     color: #e2e8f0;
     line-height: 1.6;
   }
-  h1 {
-    font-size: 28px;
-    margin-bottom: 4px;
-    color: #f1f5f9;
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px 60px; }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 56px 24px 40px;
+    background: radial-gradient(ellipse at top, rgba(34,197,94,0.14), transparent 60%), #0f172a;
+    border-bottom: 1px solid #1e293b;
+  }
+  .logo {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 4px 18px rgba(34,197,94,0.35));
+  }
+  .hero h1 {
+    font-size: 34px;
+    margin: 0 0 6px;
+    color: #f8fafc;
+    letter-spacing: -0.5px;
   }
   .tagline {
-    color: #22c55e;
-    font-weight: 600;
-    margin-bottom: 28px;
-  }
-  h2 {
-    font-size: 20px;
-    margin-top: 36px;
-    margin-bottom: 10px;
-    color: #f1f5f9;
-    border-bottom: 2px solid #334155;
-    padding-bottom: 6px;
-  }
-  h3 {
-    font-size: 16px;
-    margin-top: 20px;
-    margin-bottom: 8px;
     color: #4ade80;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 22px;
   }
-  p { margin: 10px 0; }
-  ul { margin: 8px 0; padding-left: 22px; }
-  li { margin: 4px 0; }
-  strong { color: #f1f5f9; }
-  .developer {
-    margin-top: 36px;
-    padding-top: 16px;
-    border-top: 1px solid #334155;
+  .hero-sub {
     color: #94a3b8;
-    font-size: 14px;
+    max-width: 560px;
+    margin: 0 auto 28px;
+    font-size: 15px;
   }
   .download-btn {
-    display: inline-block;
-    background: #22c55e;
-    color: #0f172a;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #06220f;
     font-weight: 700;
     text-decoration: none;
-    padding: 12px 28px;
-    border-radius: 8px;
-    margin-top: 10px;
-    font-size: 15px;
-  }
-  .download-btn:hover { background: #4ade80; }
-  .contact-box {
-    margin-top: 36px;
-    padding: 20px;
-    background: #1e293b;
-    border: 1px solid #334155;
+    padding: 13px 30px;
     border-radius: 10px;
-  }
-  .contact-box h2 { margin-top: 0; border-bottom: none; }
-  .contact-row {
-    display: flex;
-    gap: 8px;
-    margin: 8px 0;
     font-size: 15px;
+    box-shadow: 0 6px 20px rgba(34,197,94,0.3);
   }
-  .contact-row .label { color: #94a3b8; min-width: 90px; }
-  .contact-row a { color: #4ade80; text-decoration: none; }
-  .contact-row a:hover { text-decoration: underline; }
+
+  /* Sections */
+  h2 {
+    font-size: 21px;
+    margin-top: 48px;
+    margin-bottom: 18px;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2 .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+  }
+  p { margin: 10px 0; color: #cbd5e1; }
+
+  /* Feature cards */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .feature-card {
+    background: #131d33;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .feature-card h3 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    color: #4ade80;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .feature-card ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .feature-card li {
+    margin: 6px 0;
+    font-size: 14px;
+    color: #cbd5e1;
+  }
+
+  /* Audience list */
+  .audience {
+    display: grid;
+    gap: 12px;
+  }
+  .audience-item {
+    background: #131d33;
+    border: 1px solid #1e293b;
+    border-left: 3px solid #22c55e;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #cbd5e1;
+  }
+  .audience-item strong { color: #f1f5f9; }
+
+  /* Contact */
+  .contact-box {
+    margin-top: 48px;
+    padding: 24px;
+    background: linear-gradient(135deg, #131d33, #0f172a);
+    border: 1px solid #1e293b;
+    border-radius: 14px;
+  }
+  .contact-box h2 { margin-top: 0; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .contact-item { font-size: 14px; }
+  .contact-item .label {
+    color: #64748b;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .contact-item a { color: #4ade80; text-decoration: none; font-weight: 600; }
+  .contact-item a:hover { text-decoration: underline; }
+  .contact-item span.plain { color: #e2e8f0; font-weight: 600; }
+
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #475569;
+    font-size: 13px;
+  }
+
+  @media (max-width: 600px) {
+    .feature-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 26px; }
+  }
 </style>
 </head>
 <body>
 
-<h1>Bits Shield</h1>
-<p class="tagline">Safe. Verified. Protected.</p>
-<a href="https://www.bestowits.com/bits-shield/download" class="download-btn">Download Bits Shield</a>
-
-<h2>Overview</h2>
-<p>Bits Shield is a Windows security application from Bestow IT Services that combines antivirus scanning, real-time protection, web and USB control, and firewall management in one dashboard. It runs continuously in the background, scans on demand or on a schedule, and gives everyday PC owners and small offices a single place to see and control their machine's protection — without needing separate tools for antivirus, firewall rules, and USB/device control.</p>
-<p>It uses the open-source ClamAV engine for virus detection, with virus definitions and threat-intelligence blocklists (malware URLs, phishing sites, botnet C2 addresses) refreshed automatically every day, so protection stays current without the user doing anything.</p>
-
-<h2>Key Features</h2>
-
-<h3>Core Protection</h3>
-<ul>
-  <li>Real-time file protection that watches the system continuously for threats</li>
-  <li>On-demand scanning: Quick, Full, and Custom scan modes</li>
-  <li>Quarantine manager to safely isolate, restore, or permanently delete detected files</li>
-  <li>Scheduled scans that run automatically on a set daily time</li>
-  <li>Automatic daily updates to virus definitions and threat blocklists — no manual action needed</li>
-  <li>Full scan history log</li>
-</ul>
-
-<h3>Web &amp; USB Control</h3>
-<ul>
-  <li>Web protection that blocks known malicious and phishing websites</li>
-  <li>USB device control with three modes: Allow All, Scan Before Allow, and Block All (with automatic safe ejection of blocked drives)</li>
-  <li>USB activity log showing every device connected and what action was taken</li>
-</ul>
-
-<h3>Firewall Manager</h3>
-<ul>
-  <li>One-click Windows Firewall on/off control</li>
-  <li>Three ready-made network profiles — Home, Work/Office, and Public/Strict — for different environments</li>
-  <li>Custom firewall rules (block or allow by port and direction)</li>
-  <li>Per-application network control — block specific programs from accessing the internet</li>
-  <li>Manual IP address blocking</li>
-</ul>
-
-<h3>Convenience &amp; Control</h3>
-<ul>
-  <li>Single dashboard showing live status of every protection module at a glance</li>
-  <li>App password protection to prevent unauthorised changes to settings, web/USB rules, or the firewall</li>
-  <li>Clean, modern interface designed for non-technical users</li>
-</ul>
-
-<h2>Who It's For</h2>
-<ul>
-  <li><strong>Home PC owners</strong> who want straightforward antivirus plus the ability to control USB drives and app-level internet access, without juggling multiple separate tools</li>
-  <li><strong>Small businesses and offices</strong> that need basic network control (per-app blocking, network profiles for different locations) but don't have IT staff to manage enterprise security software</li>
-  <li><strong>Shared or public-facing computers</strong> (reception desks, shops, labs) where USB device control and a password-protected settings lock matter — stopping staff or customers from plugging in unknown drives or changing protection settings</li>
-  <li><strong>Windows users in India</strong> looking for an affordable, locally supported alternative with direct phone/WhatsApp support from Bestow IT Services, rather than an international vendor's call centre</li>
-</ul>
-<p>Bits Shield is best positioned as a complete, easy-to-manage security layer for everyday and small-business use — not a replacement for enterprise-grade endpoint security in large organisations with dedicated IT security teams.</p>
-
-<div class="contact-box">
-  <h2>Contact &amp; Support</h2>
-  <div class="contact-row"><span class="label">Company</span> Bestow IT Services, Hyderabad</div>
-  <div class="contact-row"><span class="label">Phone / WhatsApp</span> <a href="https://wa.me/919440742529">+91 94407 42529</a></div>
-  <div class="contact-row"><span class="label">Email</span> <a href="mailto:info@bestowits.com">info@bestowits.com</a></div>
-  <div class="contact-row"><span class="label">Website</span> <a href="https://www.bestowits.com">www.bestowits.com</a></div>
+<div class="hero">
+  <img class="logo" src="data:image/png;base64,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" alt="Bits Shield logo">
+  <h1>Bits Shield</h1>
+  <p class="tagline">Safe · Verified · Protected</p>
+  <p class="hero-sub">All-in-one Windows security — antivirus, real-time protection, web &amp; USB control, and firewall management in a single dashboard.</p>
+  <a href="https://www.bestowits.com/bits-shield/download" class="download-btn">⬇ Download Bits Shield</a>
 </div>
 
-<div class="developer">
-  Developed by Bestow IT Services, Hyderabad.
-</div>
+<div class="wrap">
 
+  <h2><span class="dot"></span>Overview</h2>
+  <p>Bits Shield is a Windows security application from Bestow IT Services that combines antivirus scanning, real-time protection, web and USB control, and firewall management in one dashboard. It runs continuously in the background, scans on demand or on a schedule, and gives everyday PC owners and small offices a single place to see and control their machine's protection — without needing separate tools for antivirus, firewall rules, and USB/device control.</p>
+  <p>It uses the open-source ClamAV engine for virus detection, with virus definitions and threat-intelligence blocklists (malware URLs, phishing sites, botnet C2 addresses) refreshed automatically every day, so protection stays current without the user doing anything.</p>
+
+  <h2><span class="dot"></span>Key Features</h2>
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <h3>🛡️ Core Protection</h3>
+      <ul>
+        <li>Real-time file protection watching the system continuously</li>
+        <li>Quick, Full, and Custom scan modes</li>
+        <li>Quarantine manager — isolate, restore, or delete</li>
+        <li>Scheduled daily scans</li>
+        <li>Automatic daily definition &amp; blocklist updates</li>
+        <li>Full scan history log</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <h3>🌐 Web &amp; USB Control</h3>
+      <ul>
+        <li>Blocks known malicious and phishing websites</li>
+        <li>USB modes: Allow All, Scan Before Allow, Block All</li>
+        <li>Automatic safe ejection of blocked drives</li>
+        <li>USB activity log of every device connected</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <h3>🔥 Firewall Manager</h3>
+      <ul>
+        <li>One-click Windows Firewall on/off</li>
+        <li>Home, Work/Office, and Public/Strict profiles</li>
+        <li>Custom rules by port and direction</li>
+        <li>Per-application internet blocking</li>
+        <li>Manual IP address blocking</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <h3>⚙️ Convenience &amp; Control</h3>
+      <ul>
+        <li>Single dashboard, live status at a glance</li>
+        <li>App password protects settings &amp; rules</li>
+        <li>Clean interface for non-technical users</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <h2><span class="dot"></span>Who It's For</h2>
+  <div class="audience">
+    <div class="audience-item"><strong>Home PC owners</strong> who want straightforward antivirus plus USB and app-level internet control, without juggling multiple separate tools.</div>
+    <div class="audience-item"><strong>Small businesses and offices</strong> that need basic network control but don't have IT staff to manage enterprise security software.</div>
+    <div class="audience-item"><strong>Shared or public-facing computers</strong> (reception desks, shops, labs) where USB control and a password-protected settings lock matter.</div>
+    <div class="audience-item"><strong>Windows users in India</strong> looking for an affordable, locally supported alternative with direct phone/WhatsApp support from Bestow IT Services.</div>
+  </div>
+  <p>Bits Shield is best positioned as a complete, easy-to-manage security layer for everyday and small-business use — not a replacement for enterprise-grade endpoint security in large organisations with dedicated IT security teams.</p>
+
+  <div class="contact-box">
+    <h2 style="margin-bottom:4px;"><span class="dot"></span>Contact &amp; Support</h2>
+    <div class="contact-grid">
+      <div class="contact-item"><span class="label">Company</span><span class="plain">Bestow IT Services, Hyderabad</span></div>
+      <div class="contact-item"><span class="label">Phone / WhatsApp</span><a href="https://wa.me/919440742529">+91 94407 42529</a></div>
+      <div class="contact-item"><span class="label">Email</span><a href="mailto:info@bestowits.com">info@bestowits.com</a></div>
+      <div class="contact-item"><span class="label">Website</span><a href="https://www.bestowits.com">www.bestowits.com</a></div>
+    </div>
+  </div>
+
+  <div class="footer">Developed by Bestow IT Services, Hyderabad.</div>
+
+</div>
 </body>
 </html>
