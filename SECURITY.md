@@ -12,7 +12,7 @@ The `main` branch is the supported production version.
 
 If you discover a security vulnerability affecting the website, please report it privately to:
 
-**Email:** shakirpasha@bestowits.com
+**Email:** info@bestowits.com
 
 Please do not publish sensitive vulnerability details in a public GitHub issue. Include the affected page or component, a short description of the issue, steps to reproduce where appropriate, and any relevant screenshots or evidence that do not contain passwords, private keys, or other sensitive information.
 
