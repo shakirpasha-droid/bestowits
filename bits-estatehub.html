@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bits EstateHub - Product Information</title>
+<style>
+:root{--navy:#0B1F5C;--blue:#1565C0;--sky:#1E88E5;--amber:#F5A623;--gold:#C8870A;--slate:#5C6A8A;--line:#E2E8F2;--bg:#F3F6FB;--surface:#FFFFFF;--surface2:#FAFBFE;--ink:#14213D;--head:#0B1F5C;--muted:#5C6A8A;--good:#15803D;--warn:#B45309;--note:#FFF8E6;--tagLive:#DCFCE7;--tagPlan:#FEF3C7}
+:root[data-theme="dark"]{--bg:#0A1226;--surface:#121C36;--surface2:#16233F;--ink:#E6ECF8;--head:#F5A623;--muted:#9AA8C7;--line:#22304F;--good:#4ADE80;--warn:#FBBF24;--note:#2A2310;--tagLive:#14391F;--tagPlan:#3A2E0E;--blue:#60A5FA;--navy:#F5A623}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0A1226;--surface:#121C36;--surface2:#16233F;--ink:#E6ECF8;--head:#F5A623;--muted:#9AA8C7;--line:#22304F;--good:#4ADE80;--warn:#FBBF24;--note:#2A2310;--tagLive:#14391F;--tagPlan:#3A2E0E;--blue:#60A5FA;--navy:#F5A623}}
+.logo-tile{background:#fff;border-radius:14px;padding:6px;display:inline-flex;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.theme-btn{margin-left:auto;background:transparent;border:1px solid var(--muted);color:var(--ink);border-radius:999px;padding:6px 14px;font-size:13px;cursor:pointer}
+.theme-btn:hover{border-color:var(--amber);color:var(--amber)}
+*{box-sizing:border-box}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:var(--surface);border-bottom:4px solid;border-image:linear-gradient(90deg,var(--blue),var(--amber)) 1}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.top{display:flex;align-items:center;gap:18px;padding:22px 0;flex-wrap:wrap}
+.top img{height:64px;width:64px}
+.top h1{margin:0;font-size:28px;color:var(--head)}
+.top p{margin:2px 0 0;color:var(--muted);font-size:14px}
+nav{background:#0B1F5C}
+nav .wrap{display:flex;gap:18px;flex-wrap:wrap;padding:10px 20px}
+nav a{color:#fff;text-decoration:none;font-size:14px;opacity:.9}
+nav a:hover{opacity:1;color:var(--amber)}
+section{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin:22px 0;box-shadow:0 6px 20px rgba(11,31,92,.05)}
+h2{margin:0 0 6px;color:var(--head);font-size:21px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:5px;height:22px;background:var(--amber);border-radius:3px}
+h3{margin:18px 0 6px;color:var(--blue);font-size:16px}
+p{margin:8px 0}
+ul{margin:8px 0 0;padding-left:20px}
+li{margin:5px 0}
+.lead{font-size:16px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:14px}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--surface2)}
+.card b{color:var(--head)}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;border-radius:999px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.t-live{background:var(--tagLive);color:var(--good)}
+.t-plan{background:var(--tagPlan);color:var(--warn)}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th{background:#0B1F5C;color:#fff;text-align:left;font-size:12px;letter-spacing:.5px;text-transform:uppercase;padding:10px 12px}
+td{padding:10px 12px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top;color:var(--ink)}
+tr:nth-child(even) td{background:var(--surface2)}
+.note{background:var(--note);color:var(--ink);border-left:4px solid var(--gold);border-radius:8px;padding:12px 16px;margin-top:14px;font-size:14px}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 40px}
+@media print{:root{--bg:#fff;--surface:#fff;--ink:#14213D;--muted:#5C6A8A}nav,.theme-btn{display:none}section{box-shadow:none;break-inside:avoid}}
+</style></head><body>
+<header><div class="wrap top">
+  <span class="logo-tile"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJCaXRzIEVzdGF0ZUh1YiI+CiAgPHJlY3QgeD0iNzgiIHk9IjI0IiB3aWR0aD0iMTIiIGhlaWdodD0iMjIiIHJ4PSIzIiBmaWxsPSIjRjVBNjIzIi8+CiAgPHBvbHlsaW5lIHBvaW50cz0iMTQsNTQgNjAsMTYgMTA2LDU0IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNTY1QzAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxyZWN0IHg9IjI2IiB5PSI2NiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjQyIiByeD0iNSIgZmlsbD0iIzBCMUY1QyIvPgogIDxyZWN0IHg9IjQxIiB5PSI2NiIgd2lkdGg9IjUxIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzBCMUY1QyIvPgogIDxyZWN0IHg9IjQxIiB5PSI4MiIgd2lkdGg9IjM1IiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iI0Y1QTYyMyIvPgogIDxyZWN0IHg9IjQxIiB5PSI5OCIgd2lkdGg9IjUxIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzE1NjVDMCIvPgo8L3N2Zz4K" alt="Bits EstateHub logo"></span>
+  <div><h1>Bits EstateHub</h1><p>Real estate sales and CRM &middot; by Bestow IT Services</p></div>
+  <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle dark mode">Dark mode</button>
+</div></header>
+<nav><div class="wrap">
+  <a href="#ui">Interface</a><a href="#ease">Ease of use</a><a href="#print">Printing &amp; PDF</a><a href="#backup">Backup</a><a href="#import">Import</a><a href="#security">Security</a><a href="#tech">Technology</a><a href="#limits">Limits</a>
+</div></nav>
+
+<div class="wrap">
+<section>
+  <h2>What it is</h2>
+  <p class="lead">Bits EstateHub runs a flat-sales business from one place: projects and flats, customers, allotments, payments, instalments, construction progress and sales-team performance.</p>
+</section>
+
+<section id="ui">
+  <h2>User interface</h2>
+  <div class="grid">
+    <div class="card"><b>Dashboard</b><p>Receivables for this month and next, the sales team, overdue instalments, construction progress by project, and money totals with thousand separators.</p></div>
+    <div class="card"><b>Sidebar navigation</b><p>Dashboard, Projects &amp; Flats, Customers, Allotments, Payments, Reports, Investment Movements, Administration, Import Excel, Backups, Audit Trail and About.</p></div>
+    <div class="card"><b>Customer 360</b><p>One screen per customer: flats, payment schedule, payment history, and the Print and PDF buttons.</p></div>
+    <div class="card"><b>One colour theme</b><p>The same navy, blue and amber across every page.</p></div>
+  </div>
+  <p>Works in any modern browser on the office network. Other devices on the same network connect through the server's address.</p>
+</section>
+
+<section id="ease">
+  <h2>How easy it is to use</h2>
+  <ul>
+    <li>Forms ask for one thing at a time, and mistakes are explained in plain words.</li>
+    <li>Customer statements and reports are produced with one click.</li>
+    <li><b>Monthly instalments in one step:</b> enter the balance and the number of months. The app splits it into equal instalments, and the last one absorbs rounding, so the total always matches exactly.</li>
+    <li><b>Every amount stays editable.</b> A customer who pays more or less than the scheduled figure is handled without rebuilding the schedule.</li>
+    <li>Excel import shows a preview before anything is saved.</li>
+    <li>Administrators decide who can view, add or change data, by role.</li>
+  </ul>
+</section>
+
+<section id="print">
+  <h2>Printing and PDF</h2>
+  <ul>
+    <li><b>Branded A4 PDFs</b> for the customer payment statement, the Project &amp; Payment Update letter, payment receipts, and sales and project reports.</li>
+    <li><b>Save as PDF:</b> every document downloads as a PDF file.</li>
+    <li><b>Print:</b> the receipt page has a Print button that opens the computer's print dialog. Choose any printer installed on the PC, or choose &ldquo;Save as PDF&rdquo;.</li>
+    <li>Printed pages hide the menus and buttons automatically.</li>
+    <li>Reports are also available as Excel (.xlsx). The property report also exports to CSV.</li>
+  </ul>
+</section>
+
+<section id="backup">
+  <h2>Backup</h2>
+  <h3>Offline backup (local) <span class="tag t-live">Available</span></h3>
+  <ul>
+    <li>Administration &rarr; Backups creates a full database backup with one click.</li>
+    <li>SQL Server makes the backup itself and checks it before it is listed.</li>
+    <li>Backups are stored on the SQL Server computer, in SQL Server's backup folder.</li>
+    <li>Keep a copy on another drive or a USB device for safety.</li>
+  </ul>
+  <h3>Google Drive backup <span class="tag t-plan">Planned</span></h3>
+  <p>Not yet built. Until it is added, backups stay on the local computer.</p>
+  <h3>Restore <span class="tag t-plan">Planned</span></h3>
+  <p>The app cannot restore a backup yet. A restore is currently done in SQL Server Management Studio.</p>
+</section>
+
+<section id="import">
+  <h2>Import</h2>
+  <ul>
+    <li>Import flats and customers from Excel (.xlsx / .xlsm, up to 10 MB).</li>
+    <li>The app checks the column headers, shows a preview, and imports only after you confirm.</li>
+    <li>Other import formats (CSV, other layouts) are not supported yet.</li>
+  </ul>
+</section>
+
+<section id="security">
+  <h2>Security</h2>
+  <ul>
+    <li>Passwords are stored as secure hashes (PBKDF2, 200,000 iterations).</li>
+    <li>Five wrong login attempts lock the account for 10 minutes.</li>
+    <li>Every change is recorded in the Audit Trail: who, what, when, and from which machine.</li>
+    <li><b>Owner recovery:</b> a one-time recovery code, created by an administrator, lets the owner reset an administrator password if every administrator is locked out. Vendor-assisted recovery is planned.</li>
+  </ul>
+</section>
+
+<section id="tech">
+  <h2>Technology</h2>
+  <p>Python (Flask) web application, SQL Server Express database, and the Waitress server on Windows. It runs on the office network with no monthly subscription.</p>
+</section>
+
+<section id="limits">
+  <h2>Known limits</h2>
+  <ul>
+    <li>Google Drive backup, restore, reset, and the role-permission editor are planned, not available yet.</li>
+    <li>The screen styles load from the internet. On a computer with no internet access the layout may look plain until the styles are stored locally. This is planned.</li>
+  </ul>
+  <div class="note">Feature status reflects the V8.26 build. Check it against the build you deliver before publishing.</div>
+</section>
+</div>
+<footer>Bits EstateHub &middot; Powered by Bits &middot; Bestow IT Services &middot; 9440742529 &middot; info@bestowits.com &middot; www.bestowits.com</footer>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById("themeBtn");
+  function current(){ return root.getAttribute("data-theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); }
+  function label(){ btn.textContent = current()==="dark" ? "Light mode" : "Dark mode"; }
+  try{ var saved=localStorage.getItem("eh-theme"); if(saved) root.setAttribute("data-theme", saved); }catch(e){}
+  btn.addEventListener("click", function(){
+    var next = current()==="dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try{ localStorage.setItem("eh-theme", next); }catch(e){}
+    label();
+  });
+  label();
+})();
+</script>
+</body></html>
