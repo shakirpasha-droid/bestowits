@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MedFit Bits | Medical fitness software for GCC visa medical centres</title>
+<meta name="description" content="MedFit Bits runs the daily work of GCC visa medical centres: registration with photo and fingerprint, every department, pathology ranges, doctor review and the FIT / UNFIT report. By Bestow IT Services, Hyderabad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* MedFit Bits product page. Self-contained: copy this file (and MedFit-Bits-Brochure.pdf) to your website. */
+:root{
+  --navy:#061F5C; --blue:#0A63E8; --sky:#13B2F0; --teal:#0F766E; --mint:#14B8A6;
+  --ink:#0E1C33; --muted:#4E5F78; --line:#D9E3EF; --soft:#F0F5FB; --card:#FFFFFF;
+  --ok-bg:#E3F6E8; --ok:#1F6B3A; --plan-bg:#EFE9FB; --plan:#6A4FB0;
+  --head:#061F5C; --accent-ink:#0F766E; --thead:#F6F9FC; --ico-bg:#E3EFFB; --hero-a:#FFFFFF; --hero-b:#F0F5FB;
+  --gd-a:#E9F5FF; --shadow:rgba(6,31,92,.08); --btn-ghost:#FFFFFF; --hover-blue:#084FC0;
+  --dg-box:#FFFFFF; --dg-edge:#9AA9BC; --dg-main:#E3EFFB; --contact-bg:#061F5C; --footer-bg:#041640;
+  color-scheme:light;
+  --display:'Sora','Segoe UI',system-ui,sans-serif; --body:'DM Sans','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --navy:#0B2A6B; --blue:#4D8DF7; --sky:#5CC8F5; --teal:#2DD4BF; --mint:#2DD4BF;
+  --ink:#E6EDF7; --muted:#A3B3C9; --line:#26344A; --soft:#0B1220; --card:#121C2E;
+  --ok-bg:#12372A; --ok:#7EE2A8; --plan-bg:#2A2347; --plan:#C4B5FD;
+  --head:#F1F5FB; --accent-ink:#5EEAD4; --thead:#17233A; --ico-bg:#18294A; --hero-a:#0F1A2D; --hero-b:#0B1220;
+  --gd-a:#13294A; --shadow:rgba(0,0,0,.35); --btn-ghost:#121C2E; --hover-blue:#6FA3FA;
+  --dg-box:#121C2E; --dg-edge:#5D6F88; --dg-main:#1A3566; --contact-bg:#0A1730; --footer-bg:#060E1D;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --navy:#0B2A6B; --blue:#4D8DF7; --sky:#5CC8F5; --teal:#2DD4BF; --mint:#2DD4BF;
+  --ink:#E6EDF7; --muted:#A3B3C9; --line:#26344A; --soft:#0B1220; --card:#121C2E;
+  --ok-bg:#12372A; --ok:#7EE2A8; --plan-bg:#2A2347; --plan:#C4B5FD;
+  --head:#F1F5FB; --accent-ink:#5EEAD4; --thead:#17233A; --ico-bg:#18294A; --hero-a:#0F1A2D; --hero-b:#0B1220;
+  --gd-a:#13294A; --shadow:rgba(0,0,0,.35); --btn-ghost:#121C2E; --hover-blue:#6FA3FA;
+  --dg-box:#121C2E; --dg-edge:#5D6F88; --dg-main:#1A3566; --contact-bg:#0A1730; --footer-bg:#060E1D;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--soft);color:var(--ink);font:16px/1.6 var(--body)}
+a{color:var(--blue)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);color:var(--head);line-height:1.2;text-wrap:balance;margin:0}
+h2{font-size:clamp(24px,3vw,32px);margin-bottom:10px}
+h3{font-size:17px;margin-bottom:8px}
+.lead{font-size:18px;color:var(--muted);max-width:68ch;margin:0 0 28px}
+section{padding-block:56px}
+section+section{border-top:1px solid var(--line)}
+
+/* hero */
+.hero{background:linear-gradient(160deg,var(--hero-a) 0%,var(--hero-b) 100%);padding-block:56px 64px}
+.hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+.brand{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.brand b{font-family:var(--display);font-size:26px;color:var(--head)}
+.brand b span{color:var(--accent-ink)}
+.brand small{display:block;font-size:13px;color:var(--muted)}
+.hero h1{font-size:clamp(30px,4.4vw,46px);margin-bottom:16px}
+.hero p{font-size:18px;color:var(--muted);max-width:60ch;margin:0 0 14px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--ok-bg);color:var(--ok);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;margin-bottom:18px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:12px;font:700 16px var(--body);text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--hover-blue)}
+.btn-ghost{background:var(--btn-ghost);color:var(--head);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--blue)}
+.btn:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+.theme-btn{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:calc(14px + env(safe-area-inset-right,0px));z-index:50;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--head);display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 16px var(--shadow)}
+.theme-btn:hover{border-color:var(--blue)}.theme-btn:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.theme-btn svg{width:20px;height:20px}.theme-btn .moon{display:none}
+:root[data-theme="dark"] .theme-btn .sun{display:none}:root[data-theme="dark"] .theme-btn .moon{display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .theme-btn .sun{display:none}:root:not([data-theme="light"]) .theme-btn .moon{display:block}}
+.btn svg{width:20px;height:20px;flex:0 0 auto}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:0 18px 40px var(--shadow)}
+.hero-card .logo{display:flex;justify-content:center;margin-bottom:12px}
+.stat-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.stat-list li{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.tick{flex:0 0 22px;height:22px;border-radius:50%;background:var(--ok-bg);color:var(--ok);display:grid;place-items:center;font-weight:800;font-size:13px;margin-top:1px}
+
+/* journey */
+.diagram{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;overflow-x:auto}
+.diagram svg{display:block;width:100%;min-width:640px;height:auto}
+.dg-edge{stroke:var(--dg-edge)}.dg-arrow{fill:var(--dg-edge)}.dg-box{fill:var(--dg-box);stroke:var(--dg-edge)}
+.dg-main{fill:var(--dg-main);stroke:var(--blue)}.dg-text{fill:var(--ink)}.dg-quiet{fill:var(--muted)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.steps li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 16px 56px;position:relative;font-size:15px;color:var(--muted)}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:16px;top:16px;width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 14px var(--display)}
+.steps b{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
+
+/* audience */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.users{margin-top:18px;padding:16px 20px;border-radius:14px;background:var(--card);border:1px dashed var(--line);font-size:15px;color:var(--muted)}
+.users b{color:var(--ink)}
+
+/* features */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.feat .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:12px;background:var(--ico-bg);color:var(--blue)}
+.feat .ico svg{width:24px;height:24px}
+.feat ul{margin:0;padding-left:18px;color:var(--muted);font-size:15px}
+.feat li{margin:5px 0}
+.feat li b{color:var(--ink)}
+
+/* coming soon */
+.soon{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.soon table{width:100%;border-collapse:collapse;font-size:15px}
+.soon th,.soon td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+.soon th{background:var(--thead);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.soon td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+.soon tr:last-child td{border-bottom:0}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:999px;background:var(--plan-bg);color:var(--plan);margin-left:6px;vertical-align:middle}
+.gd{background:linear-gradient(90deg,var(--gd-a),var(--card))}
+.table-scroll{overflow-x:auto}
+
+/* requirements */
+.req td:first-child{white-space:normal}
+
+/* benefits */
+.benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.benefit{padding:20px;border-radius:16px;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--mint)}
+.benefit p{margin:0;color:var(--muted);font-size:15px}
+
+/* contact */
+.contact{background:var(--contact-bg);color:#DCE7F7}
+.contact h2{color:#fff}
+.contact .lead{color:#B8C9E6}
+.contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
+.contact ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:17px}
+.contact li span{display:inline-block;min-width:150px;color:#9FB4D8;font-size:14px}
+.contact b{color:#fff;user-select:all}
+.contact .btn-ghost{background:transparent;color:#fff;border-color:#3B5A93}
+.contact .btn-ghost:hover{border-color:#fff}
+.dev{display:flex;align-items:center;gap:12px;margin-top:20px;font-size:14px;color:#9FB4D8}
+footer{background:var(--footer-bg);color:#8EA3C7;font-size:13px;padding-block:18px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:820px){
+  .hero-grid,.contact-grid{grid-template-columns:1fr}
+  section{padding-block:40px}
+  .soon td:first-child{white-space:normal}
+}
+@media print{
+  :root,:root[data-theme="dark"]{--ink:#0E1C33;--muted:#4E5F78;--line:#D9E3EF;--soft:#fff;--card:#fff;--head:#061F5C;--accent-ink:#0F766E;--thead:#F6F9FC;--ico-bg:#E3EFFB;--hero-a:#fff;--hero-b:#fff;--gd-a:#E9F5FF;--ok-bg:#E3F6E8;--ok:#1F6B3A;--plan-bg:#EFE9FB;--plan:#6A4FB0;--blue:#0A63E8;--mint:#14B8A6;--dg-box:#fff;--dg-edge:#9AA9BC;--dg-main:#E3EFFB;color-scheme:light}
+  @page{size:A4;margin:12mm}
+  body{background:#fff;font-size:12.5px}
+  .no-print{display:none !important}
+  section{padding-block:18px;break-inside:auto}
+  .hero{padding-block:10px 18px;background:#fff}
+  .hero-card{box-shadow:none}
+  .feat,.card,.benefit,.steps li,.soon,.diagram{break-inside:avoid}
+  .contact{background:#fff;color:var(--ink);border-top:2px solid #061F5C}
+  .contact h2{color:var(--head)}.contact .lead,.contact li span,.dev{color:var(--muted)}.contact b{color:var(--ink)}
+  footer{background:#fff;color:var(--muted);border-top:1px solid var(--line)}
+  .diagram svg{min-width:0}
+  a{text-decoration:none;color:inherit}
+  /* compact brochure layout: keep desktop columns at A4 width */
+  .wrap{padding:0}
+  .hero-grid{grid-template-columns:1.4fr 1fr !important;gap:22px}
+  .contact-grid{grid-template-columns:1fr !important}
+  .hero h1{font-size:26px}.hero p{font-size:13px}.brand b{font-size:20px}
+  .hero-card{padding:16px}.hero-card .logo svg{width:80px;height:80px}.stat-list li{font-size:12px}
+  h2{font-size:19px;margin-bottom:4px}h3{font-size:13.5px;margin-bottom:4px}
+  h2,h3,.lead{break-after:avoid}
+  .lead{font-size:13px;margin-bottom:12px}
+  .steps{grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+  .steps li{padding:10px 8px 10px 36px;font-size:11px}.steps li::before{left:8px;top:10px;width:22px;height:22px;font-size:12px}.steps b{font-size:12px}
+  .grid2{grid-template-columns:repeat(4,1fr);gap:8px}.card{padding:10px}.card p{font-size:11.5px}
+  .features{grid-template-columns:repeat(3,1fr);gap:8px}.feat{padding:12px}.feat .ico{width:30px;height:30px;margin-bottom:6px}.feat .ico svg{width:18px;height:18px}.feat ul{font-size:11.5px}.feat li{margin:2px 0}
+  .benefits{grid-template-columns:repeat(4,1fr);gap:8px}.benefit{padding:10px}.benefit p{font-size:11.5px}
+  .soon table{font-size:11.5px}.soon th,.soon td{padding:6px 10px}
+  .users{font-size:11.5px;padding:8px 12px;margin-top:8px}
+  .diagram{padding:8px}
+  .contact ul{font-size:13px}.contact li span{min-width:120px;font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<script>(function(){try{var t=localStorage.getItem('medfit-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<button type="button" class="theme-btn no-print" id="themeBtn" aria-label="Switch between light and dark mode" title="Light / dark mode">
+  <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+</button>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="mfN" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A63E8"/><stop offset="1" stop-color="#061F5C"/></linearGradient>
+    <symbol id="medfit" viewBox="0 0 240 240">
+      <rect x="50" y="22" width="128" height="180" rx="16" fill="url(#mfN)"/>
+      <path d="M100 54 H128 V82 H156 V110 H128 V138 H100 V110 H72 V82 H100 Z" fill="#FFFFFF"/>
+      <rect x="72" y="156" width="70" height="9" rx="3" fill="#5EEAD4"/>
+      <rect x="72" y="174" width="46" height="9" rx="3" fill="#13B2F0"/>
+      <circle cx="182" cy="176" r="38" fill="#FFFFFF"/>
+      <circle cx="182" cy="176" r="32" fill="none" stroke="#14B8A6" stroke-width="8"/>
+      <path d="M166 176 L178 188 L200 164" fill="none" stroke="#14B8A6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="brand"><svg width="58" height="58" role="img" aria-label="MedFit Bits logo"><use href="#medfit"/></svg><div><b>MedFit <span>Bits</span></b><small>by Bestow IT Services</small></div></div>
+      <span class="badge">In use at SK Medicals, Hyderabad</span>
+      <h1>Medical fitness software for GCC visa medical centres</h1>
+      <p>From registration to the FIT / UNFIT report, every candidate, test and result in one place.</p>
+      <p>Front desk, doctors, sample collection, X-ray, vaccination, pathology and the reviewing doctor all work in the same system on their own PCs. Each candidate is identified by photo and fingerprint, every department sees its own queue, and the final result is printed or saved as PDF in seconds.</p>
+      <div class="actions no-print">
+        <a class="btn btn-primary" href="MedFit-Bits-Brochure.pdf" download="MedFit-Bits-Brochure.pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          Download brochure (PDF)
+        </a>
+        <a class="btn btn-ghost" href="#contact">Book a demo</a>
+      </div>
+    </div>
+    <aside class="hero-card" aria-label="At a glance">
+      <div class="logo"><svg width="120" height="120" aria-hidden="true"><use href="#medfit"/></svg></div>
+      <ul class="stat-list">
+        <li><span class="tick" aria-hidden="true">✓</span><span>Photo and fingerprint check at every desk</span></li>
+        <li><span class="tick" aria-hidden="true">✓</span><span>Pathology results checked against normal ranges</span></li>
+        <li><span class="tick" aria-hidden="true">✓</span><span>Doctor review of results and X-ray images in one screen</span></li>
+        <li><span class="tick" aria-hidden="true">✓</span><span>Waiting-room TV calling by candidate number</span></li>
+        <li><span class="tick" aria-hidden="true">✓</span><span>Runs on the clinic's own network, no internet needed</span></li>
+      </ul>
+    </aside>
+  </div>
+</header>
+
+<main>
+<!-- WHAT IT DOES -->
+<section id="what">
+  <div class="wrap">
+    <h2>What it does</h2>
+    <p class="lead">MedFit Bits follows each candidate from the front desk to the final result, and shows every department what is waiting for it.</p>
+    <div class="diagram">
+      <svg viewBox="0 0 760 300" role="img" aria-label="Every department feeds one doctor review before the FIT / UNFIT report" font-family="DM Sans, Segoe UI, sans-serif" font-size="13">
+        <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="dg-arrow" d="M0 0L10 5L0 10z"/></marker></defs>
+        <g class="dg-edge" fill="none" stroke-width="1.25">
+          <path d="M158 164H174"/><path d="M174 80V248"/>
+          <path d="M174 80H186" marker-end="url(#arr)"/><path d="M174 136H186" marker-end="url(#arr)"/><path d="M174 192H186" marker-end="url(#arr)"/><path d="M174 248H186" marker-end="url(#arr)"/>
+          <path d="M338 136H365" marker-end="url(#arr)"/>
+          <path d="M338 80H508"/><path d="M485 136H508"/><path d="M338 192H508"/><path d="M338 248H508"/><path d="M508 80V248"/>
+          <path d="M508 136H534" marker-end="url(#arr)"/>
+          <path d="M618 164V226" marker-end="url(#arr)"/>
+        </g>
+        <g class="dg-box" stroke-width="1.25">
+          <rect x="26" y="132" width="132" height="64" rx="8"/>
+          <rect x="186" y="58" width="152" height="44" rx="8"/><rect x="186" y="114" width="152" height="44" rx="8"/>
+          <rect x="186" y="170" width="152" height="44" rx="8"/><rect x="186" y="226" width="152" height="44" rx="8"/>
+          <rect x="365" y="114" width="120" height="44" rx="8"/>
+          <rect x="534" y="226" width="168" height="44" rx="8"/>
+        </g>
+        <rect class="dg-main" x="534" y="108" width="168" height="56" rx="8" stroke-width="2"/>
+        <g class="dg-text" text-anchor="middle">
+          <text x="92" y="160" font-weight="700">Registration</text><text x="92" y="178" font-size="11.5" class="dg-quiet">photo + fingerprint</text>
+          <text x="262" y="84">Medical Exam</text><text x="262" y="140">Sample Collection</text><text x="262" y="196">X-Ray</text><text x="262" y="252">Vaccination</text>
+          <text x="425" y="140">Pathology</text>
+          <text x="618" y="133" font-weight="700">Final Review</text><text x="618" y="150" font-size="11.5">doctor gives FIT / UNFIT</text>
+          <text x="618" y="252">Medical report / PDF</text>
+        </g>
+        <text x="26" y="30" font-size="12" class="dg-quiet">Fingerprint check at each desk</text>
+      </svg>
+    </div>
+    <ol class="steps">
+      <li><b>Registration</b>Details and Wafid slip number entered, photo taken and fingerprint enrolled. The candidate gets a number, for example 021.</li>
+      <li><b>Departments</b>Medical Exam, Sample Collection, X-Ray and Vaccination. Staff verify the candidate by fingerprint before entering results.</li>
+      <li><b>Pathology</b>Results entered against normal ranges: out-of-range values show in red, normal values in green.</li>
+      <li><b>Final Review</b>The doctor sees all results and X-ray images, approves or rejects each image, and gives FIT or UNFIT.</li>
+      <li><b>Medical report</b>Printed or saved as PDF, with the clinic's letterhead.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- WHO IT IS FOR -->
+<section id="who">
+  <div class="wrap">
+    <h2>Who it is for</h2>
+    <p class="lead">Made for medical centres that examine candidates before they travel to the GCC countries for work.</p>
+    <div class="grid2">
+      <div class="card"><h3>Authorised GCC medical centres</h3><p>Pre-departure medical fitness tests for Saudi Arabia, UAE, Kuwait, Qatar, Bahrain and Oman.</p></div>
+      <div class="card"><h3>Multi-department centres</h3><p>Candidates move between registration, examination, lab, X-ray and vaccination in one visit.</p></div>
+      <div class="card"><h3>High daily volumes</h3><p>A waiting-room TV display and a clear view of who is waiting at each department.</p></div>
+      <div class="card"><h3>Groups with several centres</h3><p>Each centre licensed separately and running under its own clinic name and logo.</p></div>
+    </div>
+    <p class="users"><b>Used by:</b> front desk, examining doctors, sample collection and lab staff, X-ray technicians, vaccination staff, pathology staff, the reviewing doctor, and the owner or manager.</p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="wrap">
+    <h2>Features</h2>
+    <p class="lead">Everything a GCC medical centre does in a day, in one system.</p>
+    <div class="features">
+      <article class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M6 21v-1a6 6 0 0 1 12 0v1"/><path d="M8.5 14.5c1 .7 2.2 1 3.5 1s2.5-.3 3.5-1"/></svg></div>
+        <h3>Registration and identity</h3>
+        <ul>
+          <li>Passport, nationality, date of birth, destination country and Wafid slip number</li>
+          <li>Candidate photo from a webcam</li>
+          <li>Fingerprint enrolment and verification (SecuGen scanners)</li>
+          <li>Candidate Registry with green and amber progress lamps for every department</li>
+        </ul>
+      </article>
+      <article class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6"/><path d="M10 3v6L5 19a1.5 1.5 0 0 0 1.3 2h11.4a1.5 1.5 0 0 0 1.3-2L14 9V3"/><path d="M7.5 15h9"/></svg></div>
+        <h3>Departments</h3>
+        <ul>
+          <li><b>Medical Exam:</b> history and clinical examination</li>
+          <li><b>Sample Collection:</b> barcode labels for blood and urine samples</li>
+          <li><b>X-Ray:</b> up to 4 images per candidate in a zoomable viewer</li>
+          <li><b>Vaccination:</b> vaccination records per candidate</li>
+          <li>Each department sees its own queue; reopening a seen candidate needs a staff fingerprint</li>
+        </ul>
+      </article>
+      <article class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg></div>
+        <h3>Pathology</h3>
+        <ul>
+          <li>Biochemistry, CBC, serology, urine and stool results</li>
+          <li>Clinic's own normal ranges shown beside each test</li>
+          <li>Out-of-range values red, normal values green</li>
+          <li>Normal answers pre-filled; entries checked against each test's format</li>
+        </ul>
+      </article>
+      <article class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m9 15 2 2 4-4"/></svg></div>
+        <h3>Final review and reports</h3>
+        <ul>
+          <li>All department results in one screen</li>
+          <li>X-ray review: approve, reject or ask for re-import, with comments</li>
+          <li>FIT / UNFIT decision with clear badges</li>
+          <li>Medical report printed or saved as PDF</li>
+          <li>Daily view of the current workday, with search by date</li>
+        </ul>
+      </article>
+      <article class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8"/><path d="M12 16v4"/></svg></div>
+        <h3>Waiting-room TV display</h3>
+        <ul>
+          <li>Runs on any Android smart TV</li>
+          <li>Candidate numbers only, never names or results</li>
+          <li>"Now calling" and "Next in queue" per department, automatic or manual</li>
+          <li>Live counters and up to three scrolling notice strips</li>
+        </ul>
+      </article>
+      <article class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Control and safety</h3>
+        <ul>
+          <li>Staff logins by department, with fingerprint sign-in</li>
+          <li>Audit trail of who did what and when</li>
+          <li>Works on the clinic's own network, no internet needed</li>
+          <li>Starts automatically with Windows on server and client PCs</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- COMING SOON -->
+<section id="soon">
+  <div class="wrap">
+    <h2>Coming in the next release</h2>
+    <p class="lead">Full data protection and administration tools, designed and in testing now.</p>
+    <div class="soon"><div class="table-scroll"><table>
+      <thead><tr><th scope="col">Feature</th><th scope="col">What it will do</th></tr></thead>
+      <tbody>
+        <tr class="gd"><td>Google Drive backup <span class="tag">New</span></td><td>Each backup encrypted and uploaded automatically to the clinic's own Google Drive, so the data is safe even if the clinic PC is lost, stolen or damaged.</td></tr>
+        <tr><td>Automatic backup</td><td>Daily or weekly backup at a time you choose, to the server, a USB drive, a network folder and Google Drive.</td></tr>
+        <tr><td>Restore</td><td>Bring the data back from any backup, on the server, a USB drive or Google Drive, with a safety copy made first.</td></tr>
+        <tr><td>Roles and permissions</td><td>Choose what each role can view, create, edit and delete, module by module.</td></tr>
+        <tr><td>Import from Excel</td><td>Bring in candidates, pathology results or staff from Excel or CSV, with column matching and a check before import.</td></tr>
+        <tr><td>Printers and PDF settings</td><td>Report paper and letterhead settings, and barcode label printer setup (TSC TE244, 50 x 25 mm).</td></tr>
+        <tr><td>Reset data</td><td>Clear chosen data, such as trial candidates, with a backup first, owner authorisation and a 60-second countdown that can be cancelled.</td></tr>
+        <tr><td>Account recovery</td><td>An owner recovery code, and disclosed one-time help from Bestow IT Services if the admin password is lost. No hidden accounts.</td></tr>
+      </tbody>
+    </table></div></div>
+  </div>
+</section>
+
+<!-- HOW IT RUNS -->
+<section id="setup">
+  <div class="wrap">
+    <h2>How it runs</h2>
+    <p class="lead">One server PC holds the data. Every other PC opens MedFit Bits in Chrome or Edge, with nothing to install except where a fingerprint scanner is attached.</p>
+    <div class="soon req"><div class="table-scroll"><table>
+      <thead><tr><th scope="col">Item</th><th scope="col">Details</th></tr></thead>
+      <tbody>
+        <tr><td>Server PC</td><td>Windows 10 or 11, Microsoft SQL Server Express (free), .NET 8</td></tr>
+        <tr><td>Department PCs</td><td>Any Windows PC on the same network, using Chrome or Edge</td></tr>
+        <tr><td>Network</td><td>Clinic LAN. Works without internet</td></tr>
+        <tr><td>Fingerprint</td><td>SecuGen fingerprint scanner on the PCs that verify candidates</td></tr>
+        <tr><td>Camera</td><td>USB webcam at registration</td></tr>
+        <tr><td>Barcode</td><td>TSC TE244 label printer (50 x 25 mm labels) and TVS BS-C101 STAR barcode scanner</td></tr>
+        <tr><td>Printing</td><td>Any printer installed in Windows, plus Save as PDF</td></tr>
+        <tr><td>Waiting-room TV</td><td>Any Android smart TV with a web browser, on the clinic network</td></tr>
+      </tbody>
+    </table></div></div>
+    <p class="users">Setup is done by Bestow IT Services: install on the server, connect the department PCs and devices, and move existing data across if needed.</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="wrap">
+    <h2>Why clinics choose MedFit Bits</h2>
+    <div class="benefits">
+      <div class="benefit"><h3>The right candidate, every time</h3><p>Photo and fingerprint checks at each department stop mix-ups between candidates.</p></div>
+      <div class="benefit"><h3>Fewer entry mistakes</h3><p>Normal answers are pre-filled, ranges sit beside each test, and out-of-range values stand out in red.</p></div>
+      <div class="benefit"><h3>A calmer waiting room</h3><p>The TV display calls candidates by number, so staff spend less time calling out names.</p></div>
+      <div class="benefit"><h3>One screen for the doctor</h3><p>All results and X-ray images come together in Final Review before the FIT / UNFIT decision.</p></div>
+      <div class="benefit"><h3>Your clinic's name in front</h3><p>Each centre runs MedFit Bits under its own name and logo.</p></div>
+      <div class="benefit"><h3>Data kept safe</h3><p>Automatic backups to the clinic's server, a USB drive and the clinic's own Google Drive (next release).</p></div>
+      <div class="benefit"><h3>Made for Indian clinics</h3><p>Designed in Hyderabad around how GCC medical centres in India work, and supported locally.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Licensing, support and contact</h2>
+      <p class="lead">Licensed per clinic and installed on the clinic's own server, so candidate data stays inside the clinic. Setup, training and support by Bestow IT Services.</p>
+      <ul>
+        <li><span>Phone / WhatsApp</span><b>+91 94407 42529</b></li>
+        <li><span>Email</span><b>info@bestowits.com</b></li>
+        <li><span>Website</span><b>www.bestowits.com</b></li>
+      </ul>
+      <div class="dev"><svg width="34" height="34" aria-hidden="true"><use href="#medfit"/></svg>MedFit Bits · Powered by Bits · Bestow IT Services, Your IT Partner Always</div>
+    </div>
+    <div class="actions no-print" style="justify-content:flex-start">
+      <a class="btn btn-primary" href="MedFit-Bits-Brochure.pdf" download="MedFit-Bits-Brochure.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Download brochure (PDF)
+      </a>
+      <a class="btn btn-ghost" href="mailto:info@bestowits.com?subject=MedFit%20Bits%20demo">Email us for a demo</a>
+      <a class="btn btn-ghost" href="https://wa.me/919440742529?text=I%20would%20like%20a%20MedFit%20Bits%20demo">WhatsApp us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span>© 2026 Bestow IT Services. MedFit Bits is a product of Bestow IT Services, Hyderabad.</span><span>Features listed under "Coming in the next release" are not yet available.</span></div>
+</footer>
+<script>
+document.getElementById('themeBtn').addEventListener('click',function(){
+  var root=document.documentElement,cur=root.getAttribute('data-theme');
+  if(!cur)cur=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  var next=cur==='dark'?'light':'dark';root.setAttribute('data-theme',next);
+  try{localStorage.setItem('medfit-theme',next);}catch(e){}
+});
+</script>
+</body>
+</html>
