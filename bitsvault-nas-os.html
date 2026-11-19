@@ -63,6 +63,14 @@ footer{background:#060E22;color:#A9BDF0;text-align:center;font-size:13px;padding
 .card,.step{transition:border-color .2s}.card:hover,.step:hover{border-color:#3A5AA8}
 summary::marker{color:var(--sky)}
 </style>
+
+<style>
+/* BITS software-home back control */
+.software-home-back{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:99999;display:flex;align-items:center;justify-content:center;gap:7px;width:48px;height:58px;border-radius:14px;background:#123B68;color:#fff!important;border:2px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.28);text-decoration:none!important;font-size:22px;font-weight:800;transition:background .2s,transform .2s}
+.software-home-back:hover{background:#0B1F5C;transform:translateY(-50%) scale(1.06)}
+.software-home-back:focus-visible{outline:3px solid #FE9501;outline-offset:3px}
+@media(max-width:600px){.software-home-back{left:8px;width:42px;height:52px;border-radius:12px;font-size:20px}}
+</style>
 </head>
 <body>
 
@@ -231,5 +239,7 @@ summary::marker{color:var(--sky)}
 
 <footer>BitsVault NAS OS · by Bestow IT Services · Based on Ubuntu 24.04 LTS; open-source components remain under their own licences.</footer>
 
+
+<a class="software-home-back" href="our-software.html" aria-label="Back to Software Home" title="Back to Software Home">←</a>
 </body>
 </html>
