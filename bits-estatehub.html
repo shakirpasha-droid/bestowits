@@ -41,7 +41,15 @@ tr:nth-child(even) td{background:var(--surface2)}
 .note{background:var(--note);color:var(--ink);border-left:4px solid var(--gold);border-radius:8px;padding:12px 16px;margin-top:14px;font-size:14px}
 footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 40px}
 @media print{:root{--bg:#fff;--surface:#fff;--ink:#14213D;--muted:#5C6A8A}nav,.theme-btn{display:none}section{box-shadow:none;break-inside:avoid}}
-</style></head><body>
+</style>
+<style>
+/* BITS software-home back control */
+.software-home-back{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:99999;display:flex;align-items:center;justify-content:center;gap:7px;width:48px;height:58px;border-radius:14px;background:#123B68;color:#fff!important;border:2px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.28);text-decoration:none!important;font-size:22px;font-weight:800;transition:background .2s,transform .2s}
+.software-home-back:hover{background:#0B1F5C;transform:translateY(-50%) scale(1.06)}
+.software-home-back:focus-visible{outline:3px solid #FE9501;outline-offset:3px}
+@media(max-width:600px){.software-home-back{left:8px;width:42px;height:52px;border-radius:12px;font-size:20px}}
+</style>
+</head><body>
 <header><div class="wrap top">
   <span class="logo-tile"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJCaXRzIEVzdGF0ZUh1YiI+CiAgPHJlY3QgeD0iNzgiIHk9IjI0IiB3aWR0aD0iMTIiIGhlaWdodD0iMjIiIHJ4PSIzIiBmaWxsPSIjRjVBNjIzIi8+CiAgPHBvbHlsaW5lIHBvaW50cz0iMTQsNTQgNjAsMTYgMTA2LDU0IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNTY1QzAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxyZWN0IHg9IjI2IiB5PSI2NiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjQyIiByeD0iNSIgZmlsbD0iIzBCMUY1QyIvPgogIDxyZWN0IHg9IjQxIiB5PSI2NiIgd2lkdGg9IjUxIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzBCMUY1QyIvPgogIDxyZWN0IHg9IjQxIiB5PSI4MiIgd2lkdGg9IjM1IiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iI0Y1QTYyMyIvPgogIDxyZWN0IHg9IjQxIiB5PSI5OCIgd2lkdGg9IjUxIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzE1NjVDMCIvPgo8L3N2Zz4K" alt="Bits EstateHub logo"></span>
   <div><h1>Bits EstateHub</h1><p>Real estate sales and CRM &middot; by Bestow IT Services</p></div>
@@ -155,4 +163,6 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:26px 0 40px}
   label();
 })();
 </script>
+
+<a class="software-home-back" href="our-software.html" aria-label="Back to Software Home" title="Back to Software Home">←</a>
 </body></html>
