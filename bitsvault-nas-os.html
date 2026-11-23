@@ -3,70 +3,101 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BitsVault NAS OS</title>
-<meta name="description" content="BitsVault NAS OS turns a desktop PC into a secure network storage server for homes and small offices: shared folders, mirrored drives, drive-health alerts, scheduled backups and private remote access. By Bestow IT Services.">
+<title>BitsVault NAS OS &mdash; Full Documentation | Bestow IT Services</title>
 <style>
-:root{--navy:#081638;--navy2:#1A3A8F;--blue:#4F8BFF;--sky:#6EA8FF;--orange:#F5A524;--bg:#0A1226;--ink:#E6EDFF;--muted:#9AABD4;--line:#22305A;--card:#111C3A;--alt:#0D1730;--text2:#C3CEEA}
-*{box-sizing:border-box}
-html{color-scheme:dark}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Noto Sans",sans-serif;line-height:1.6}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-h1,h2,h3{line-height:1.25;margin:0}
-p{margin:0}
-.hero{background:linear-gradient(180deg,#0B1F5C 0%,#081638 100%);border-bottom:1px solid var(--line);color:#fff;padding:56px 0 64px}
-.hero .wrap{display:flex;flex-wrap:wrap;gap:36px;align-items:center}
-.hero img{width:120px;height:auto;flex:none}
-.hero-text{flex:1 1 420px}
-.brand{font-size:40px;font-weight:800;letter-spacing:-.01em}
-.brand span{color:var(--sky)}
-.pill{display:inline-block;background:var(--orange);color:var(--navy);font-weight:800;font-size:13px;letter-spacing:.06em;padding:3px 12px;border-radius:999px;margin-left:10px;vertical-align:middle}
-.tagline{font-size:21px;margin-top:10px;color:#DCE6FF}
-.lead{margin-top:14px;color:#C9D7FF;max-width:640px}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
-.btn{display:inline-block;padding:12px 22px;border-radius:10px;font-weight:700;text-decoration:none;min-height:44px}
-.btn.primary{background:var(--orange);color:var(--navy)}
-.btn.ghost{border:1px solid rgba(255,255,255,.4);color:#fff}
-section{padding:52px 0}
-section h2{font-size:28px;margin-bottom:8px}
-.sub{color:var(--muted);margin-bottom:26px;max-width:720px}
-.grid4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))!important}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.card{background:var(--card);border-radius:16px;padding:22px;border:1px solid var(--line)}
-.card h3{font-size:17px;margin-bottom:8px}
-.card p,.card li{color:var(--text2);font-size:15px}
-.card ul{margin:8px 0 0;padding-left:18px}
-.ico{width:40px;height:40px;border-radius:10px;background:#1A2B5C;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-.ico svg{width:22px;height:22px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.alt{background:var(--alt)}
-.who .card{border-left:0}
-.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.step{background:var(--card);border-radius:16px;padding:22px;border:1px solid var(--line)}
-.step::before{counter-increment:s;content:counter(s);display:inline-flex;width:34px;height:34px;border-radius:999px;background:#1559E8;color:#fff;font-weight:800;align-items:center;justify-content:center;margin-bottom:10px}
-.step h3{font-size:16px;margin-bottom:6px}
-.step p{color:var(--text2);font-size:15px}
-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;font-size:15px}
-th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
-th{background:#16234A;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
-.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px}
-.g{background:#0F3D25;color:#6EE7A0}.a{background:#4A3205;color:#FFC861}.r{background:#4D1518;color:#FF9A9E}
-.note{background:#2A2210;border:1px solid #5C4512;border-radius:12px;padding:14px 16px;color:#FFE2A8;margin-top:18px;font-size:15px}
-details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
-summary{font-weight:700;cursor:pointer}
-details p{margin-top:8px;color:var(--text2)}
-.contact{background:linear-gradient(180deg,#0B1F5C,#081638);border-top:1px solid var(--line);color:#fff;text-align:center}
-.contact h2{color:#fff}
-.contact p{color:#C9D7FF}
-.contact a{color:#fff}
-footer{background:#060E22;color:#A9BDF0;text-align:center;font-size:13px;padding:18px 0}
-@media (max-width:600px){.brand{font-size:32px}.hero{padding:40px 0}section{padding:40px 0}.hero img{width:90px}}
-.card,.step{transition:border-color .2s}.card:hover,.step:hover{border-color:#3A5AA8}
-summary::marker{color:var(--sky)}
+  :root{
+    --navy:#0B1F5C; --navy2:#1A3A8F; --blue:#1559E8; --accent:#6EA8FF;
+    --orange:#F5A524; --ink:#0B1F4D; --muted:#4A5B85; --line:#DCE4F2;
+    --bg:#F5F8FD; --card:#FFFFFF; --green:#1E9E63; --green-bg:#E7F7EF;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+  a{color:var(--blue)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  header.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,var(--blue) 130%);color:#fff;padding:56px 0 64px}
+  .hero-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .hero-row img{width:72px;height:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.25))}
+  .brand-name{font-size:30px;font-weight:800;letter-spacing:.2px}
+  .brand-name span{color:var(--accent)}
+  .pill{display:inline-block;background:var(--orange);color:var(--navy);font-weight:700;font-size:12.5px;padding:5px 12px;border-radius:999px;margin-top:6px}
+  h1.tagline{font-size:28px;line-height:1.3;margin:28px 0 8px;max-width:720px;font-weight:700}
+  .hero p.sub{font-size:16px;color:#DCE6FF;max-width:680px;margin:0 0 0}
+  .badge-row{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap}
+  .badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:7px 14px;border-radius:8px;font-size:13.5px}
+
+  nav.toc{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+  nav.toc .wrap{display:flex;gap:18px;flex-wrap:wrap;padding:12px 24px;font-size:13.5px}
+  nav.toc a{color:var(--navy);font-weight:600;text-decoration:none}
+  nav.toc a:hover{color:var(--blue)}
+
+  main{padding:48px 0 20px}
+  section{margin-bottom:54px;scroll-margin-top:64px}
+  .section-title{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 6px}
+  .section-sub{color:var(--muted);font-size:15px;margin:0 0 26px;max-width:760px}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:30px}
+  @media (max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px;box-shadow:0 2px 10px rgba(11,31,92,.05)}
+  .card.full{border:2px solid var(--orange);box-shadow:0 8px 24px rgba(245,165,36,.18)}
+  .card h3{margin:0 0 4px;font-size:19px;color:var(--navy)}
+  .edition-price{font-size:13px;color:var(--muted);margin:0 0 16px}
+  .card ul{margin:0;padding:0;list-style:none}
+  .card li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;font-size:14.5px}
+  .tick{flex:0 0 auto;width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-top:1px}
+  .tick.yes{background:var(--green-bg);color:var(--green)}
+  .tick.limit{background:#FFF4DE;color:#8A5A00}
+  .limits-note{margin-top:14px;padding:11px 13px;background:#EEF3FA;border-radius:10px;font-size:13px;color:var(--muted)}
+  .cta{margin-top:18px}
+  .cta a.btn{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:10px 18px;border-radius:9px}
+  .card.full .cta a.btn{background:var(--orange);color:var(--navy)}
+
+  table.compare{width:100%;border-collapse:collapse;margin-bottom:10px;font-size:14px;background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.compare th,table.compare td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  table.compare thead th{background:var(--navy);color:#fff;font-size:13.5px}
+  table.compare tbody tr:last-child td{border-bottom:none}
+  table.compare td.center{text-align:center}
+  .ok{color:var(--green);font-weight:700}
+  .no{color:#B4472A;font-weight:700}
+
+  .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media (max-width:760px){.how-grid{grid-template-columns:1fr}}
+  .how-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .how-card .num{width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;margin-bottom:10px}
+  .how-card h4{margin:0 0 6px;font-size:15.5px;color:var(--navy)}
+  .how-card p{margin:0;font-size:13.5px;color:var(--muted)}
+
+  .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:760px){.feat-grid{grid-template-columns:1fr}}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .feat h4{margin:0 0 6px;font-size:15px;color:var(--navy);display:flex;align-items:center;gap:8px}
+  .feat p{margin:0;font-size:13.5px;color:var(--muted)}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex:0 0 auto}
+
+  .hw-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media (max-width:760px){.hw-grid{grid-template-columns:1fr}}
+  .hw-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+  .hw-card h3{margin:0 0 14px;font-size:17px;color:var(--navy)}
+  .hw-card table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .hw-card td{padding:7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  .hw-card td:first-child{color:var(--muted);width:40%;padding-right:10px}
+  .hw-card tr:last-child td{border-bottom:none}
+
+  .soon-wrap{background:var(--card);border:2px dashed var(--line);border-radius:16px;padding:30px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+  .soon-badge{background:#FFF4DE;color:#8A5A00;font-weight:700;font-size:12.5px;padding:5px 12px;border-radius:999px;display:inline-block;margin-bottom:10px}
+  .soon-wrap h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
+  .soon-wrap p{margin:0;color:var(--muted);font-size:14px;max-width:560px}
+
+  footer{background:var(--navy);color:#DCE6FF;padding:40px 0;margin-top:20px}
+  .footer-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}
+  .footer-brand{font-weight:800;color:#fff;font-size:17px;margin-bottom:6px}
+  .footer-col h5{color:#fff;font-size:13px;letter-spacing:.4px;text-transform:uppercase;margin:0 0 10px;opacity:.8}
+  .footer-col p, .footer-col a{display:block;color:#DCE6FF;text-decoration:none;font-size:13.5px;margin-bottom:6px}
+  .footer-col a:hover{color:#fff}
+  .fine{margin-top:28px;border-top:1px solid rgba(255,255,255,.15);padding-top:16px;font-size:12px;color:#9FB2E0}
 </style>
 
 <style>
-/* BITS software-home back control */
-.software-home-back{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:99999;display:flex;align-items:center;justify-content:center;gap:7px;width:48px;height:58px;border-radius:14px;background:#123B68;color:#fff!important;border:2px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.28);text-decoration:none!important;font-size:22px;font-weight:800;transition:background .2s,transform .2s}
+.software-home-back{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:99999;display:flex;align-items:center;justify-content:center;width:48px;height:58px;border-radius:14px;background:#123B68;color:#fff!important;border:2px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.28);text-decoration:none!important;font-size:22px;font-weight:800;transition:background .2s,transform .2s}
 .software-home-back:hover{background:#0B1F5C;transform:translateY(-50%) scale(1.06)}
 .software-home-back:focus-visible{outline:3px solid #FE9501;outline-offset:3px}
 @media(max-width:600px){.software-home-back{left:8px;width:42px;height:52px;border-radius:12px;font-size:20px}}
@@ -76,168 +107,213 @@ summary::marker{color:var(--sky)}
 
 <header class="hero">
   <div class="wrap">
-    <img src="data:image/png;base64,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" alt="BitsVault NAS OS logo">
-    <div class="hero-text">
-      <div class="brand">Bits<span>Vault</span><span class="pill">NAS OS</span></div>
-      <p class="tagline">Your own secure file server, built from a desktop PC.</p>
-      <p class="lead">BitsVault NAS OS turns an ordinary desktop computer into a network storage server (NAS) for your home or office. Everyone keeps their files in one safe place, opens them from Windows, Mac or phone, and you always know your drives are healthy and your data is backed up.</p>
-      <div class="cta">
-        <a class="btn primary" href="mailto:info@bestowits.com?subject=BitsVault%20NAS%20OS%20enquiry">Request a demo</a>
-        <a class="btn ghost" href="#features">See features</a>
+    <div class="hero-row">
+      <img src="data:image/png;base64,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" alt="BitsVault NAS OS logo">
+      <div>
+        <div class="brand-name">Bits<span>Vault</span> NAS OS</div>
+        <div class="pill">BITS &middot; Beyond IT Solutions &middot; by Bestow IT Services</div>
       </div>
+    </div>
+    <h1 class="tagline">Your own NAS, your own dashboard, your own Windows companion &mdash; everything BitsVault, in one place.</h1>
+    <p class="sub">BitsVault NAS OS turns a dedicated PC into a home or small-office NAS with a Synology-style web dashboard. BitsVault Desktop brings that same dashboard to your Windows taskbar, with auto-discovery and saved sign-ins. An Android companion app is on the way.</p>
+    <div class="badge-row">
+      <span class="badge">NAS OS 1.2 &middot; built on Ubuntu 24.04 LTS</span>
+      <span class="badge">BitsVault Desktop for Windows</span>
+      <span class="badge">Android app &mdash; coming soon</span>
     </div>
   </div>
 </header>
 
-<section>
+<nav class="toc">
   <div class="wrap">
-    <h2>What it does</h2>
-    <p class="sub">Install BitsVault on a dedicated SSD in a desktop PC, add your hard drives, and manage everything from a simple dashboard in any web browser. No monthly cloud fees, and your data stays in your own office.</p>
-    <div class="grid grid4">
-      <div class="card"><h3>One place for every file</h3><p>Office documents, accounts, photos and project files live on the NAS instead of scattered across laptops and pen drives.</p></div>
-      <div class="card"><h3>Protected against drive failure</h3><p>Mirror two drives so that if one fails, your files are still there. Replace the drive and carry on.</p></div>
-      <div class="card"><h3>Warned before trouble</h3><p>BitsVault checks every drive around the clock and tells you in plain words when something needs attention.</p></div>
-      <div class="card"><h3>Recovered after mistakes</h3><p>Automatic versions and scheduled backups let you bring back a deleted file, or a whole folder after a virus.</p></div>
-    </div>
+    <a href="#editions">Editions</a>
+    <a href="#features">NAS OS features</a>
+    <a href="#hardware">Hardware requirements</a>
+    <a href="#desktop">BitsVault Desktop</a>
+    <a href="#mobile">Android app</a>
+    <a href="#upgrade">Upgrading to Full</a>
+    <a href="#contact">Contact</a>
   </div>
-</section>
+</nav>
 
-<section class="alt" id="features">
-  <div class="wrap">
-    <h2>Features</h2>
-    <p class="sub">Everything a home or small office needs, in a dashboard that anyone can use.</p>
+<main class="wrap">
+
+  <section id="editions">
+    <div class="section-title">Compare editions</div>
+    <p class="section-sub">Standard is the free, default edition every BitsVault NAS ships with &mdash; no trial, no countdown, no expiry. Full is a one-time upgrade for offices that have outgrown the Standard limits or want the advanced management tools.</p>
+
     <div class="grid">
       <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg></div>
-        <h3>Flexible storage</h3>
-        <ul><li>Single drive, Mirror (two copies) or Combined (one big space)</li><li>Mix drives of different sizes</li><li>Add drives later or turn one drive into a mirror</li><li>Optional drive encryption with a recovery key</li></ul>
+        <h3>Standard</h3>
+        <p class="edition-price">Included &middot; free &middot; no expiry</p>
+        <ul>
+          <li><span class="tick yes">&#10003;</span> Shared folders, permissions, versions &amp; recycle bin</li>
+          <li><span class="tick yes">&#10003;</span> Drive health monitoring &amp; alerts (email / Telegram)</li>
+          <li><span class="tick yes">&#10003;</span> Backup to another drive, restore from any version</li>
+          <li><span class="tick yes">&#10003;</span> Remote access over VPN (Tailscale)</li>
+          <li><span class="tick yes">&#10003;</span> Static IP address for the NAS</li>
+          <li><span class="tick limit">&#8226;</span> 1 administrator + <b>2 users</b></li>
+          <li><span class="tick limit">&#8226;</span> 1 storage pool, up to <b>2 drives</b> (one mirror pair)</li>
+        </ul>
+        <div class="limits-note">No grace period, no countdown &mdash; Standard simply runs within these limits for as long as you use the NAS.</div>
       </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h6l2 2h10v10H3z"/></svg></div>
-        <h3>Shared folders</h3>
-        <ul><li>Open folders from Windows File Explorer and Mac Finder</li><li>Per-user access: no access, read only, or read and change</li><li>Recycle bin for deleted files</li><li>Phones and tablets connect through any SMB file app</li></ul>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
-        <h3>Drive health monitoring</h3>
-        <ul><li>Simple status: <span class="badge g">Green</span> <span class="badge a">Amber</span> <span class="badge r">Red</span></li><li>Temperature, SMART health, bad and pending sectors, free space</li><li>Daily quick test and weekly full test</li><li>Every warning explains why, and what to do</li></ul>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v6h6"/><path d="M20 12a8 8 0 1 1-2.3-5.7L20 9"/></svg></div>
-        <h3>Versions and backup</h3>
-        <ul><li>Automatic hourly or daily versions of each folder</li><li>Windows "Previous Versions" works out of the box</li><li>Scheduled backup to a second drive or USB drive</li><li>Restore a file or a whole folder in a few clicks</li></ul>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H5.2L4 17.5z"/><path d="M8 9h8M8 12h5"/></svg></div>
-        <h3>Alerts</h3>
-        <ul><li>Email and Telegram alerts</li><li>Drive problems, full storage, failed backups, power cuts</li><li>A message when things return to normal</li></ul>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
-        <h3>Secure remote access</h3>
-        <ul><li>Reach your files from home or on the move through a private VPN (Tailscale)</li><li>No ports opened on your router</li><li>Only your own signed-in devices can connect</li></ul>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
-        <h3>Security built in</h3>
-        <ul><li>Separate administrator and standard user accounts</li><li>Two-step verification for administrators</li><li>Encrypted dashboard (HTTPS) and account lockout</li><li>Activity log of sign-ins and every change</li></ul>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 7h2M12 14v3"/></svg></div>
-        <h3>Power protection</h3>
-        <ul><li>Works with USB UPS units (APC, CyberPower, Eaton and many more)</li><li>Alert on power cut</li><li>Safe automatic shutdown when the battery runs low</li></ul>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg></div>
-        <h3>Easy to install and run</h3>
-        <ul><li>Simple installer from a USB stick, works offline</li><li>Clean web dashboard, no technical skills needed</li><li>Bring old drives back after reinstalling (pool import)</li></ul>
+
+      <div class="card full">
+        <h3>Full &nbsp;<span style="color:#F5A524">&#9733;</span></h3>
+        <p class="edition-price">One-time upgrade &middot; licensed to this NAS</p>
+        <ul>
+          <li><span class="tick yes">&#10003;</span> Everything in Standard, with <b>no user or drive limit</b></li>
+          <li><span class="tick yes">&#10003;</span> Manager role, user Groups, private Home folders</li>
+          <li><span class="tick yes">&#10003;</span> Per-user/group storage quota, file-type rules &amp; max file size</li>
+          <li><span class="tick yes">&#10003;</span> Storage Usage dashboard &amp; automatic Quarantine</li>
+          <li><span class="tick yes">&#10003;</span> Advanced backup: multiple folders, USB/backup-drive browse, smart retention</li>
+          <li><span class="tick yes">&#10003;</span> NAS settings backup &amp; restore</li>
+          <li><span class="tick yes">&#10003;</span> Google Drive backup for shares and pools</li>
+          <li><span class="tick yes">&#10003;</span> LAN-only mode (keep the NAS fully offline-capable)</li>
+        </ul>
+        <div class="cta"><a class="btn" href="mailto:info@bestowits.com?subject=Upgrade%20to%20BitsVault%20Full">Upgrade to Full &rarr;</a></div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="who">
-  <div class="wrap">
-    <h2>Who it is for</h2>
-    <p class="sub">BitsVault is made for homes and small offices of up to a few dozen people who want their files safe, organised and under their own control.</p>
-    <div class="grid">
-      <div class="card"><h3>Small offices and shops</h3><p>One shared drive for the whole team, with each person seeing only the folders they need.</p></div>
-      <div class="card"><h3>CA, tax and accounting firms</h3><p>Client files, returns and ledgers kept in one place, versioned and backed up every night.</p></div>
-      <div class="card"><h3>Clinics and diagnostic centres</h3><p>Reports and scans stored on your own premises, protected by mirrored drives and access control.</p></div>
-      <div class="card"><h3>Architects, builders and designers</h3><p>Large drawings and project files shared across the office at network speed, with older versions on hand.</p></div>
-      <div class="card"><h3>Schools and coaching centres</h3><p>Teaching material and office records shared with staff, without paying for cloud storage.</p></div>
-      <div class="card"><h3>Families and home users</h3><p>Photos and videos from every phone and laptop in one safe place, mirrored and backed up.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
-    <h2>How it works</h2>
-    <p class="sub">From an ordinary desktop PC to a working NAS in under an hour.</p>
-    <div class="steps">
-      <div class="step"><h3>Install</h3><p>Boot the PC from the BitsVault USB stick and install it on a small SSD. Your data drives are not touched.</p></div>
-      <div class="step"><h3>Set up</h3><p>Open the address shown on the NAS screen in any browser and create the administrator account.</p></div>
-      <div class="step"><h3>Add storage</h3><p>Create a storage pool from your hard drives, then add shared folders and users.</p></div>
-      <div class="step"><h3>Use it</h3><p>Open the folders from Windows, Mac or phone. BitsVault watches the drives and runs backups for you.</p></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>What you need</h2>
-    <p class="sub">A regular desktop PC is enough. You can reuse an existing one.</p>
-    <div class="tw"><table>
-      <thead><tr><th>Part</th><th>Recommended</th><th>Minimum</th></tr></thead>
+    <table class="compare">
+      <thead><tr><th>Feature</th><th>Standard</th><th>Full</th></tr></thead>
       <tbody>
-        <tr><td>Processor</td><td>Intel Core i3 / AMD Ryzen 3 or newer</td><td>Any 64-bit Intel or AMD processor</td></tr>
-        <tr><td>Memory</td><td>8 GB (16 GB for many users)</td><td>4 GB</td></tr>
-        <tr><td>System drive</td><td>120–256 GB SSD, used only for BitsVault</td><td>16 GB</td></tr>
-        <tr><td>Data drives</td><td>Two or more hard drives of any size</td><td>One</td></tr>
-        <tr><td>Network</td><td>Wired Gigabit Ethernet to your router</td><td>Wired Ethernet</td></tr>
-        <tr><td>Optional</td><td>USB UPS; USB drive for backups</td><td>&mdash;</td></tr>
+        <tr><td>Users</td><td>1 admin + 2 users</td><td class="ok">Unlimited</td></tr>
+        <tr><td>Storage pool</td><td>1 pool, up to 2 drives</td><td class="ok">Unlimited pools &amp; drives</td></tr>
+        <tr><td>Shared folders, permissions, versions, recycle bin</td><td class="ok">Included</td><td class="ok">Included</td></tr>
+        <tr><td>Drive health &amp; alerts</td><td class="ok">Included</td><td class="ok">Included</td></tr>
+        <tr><td>Manager role</td><td class="no">&mdash;</td><td class="ok">Included</td></tr>
+        <tr><td>User Groups (share access by group)</td><td class="no">&mdash;</td><td class="ok">Included</td></tr>
+        <tr><td>Private Home folders per user</td><td class="no">&mdash;</td><td class="ok">Included</td></tr>
+        <tr><td>Per-user storage quota</td><td class="no">&mdash;</td><td class="ok">Included</td></tr>
+        <tr><td>Per-user file-type rules (block movies/music/programs, office-only, etc.)</td><td class="no">&mdash;</td><td class="ok">Included</td></tr>
+        <tr><td>Maximum file size per upload</td><td class="no">&mdash;</td><td class="ok">Included</td></tr>
+        <tr><td>Storage Usage dashboard (by user / folder / file type, duplicates)</td><td class="no">&mdash;</td><td class="ok">Included</td></tr>
+        <tr><td>Quarantine for blocked files</td><td class="no">&mdash;</td><td class="ok">Included</td></tr>
+        <tr><td>Files page (browse, upload, create folders in shares)</td><td class="ok">Included</td><td class="ok">Included</td></tr>
+        <tr><td>Google Drive backup</td><td class="no">&mdash;</td><td class="ok">Included</td></tr>
+        <tr><td>Backup destination</td><td>Another pool</td><td class="ok">Any pool, USB or dedicated backup drive</td></tr>
+        <tr><td>Backup retention</td><td>Simple (keep last N)</td><td class="ok">Smart daily / weekly / monthly</td></tr>
+        <tr><td>NAS settings backup &amp; restore</td><td class="no">&mdash;</td><td class="ok">Included</td></tr>
+        <tr><td>LAN-only mode</td><td class="no">&mdash;</td><td class="ok">Included</td></tr>
+        <tr><td>Offline grace if the licence server is unreachable</td><td>&mdash; (never expires)</td><td>15 days, then falls back to Standard (never locks you out)</td></tr>
       </tbody>
-    </table></div>
-    <p class="note">A mirror protects against a drive failing, but not against deletion or viruses. BitsVault's versions and scheduled backup cover that, and we recommend keeping one backup drive outside the office.</p>
-  </div>
-</section>
+    </table>
+  </section>
 
-<section class="alt">
-  <div class="wrap">
-    <h2>Licensing</h2>
-    <p class="sub">Try BitsVault free for 30 days with every feature. After that, activate it with a product key from Bestow IT Services. Each licence is for one NAS machine, and activation works online or offline.</p>
-    <div class="grid">
-      <div class="card"><h3>30-day free trial</h3><p>All features, no key needed. Your shared folders keep working even after the trial ends.</p></div>
-      <div class="card"><h3>One licence per NAS</h3><p>Activated online in seconds, or offline with a request code if the NAS has no internet.</p></div>
-      <div class="card"><h3>Support from Bestow</h3><p>Installation help, setup and support from Bestow IT Services.</p></div>
+  <section id="features">
+    <div class="section-title">What's inside BitsVault NAS OS</div>
+    <p class="section-sub">Built on Ubuntu 24.04 LTS, with its own HTTPS dashboard &mdash; no command line needed for day-to-day use.</p>
+    <div class="feat-grid">
+      <div class="feat"><h4><span class="dot"></span>Simple install</h4><p>Bootable ISO (UEFI incl. Secure Boot, and legacy BIOS). The text installer asks only which disk, confirms, and sets a maintenance password &mdash; fully offline.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Accounts &amp; security</h4><p>Admin / standard users, Argon2id password hashing, mandatory two-step verification (TOTP) for admins with recovery codes, lockout protection, and a full activity log.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Flexible storage</h4><p>Btrfs pools &mdash; Single, Mirror (RAID1, mixed drive sizes) or Combined &mdash; with monthly scrub, optional LUKS2 encryption with a recovery key, and pool import after a reinstall.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Sharing that just works</h4><p>Samba (SMB2/3) shared folders with per-user permissions, Windows network discovery and macOS Bonjour, plus a recycle bin for accidental deletes.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Versions &amp; recovery</h4><p>Hourly and daily read-only snapshots, visible to Windows as "Previous Versions", with one-click restore from the dashboard.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Drive health</h4><p>SMART checks every 15 minutes plus daily short / weekly long self-tests, with green/amber/red status and plain-English reasons and advice.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Alerts</h4><p>Email (SMTP) and Telegram notifications for drive, pool, backup and UPS state changes &mdash; so problems don't go unnoticed.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Backup &amp; Google Drive</h4><p>Scheduled backup to another pool, USB or dedicated backup drive from a consistent snapshot; Full edition adds backup straight to Google Drive.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Remote access</h4><p>Tailscale VPN, installed on demand, so you can reach your dashboard and shares securely from outside the home or office network.</p></div>
+      <div class="feat"><h4><span class="dot"></span>UPS-aware shutdown</h4><p>USB UPS support via NUT &mdash; get a power-cut alert and have the NAS shut down safely at a battery level you choose.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Files page</h4><p>Browse, upload to and create folders inside your shares straight from the dashboard &mdash; no separate file-manager app needed.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Licensing that's fair</h4><p>Ed25519-signed, machine-locked activation with hybrid online/offline support &mdash; and a disclosed, logged account-recovery path if an admin is ever locked out.</p></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
+  <section id="hardware">
+    <div class="section-title">Hardware requirements</div>
+    <p class="section-sub">BitsVault NAS OS runs on ordinary PC hardware &mdash; no proprietary appliance required. The system drive is dedicated to the OS only; your data lives on separate drives.</p>
+    <div class="hw-grid">
+      <div class="hw-card">
+        <h3>Minimum</h3>
+        <table>
+          <tr><td>Processor</td><td>64-bit Intel Core i3 / AMD Ryzen 3 or equivalent</td></tr>
+          <tr><td>Memory</td><td>8 GB RAM</td></tr>
+          <tr><td>System drive</td><td>120 GB SSD, dedicated to the OS only</td></tr>
+          <tr><td>Data drives</td><td>1&ndash;2 SATA drives (for a mirror pair)</td></tr>
+          <tr><td>Network</td><td>Gigabit Ethernet</td></tr>
+          <tr><td>Firmware</td><td>UEFI (Secure Boot supported) or legacy BIOS</td></tr>
+        </table>
+      </div>
+      <div class="hw-card">
+        <h3>Recommended</h3>
+        <table>
+          <tr><td>Processor</td><td>64-bit Intel Core i5 / AMD Ryzen 5 or better</td></tr>
+          <tr><td>Memory</td><td>16 GB RAM &mdash; for many concurrent users or frequent snapshots</td></tr>
+          <tr><td>System drive</td><td>256 GB SSD, dedicated to the OS only</td></tr>
+          <tr><td>Data drives</td><td>Multiple SATA drives across one or more pools</td></tr>
+          <tr><td>Network</td><td>Gigabit Ethernet (wired, for best transfer speeds)</td></tr>
+          <tr><td>Extras</td><td>USB UPS for safe shutdown on power loss</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="desktop">
+    <div class="section-title">BitsVault Desktop <span style="font-weight:600;color:var(--muted);font-size:15px">&mdash; Windows companion app</span></div>
+    <p class="section-sub">BitsVault Desktop puts your NAS dashboard on your Windows taskbar &mdash; find it, sign in, and keep it one click away, without typing an IP address every time.</p>
+    <div class="feat-grid">
+      <div class="feat"><h4><span class="dot"></span>Finds your NAS automatically</h4><p>A built-in network search locates BitsVault boxes on your LAN in seconds, with a manual address entry as a fallback if auto-discovery can't reach it.</p></div>
+      <div class="feat"><h4><span class="dot"></span>The real dashboard, embedded</h4><p>Opens your NAS's own web dashboard directly inside the app window &mdash; the same sign-in, the same pages, no separate re-implementation to fall out of sync.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Multiple saved NAS boxes</h4><p>Add more than one BitsVault NAS and switch between them from the sidebar &mdash; useful across a home and an office, or multiple office locations.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Lives in the system tray</h4><p>Closing the window keeps BitsVault Desktop running quietly in the tray, so scheduled reconnects and mapped drives keep working in the background.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Secure by design</h4><p>Each NAS's self-signed certificate is trusted once, the first time you connect &mdash; the same trust-on-first-use model used by SSH &mdash; and saved credentials are stored in Windows' own Credential Manager, never in a plain file.</p></div>
+      <div class="feat"><h4><span class="dot"></span>Drive-letter mapping</h4><p>Map a shared folder to a Windows drive letter and reconnect it automatically next time you sign in.</p></div>
+    </div>
+  </section>
+
+  <section id="mobile">
+    <div class="section-title">BitsVault Mobile</div>
+    <div class="soon-wrap">
+      <div>
+        <span class="soon-badge">Coming soon</span>
+        <h3>Android companion app</h3>
+        <p>An Android app for BitsVault NAS OS is in development &mdash; bringing your dashboard, drive health and file access to your phone. This section will be updated with full details once it's released.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="upgrade">
+    <div class="section-title">How upgrading to Full works</div>
+    <p class="section-sub">Switching from Standard to Full takes a few minutes and does not interrupt access to your files.</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="num">1</div>
+        <h4>Find your Machine ID</h4>
+        <p>Open the <b>About</b> page in your BitsVault dashboard &mdash; it shows a Machine ID like <code>BITS-XXXX-XXXX-XXXX</code> and an Upgrade to Full button.</p>
+      </div>
+      <div class="how-card">
+        <div class="num">2</div>
+        <h4>Contact Bestow IT Services</h4>
+        <p>Share the Machine ID with us by email, phone or WhatsApp. We'll issue a product key for that specific NAS.</p>
+      </div>
+      <div class="how-card">
+        <div class="num">3</div>
+        <h4>Activate</h4>
+        <p>Enter the key on the Licence page and click Activate. With internet it's instant; without internet, an offline activation code works too.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
   <div class="wrap">
-    <h2>Frequently asked questions</h2>
-    <p class="sub">&nbsp;</p>
-    <details><summary>Do I need a special NAS box?</summary><p>No. BitsVault runs on an ordinary desktop PC. Add a small SSD for the system and hard drives for your data.</p></details>
-    <details><summary>Can Windows and Mac computers use it at the same time?</summary><p>Yes. Shared folders open directly in Windows File Explorer and Mac Finder, and phones connect with any SMB file app.</p></details>
-    <details><summary>What happens if a hard drive fails?</summary><p>With a mirror pool your files stay available. BitsVault alerts you, you replace the drive and add it back to the pool.</p></details>
-    <details><summary>Can I reach my files from outside the office?</summary><p>Yes, through a private Tailscale VPN. Your NAS is never exposed to the open internet.</p></details>
-    <details><summary>What if the system SSD fails or I reinstall?</summary><p>Your files are on the data drives, not the SSD. After reinstalling, BitsVault imports the existing pools with your files and versions intact.</p></details>
-    <details><summary>Is my data sent to any cloud?</summary><p>No. Your files stay on your own NAS. Internet is used only for licence activation, alerts and optional remote access.</p></details>
-    <details><summary>Is there a mobile app?</summary><p>A BitsVault Android app is coming soon. Until then, phones and tablets can open shared folders with any SMB file manager app.</p></details>
+    <div class="footer-row">
+      <div>
+        <div class="footer-brand">Bestow IT Services</div>
+        <p style="max-width:320px">BITS &middot; Beyond IT Solutions &mdash; makers of BitsVault NAS OS, BitsVault Desktop, and the Bits family of business apps.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:info@bestowits.com">info@bestowits.com</a>
+        <a href="tel:+919440742529">9440742529</a>
+        <a href="https://www.bestowits.com" target="_blank" rel="noopener">www.bestowits.com</a>
+      </div>
+    </div>
+    <div class="fine">&copy; Bestow IT Services. BitsVault NAS OS is built on Ubuntu 24.04 LTS; BitsVault Desktop runs on Windows 10/11 (.NET 8); open-source components remain under their own licences.</div>
   </div>
-</section>
-
-<section class="contact">
-  <div class="wrap">
-    <h2>Get BitsVault for your office</h2>
-    <p style="margin:10px 0 22px">Talk to us about a demo, pricing, or installation at your premises.</p>
-    <p><a href="mailto:info@bestowits.com">info@bestowits.com</a> &nbsp;·&nbsp; <a href="tel:+919440742529">+91 94407 42529</a> &nbsp;·&nbsp; <a href="https://www.bestowits.com">www.bestowits.com</a></p>
-  </div>
-</section>
-
-<footer>BitsVault NAS OS · by Bestow IT Services · Based on Ubuntu 24.04 LTS; open-source components remain under their own licences.</footer>
+</footer>
 
 
 <a class="software-home-back" href="our-software.html" aria-label="Back to Software Home" title="Back to Software Home">←</a>
